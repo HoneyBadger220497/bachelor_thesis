@@ -1,0 +1,120 @@
+\subsection{Ferromagnetisches Ising-Modell} \label{sec: Ferromagnetisches Ising-Modell}
+
+Dem Ising-Modell liegt die Vorstellung eines endlichen Gitters zugrunde, auf dessen Gitterpunkten permanente magnetische Momente $\mu_i$ lokalisiert sind. Diese sind alle entlang der selben Achse ausgerichtet, die Orientierung ist jedoch zufällig. Dies ist zum Beispiel ein sehr stark vereinfachtes Modell für einen magnetischen Isolator. Es kann als halbwegs realistisches Modell betrachtet werden, falls das Material eine stark uniaxiale Symmetrie aufweist, da dann eine Richtung für die magnetischen Momente im Material ausgezeichnet ist \cite{StatPhys_Nolting_K4}. Die magnetischen Momente können dabei zum Beispiel von nicht vollbesetzten Hüllen der, an den Gitterplätzen lokalisierten, Atomen eines Kristalls herrühren. In Anlehnung daran werden die magnetische Momente über $\mu_i = \mu \sigma_i$  mit Spin-Variablen $\sigma_i \in \{-1, 1\}$ in Verbindung gebracht, welche als klassische Zufalls-Variablen mit zwei möglichen Einstellungen betrachtet werden. Das als Ising-Modell bekannte System wird dann durch die in \eqref{H_ising_general} angegebene Hamiltonfunktion beschrieben. Betrachtet man ein Gitter mit $N$ Gitterpunkten, so gibt es insgesamt $2^N$ verschieden Konfigurationen welche die Gesamtheit aller Spin-Variablen einnehmen kann. Als klassische Beschreibung, eines eigentlich quantenmechanischen Systems, ist die Hamiltonfunktion diskret und kann höchstens $2^N$ verschiedene Werte annehmen. 
+\begin{equation} \label{H_ising_general}
+H_{Ising}(\sigma_1, \dots, \sigma_N) = - \sum_{i=1}^N \sum_{j=1}^N J_{i,j} \,\sigma_i \sigma_j \;- \mu H_0 \sum_{i} \sigma_i 
+\end{equation}
+\noindent Die Größen $J_{i,j}$ werden als Austausch-Integrale bezeichnet. Sie beschreiben den Energieanteil, der aus der gegenseitigen Wechselwirkungen des i-ten und j-ten magnetischen Moments resultiert. Zu dieser Austauschenergie tragen im allgemeinen primär quantenmechanische Effekte bei, welche aus dem Zusammenspiel von Orts- und Spin-Wellenfunktion der Elektronen resultieren. Die erste Summe in \eqref{H_ising_general} beschreibt somit die mit der Spin-Spin-Wechselwirkung in Verbindung gebrachten Energieanteil. Ist $J_{i,j}$ positiv, so führt eine parallele Spinausrichtung an den Gitterpunkten $\bm{x}_i$ und $\bm{x}_j$ zu einer Absenkung der Gesamtenergie und eine antiparallele Spinausrichtung zu einer Erhöhung. Ist $J_{i,j}$ negativ, so verhält es sich genau umgekehrt. Wechselwirkungen von magnetischen Momenten mit sich selbst sollen ausgeschlossen werden, also $\forall i : J_{i,i} = 0$. \\
+\noindent Die zweite Summe in \eqref{H_ising_general} beschreibt den Anteil der Energie, welcher durch Anlegen eines externen Magnetfeldes $H_0$ an das Modell-System entsteht.
+Für eine detaillierte Herleitung des quantenmechanischen Ising Hamiltonopertors und eine ausführlichere Beschreibung siehe auch \cite{MarxGross2014}.\\
+
+\noindent Für den Rest der Arbeit sollen weitere Vereinfachungen vereinbart werden:
+\begin{itemize}
+\item[i)] Isotropie und Homogenität des Modells, d.h. $ \forall i\neq j : J_{i,j} = J_{j,i} = J_i = J $
+\item[ii)] Nur nächste Nachbar Wechselwirkung, d.h. $\forall i,j : J_{i,j} = 0$ für $\vert i-j \vert > 1$
+\item[iii)] Kein externes Magnetfeld, d.h. $H_0 = 0$
+\end{itemize}
+
+\noindent Zudem beschränkt sich die Arbeit auf ein zweidimensionales Gitter, welches o.B.d.A in der x-y-Ebene liegen soll. Die Einstellungen der Spins kann man sich dann als Ausrichtung der magnetischen Momente entlang der z-Achse vorstellen. Zudem soll $J > 0$ gelten, um überhaupt eine spontane Magnetisierung erwarten zu können. Ein solches Ising-System, bei dem alle Austausch-Integrale nicht negativ sind, bezeichnet man auch als ferromagnetisch. Die Hamiltonfunktion, welche das System für ein quadratisches Gitter mit Seitenlänge $2M+1$ und somit $N = (2M+1)^2$ Gitterpunkten beschreibt, ist im Folgenden angegeben.
+
+\begin{grayframe}[frametitle = {2d Ising-Modell ohne externes Magnetfeld}]
+\begin{align} 
+H(\sigma_1, \dots, \sigma_N) &= - J  \sum_{(i,j)} \sigma_i \sigma_j \label{H_ising_2d}\\
+  &= - J \sum_{x = -M}^M \sum_{y = -M}^M \sigma_{x, y} \sigma_{x+1, y} + \sigma_{x, y} \sigma_{x,y+1} \label{H_ising_2d_exp} 
+\end{align}
+\end{grayframe}
+
+\noindent Die Summation in \eqref{H_ising_2d} läuft dabei über alle $2N$ Paare nächster Nachbarn auf dem Gitter. Diese Notation soll für die gesamte Arbeit vereinbart werden.
+
+\begin{equation}
+\sum_{(i,j)} \;\text{bzw.}\; \prod_{(i,j)} \iff  \begin{array}{ll} \text{Summe bzw. Produkt über alle Paare} \\ \text{nächster Nachbarn auf dem Gitter} \end{array}
+\end{equation}
+
+\noindent Im folgenden wird das Gitter auf zwei unterschiedliche Weisen beschrieben. Einerseits wird das Gitters über eine geeignete Nummerierung der Gitterpunkte und der Angabe des Indexes $j$ beschrieben. Dies wird zum Beispiel bei der Beschreibung nächster Nachbar Paare auf dem Gitter, siehe \eqref{H_ising_2d}, benutzt. Die Nummerierung der Gitterpunkte ist vorerst beliebig, wird aber zu einem späteren Zeitpunkt genauer festgelegt werden. Andererseits wird zur Beschreibung des Gitteres eine explizite Angabe der Koordinaten $\bm{x} = (x,y)$ der Gitterpunkte in der Ebene, wie in \eqref{H_ising_2d_exp}, benutzt. Insbesondere gehen diese beiden Arten der Beschreibung durch die Zuordnung $j \rightarrow \bm{x}_j$ bzw. $\sigma_j = \sigma_{\bm{x}_j}$ fließend ineinander über. Davon wird in der Arbeit mehrmals Gebrauch gemacht werden. 
+Die Darstellung in \eqref{H_ising_2d_exp} wirft letztlich die Frage nach den Randbedingungen auf. Es werden periodische Randbedingungen gemäß \eqref{eq: Periodische Randbedingungen} festgelegt. 
+
+\begin{equation} \label{eq: Periodische Randbedingungen}
+\begin{aligned} 
+\forall y & : \sigma_{M+1, y} =  \sigma_{-M, y} \\
+\forall x & : \sigma_{x, M+1} =  \sigma_{x, -M}
+\end{aligned}
+\end{equation}
+
+\subsection{Elemente der Statistischen Mechanik}
+
+Das im vorherigen Abschnitt beschriebene Ising-Gitter dient nun als statistisches Assemble von N Teilchen, beschrieben durch die Hamiltonfunktion \eqref{H_ising_2d}. Wir gehen davon aus, dass das System in thermischen Kontakt mit einem Wärmebad konstanter Temperatur $T$ steht. Zudem gilt dass sowohl die Ausdehnung $V$, als auch die an Anzahl N der an den Gitterplätzen lokalisierten Momente, konstant sind für jedes Ising-Gitter. Das Assemble kann aus Sicht der statistischen Physik somit als sogenannte kanonische Gesamtheit beschrieben werden. Die Berechnung vieler Größen solcher Systeme können durch die Berechnung der Zustandssumme $Z$ und Erwartungswerte bzw. Korrelationen $\corr{.}$ berechnet werden. Die Zustandssumme ist dabei gemäß
+
+\begin{equation} \label{def: sp_zustandssumme}
+ Z(T,N,V) = \sum_{\{S\}} \mathrm{e}^{-\beta H( S ) } 
+\end{equation}
+definiert, wobei der Faktor $\beta = \beta\left(T\right) = \frac{1}{k_B T} $ eingeführt wurde, welcher die Einheit einer reziproken Energie hat. $k_B$ ist hierbei die Boltzmann-Konstante. Die Summation erfolgt über die Menge alle möglichen Spinkonfigurationen des Systems, geschrieben als $\{S\} = \{S = (\sigma_1, \sigma_2, \dots,\sigma_N) \,\vert\, \forall\,i : \sigma_i \in \{-1, 1\}\}$. Die Wahrscheinlichkeit, dass eine Konfiguration $S$ eingenommen wird, ist dann durch
+
+\begin{equation} \label{eq: konfigProb}
+    P(S) = \frac{1}{Z} \mathrm{e}^{-\beta H( S ) } 
+\end{equation}
+ gegeben. Die Spin-Spin-Korrelation ist der Erwartungswert für das Produkt zweier Spinvariablen und ist gemäß
+ 
+\begin{equation} \label{def: sp_erwartungswert}
+    \corr{\sigma_{p} \sigma_{q}}_{T,N,V} = \frac{1}{Z} \sum_{\{S\}} \mathrm{e}^{-\beta H( S ) }  \sigma_{p}( S ) \sigma_{q}( S )
+\end{equation}
+ definiert. \cite{StatPhys_Nolting_K2} Um das System mit den Mittelen der Statistischen Physik auf Phasenübergänge untersuchen zu können, muss das Ising-Modell im sogenannten Thermodynamik Limes untersucht werden. Dazu wird eine entsprechende Größe, wie die freie Energie, für ein System endlicher Ausdehnung $V$ und Teilchenzahl $N$ berechnet und anschließend mithilfe des Grenzübergangs \eqref{Thermodynamischer Limes} auf ein unendliches System extrapoliert. 
+\begin{equation} \label{Thermodynamischer Limes}
+\centering
+\begin{tabular}{lccccc}
+        &  &                 &    &      $N \longrightarrow \infty$\\
+$\tlim$ &  &  $\iff$           &   &      $V \longrightarrow \infty$ \\
+        &  &                 &   & $n =  N/V = konst. < \infty$
+\end{tabular}
+\end{equation}
+
+\noindent Der Übergang in den Thermodynamischen Limes ist notwendig, um  Phasenübergänge erkennen zu können, da diese sich als Diskontinuität, Sigularität oder Nicht-Analytizität eines Thermodynamischen Potenzials, wie der Freien Energie, bemerkbar machen. Für endliche Systeme sind diese Potenziale aber immer analytisch. Für das unendlich große System können nur Größen pro Volumen oder Teilchen sinnvoll betrachtet werden. Die Freie Energie pro Teilchen $f$ lässt sich z.B. als Thermodynamischer Limes der Freien Energien $F_N$ endlicher Systemen mit Teilchenzahl $N$ ausdrücken. $F_N$ wiederum kann mit der Zustandsumme des endlichen Systems berechnet werden. \cite{StatPhys_Nolting_K4} 
+\begin{equation} \label{SP_FreieEnergie}
+f(T,n = \frac{N}{V}) = \tlim \frac{F_N}{N} = \tlim \frac{-k_B T}{N} \ln Z(T,V,N) 
+\end{equation}
+
+\subsection{Spontane Magnetisierung}
+
+Abschließend soll noch die Definition des Begriffs der spontane Magnetisierung besprochen werden. Die Magnetisierung $\mathcal{M}$ eines magnetischen Festkörpers wird normalerweise als das mittlere magnetische Moment pro Volumen definiert. Für ein endliches Ising-Gitter $\Lambda_N$ ergibt sich 
+\begin{equation} \label{Classic_Magnatization}
+\mathcal{M}(N,T,V,H_0)  = \frac{1}{V}\corr{ \mu \sum_i \sigma_i\;}_{\Lambda_N, H_0} = \frac{\mu N}{V}\corr{\sigma_0}_{\Lambda_N, H_0} = n \mu \corr{\sigma_0}_{\Lambda_N, H_0} 
+\end{equation}
+als eine anschauliche Definition der Magnetisierung des Ising-Systems. Dabei wurde die, durch die angenommene Homogenität und Periodizität des periodischen Gitters implizierte, Translationsinvarianz der Erwartungswerte benutzt. Die Magnetisierung eines beliebig großen Systems ergibt sich letztlich durch Extrapolation mithilfe des Thermodynamischen Limes. Zur Notation sei gesagt dass $\Lambda_N$ andeuted dass ein endliches System mit $N$ Teilchen betrachtet wird und tiefgestelltes $H_0$ verweist auf die Anwesenheit eines externen Magnetfeldes $H_0 > 0$. Als spontane Magnetisierung $M_S$ wird nun die Magnetisierung eines Festkörpers bei verschwindendem externen Magnetfeld bezeichnet. 
+\begin{equation} \label{def: classic_spontaneMagnetisierung}
+\mathcal{M}_S(T) = \lim_{H_0 \rightarrow 0} \mathcal{M} = \lim_{H_0 \rightarrow 0} \tlim \mathcal{M}(T,N,V,H_0) =  n \mu \lim_{H_0 \rightarrow 0} \tlim \corr{\sigma_0}_{\Lambda_N, H_0} 
+\end{equation}
+\noindent Die Definition in \eqref{def: classic_spontaneMagnetisierung} wirft dabei jedoch zwei Probleme für die Berechnung der spontanen  Magnetisierung für das hier untersuchte Ising-System auf:
+\begin{itemize}
+\item [i)] Die Grenzprozesse in \eqref{def: classic_spontaneMagnetisierung} lassen sich im Allgemeinen nicht vertauschen. Somit kann diese Definition für die spontane Magnetisierung möglicherweise nicht angewandt werden. Für das untersuchte System wurde schließlich $H_0 = 0$ festgelegt. 
+\item [ii)] Es konnte bislang keine analytische Berechnung für $\corr{\sigma_0}$ gefunden werden.  (Zumindest ist eine solche dem Autor nicht bekannt). 
+\end{itemize}
+
+\noindent Um diese Probleme zu umgehen, soll die spontane Magnetisierung stattdessen über die langreichweitige Spin-Spin-Korrelation \eqref{longrangeCorrelation} gemäß \eqref{spontaneMagnetisierung} definiert werden. 
+\begin{grayframe}[frametitle = {Definition der spontanen Magnetisierung}]
+\begin{align}
+l^* & = \lim_{||\bm{x}_i-\bm{x}_j||_1 \rightarrow \infty} \tlim \sqrt{\corr{\sigma_i\sigma_j}_{\Lambda_N}} \label{longrangeCorrelation} 
+% \mathcal{M}_S   & = n \mu l^* \label{spontaneMagnetisierung}
+\end{align}
+\begin{equation}
+\mathcal{M}_S  = n \mu l^* \label{spontaneMagnetisierung}
+\end{equation}
+\end{grayframe}
+\noindent Dass dies tatsächlich eine äquivalente Definition für die spontane Magnetisierung darstellt, wird zum Beispiel in einer Arbeit von Anders Martin-Löf \cite{Anders1969} bewiesen. Das Resultat seiner Arbeit kann dabei wie folgt zusammengefasst werden.
+\begin{grayframe}[]
+    Der Grenzwert $\tlim \corr{\sigma_i\sigma_j}_{\Lambda_N}$ existiert und für $e^{-2J\beta}<\frac{1}{3}$ folgt dass $ n \mu l^{*} = \mathcal{M}_S$ für das 2D-Ising Gitter, unabhängig von den folgenden Randbedingungen :    \\
+    
+    \begin{tabular}{cl}
+        $+$ & Das Gitter wird von Spins mit konstantem Wert $1$ eingeschlossen\\
+        $-$ & Das Gitter wird von Spins mit konstantem Wert $-1$ eingeschlossen\\
+        $f$ & Es gilt $J_{i,j} = 0$ für $i > M$ oder $j > M$ (freier Rand)\\
+        $t$ & Das Gitter hat die Topologie eines Torus (periodische Randbedingungen) \\
+    \end{tabular} \\ 
+
+    \noindent Wobei $\mathcal{M}_S$ in diesem Zusammenhang gemäß \eqref{def: classic_spontaneMagnetisierung} definiert ist.
+\end{grayframe}
+
+\noindent Dabei entspricht die letzte Bedingung $t$ der hier verwendeten Randbedingung.
+
+
+
+
+

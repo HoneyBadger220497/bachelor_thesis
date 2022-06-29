@@ -1,0 +1,495 @@
+Dieser Abschnitt bildet den Hauptteil der Arbeit. Es wird sich herausstellen, dass die gesuchte Größe zu Berechnung der Magnetisierung, die Spin-Spin-Korrelation, mithilfe der Zustandssumme $Z$ des Ising-Modells ausgedrücken werden kann. Das zentrale Ziel dieses Abschnitts ist es die Zustandssumme $Z$ als Spur einer geeigneten Gauß-Graßmann-Dichte zu schreiben. Denn dann lassen sich Zustandssumme und Spin-Spin-Korrelation  mit den in Abschnitt \ref{sec: grassmann} erarbeiteten Mitteln berechnen. Um diese Reformulierung zu erreichen wird ein Zwischenschritt benötigt, bei dem das Ising-Modell mit einer sogenannten Hochtemperatur-Darstellung auf ein graphisch kombinatorisches Problem abgebildet wird. Dieses kann dann mithilfe der Graßmann-Variablen behandelt werden. Diese Idee geht auf die Arbeiten von Stuart Samuel zurück \cite{StuartSamuel1} \cite{StuartSamuel2}, welcher in seiner ursprünglichen Arbeit jedoch eine Tieftemperatur-Darstellung verwendete. 
+
+\subsection{Hochtemperatur-Entwicklung} 
+
+ \noindent Zu Beginn soll ein expliziter Ausdruck für die Zustandssumme und die Spin-Spin-Korrelation des Ising-Modells abgeleitet werden. Dazu wird mit der Berechnung des Ausdrucks $\exp{\beta J \sigma_i \, \sigma_j} $ für $i \neq j$ begonnen.
+\begin{align}
+\exp{\beta J \sigma_i \sigma_j} & = \sum_{k=0}^{\infty} \frac{(\beta J)^{2k}}{(2k)!}(\sigma_i \sigma_j)^{2k} + \sum_{k=0}^{\infty} \frac{(\beta J)^{2k+1}}{(2k+1)!}(\sigma_i \sigma_j)^{2k+1} \nonumber  \\
+& = \sum_{k=0}^{\infty} \frac{(\beta J)^{2k}}{(2k)!} + (\sigma_i \sigma_j) \sum_{k=0}^{\infty} \frac{(\beta J)^{2k+1}}{(2k+1)!} \nonumber  \\
+& = \cosh(\beta J) + (\sigma_i \sigma_j) \sinh(\beta J) \nonumber  \\
+& = \cosh(\beta J) \; (1 +  \tanh(\beta J) \; (\sigma_i \sigma_j)) \label{eq: exp(beta J sig sig)}
+\end{align}
+
+\noindent Dabei wurde benutzt dass $(\sigma_i \sigma_j)^{2k} = 1$ und $(\sigma_i \sigma_j)^{2k+1} = (\sigma_i \sigma_j)$ gilt. Durch Einsetzen der Hamiltonfunktion \eqref{H_ising_2d} in die Definition der Zustandssumme \eqref{def: sp_zustandssumme} lässt sich für das Ising-Modell ein expliziter Ausdruck für $Z$ finden. Die Summation erfolgt dabei über die Menge aller möglichen Spin-Konfigurationen $\{S\}$ des Gitters.
+
+\begin{align} 
+    Z(T,N,V) 
+    &  = \sum_{\{S\}} \exp{\beta J \sum_{(i,j)} \sigma_i \sigma_j } \nonumber \\
+    &  = \sum_{\{S\}} \prod_{(i,j)} \exp{\beta J \sigma_i \sigma_j } \nonumber\\
+    &  = \cosh(\beta J)^{2N} \sum_{\{S\}} \prod_{(i,j)} (1 +  \tanh(\beta J) \; (\sigma_i \sigma_j)) \nonumber \\
+    &  = \cosh(\beta J)^{2N} \sum_{\{S\}} \prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j))
+\end{align}
+
+\noindent Bei dieser Ableitung wurde die Größe $t = \tanh(\beta J)$ eingeführt. Die Potenz $2N$ rührt von der Anzahl der Paare nächster Nachbarn auf dem Gitter her. Siehe dazu auch Abbildung \ref{Abb: grid}.
+\begin{figure}[h]
+    \centering
+    \input{Diagrams/2DGrid/PBC.tex}
+    \caption{Darstellung der paarweisen Austauschwechselwirkungen $J_{i,j}$. Unter der Berücksichtigung periodischer Randbedingungen (hellgraue Pfeile) gibt es genau zwei Austasuchintegrale pro Gitterpunkt.}  \label{Abb: grid}
+\end{figure}
+
+\noindent Analog lässt sich ein expliziter Ausdruck für die Spin-Spin-Korrelation des Ising-Modells berechnen \cite{StatPhys_Nolting_K4}.
+\begin{align} 
+    \corr{\sigma_{p} \sigma_{q} }_{T,N,V}  
+    % &= \frac{1}{Z} \sum_{\{S\}} e^{-\beta H( S ) }  \sigma_{p}( S ) \sigma_{q}( S ) \nonumber \\
+    & = \frac{1}{Z} \sum_{\{S\}} \exp{\beta J \sum_{(i,j)} \sigma_i \sigma_j } \sigma_{p} \sigma_{q} \nonumber\\
+    & = \frac{1}{Z} \cosh(\beta J)^{2N} \sum_{\{S\}} \left(\prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j) )\right) \sigma_{q} \sigma_{q} 
+\end{align}
+
+\noindent Die hier abgeleiteten Ausdrücke sind in  \eqref{Ising_Zustandssumme} und \eqref{Ising_SpinSpinCorrelation} noch einmal zusammengefasst. Der Name ``Hochtemperatur-Entwiklung'' rührt daher, dass die Exponentialfunktion um $|\beta J \sigma_i \sigma_j| = \frac{J}{k_B\,T}\ \approx 0 $ entwickelt wird. Da aber die Potenzreihe der Exponentialfunktion auf ganz $\mathbb R$ analytisch ist, ist diese Darstellung der Zustandssumme tatsächlich auch für niedere Temperaturen exakt. 
+
+\begin{grayframe}[frametitle = {Zustandssumme und Spin-Spin-Korrelation für 2d Ising-Modell \cite{StatPhys_Nolting_K4}}]
+\begin{align}
+ Z(T,N,V)  
+  & = \cosh(\beta J)^{2N} \sum_{\{S\}} \prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j)) \label{Ising_Zustandssumme} \\
+\corr{\sigma_{p} \sigma_{q} }_{T,N,V} 
+  & = \frac{1}{Z} \cosh(\beta J)^{2N} \sum_{\{S\}} \left(\prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j) )\right) \sigma_{q} \sigma_{q} \label{Ising_SpinSpinCorrelation}
+\end{align}
+\centering
+\noindent Die Summation läuft dabei über alle $2^N$ Spinkonfigurationen des Gitters
+$$\{S\} = \{S = (\sigma_1, \sigma_2, \dots,\sigma_N) \,\vert\, \forall\,i : \sigma_i \in \{-1, 1\}\}$$
+\noindent Dimensionloser Parameter $t$
+$$ t = \tanh(\frac{J}{k_B T})\in [0,1]$$
+\end{grayframe}
+
+\subsection{Korrelation als Zustandssumme auf defektem Gitter} 
+
+Es soll nun eine Verbindung zwischen der Spin-Spin-Korrelation und der Zustandssumme des Ising-Modells hergestellt werden. 
+
+\noindent Man betrachte 2 Punkte $\bm{x}_p$, $\bm{x}_q$ auf dem Gitter. Diese können immer durch eine Strecke auf dem Gitter verbunden werden. Diese Strecke ist nicht eindeutig und soll mit $L_D$ bezeichnet werden. Weiteres soll $D = \{ (i,j) \,|\, i,j \in L_D\ \wedge |i-j| = 1 \}$ die Menge der Paare nächster Nachbarn in $L_D$ sein. $D$ soll als Gitterdefekt bezeichnet werden. Unter Verwendung der Eigenschaft $\sigma_{i}^{2} = 1$ erhält man
+\begin{equation} \label{eq: spin_spin_prod}
+\sigma_{p} \sigma_{q} = \prod_{\bm{x}_i \in L_D} \sigma_{i}^{2} \,\sigma_{p}\,\sigma_{q} = \prod_{(i,j) \in D} \sigma_{i}\sigma_{j} 
+\end{equation}
+Mithilfe dieser Relation kann nun die Summe in \eqref{Ising_SpinSpinCorrelation} umgeschrieben werden. 
+\begin{align} 
+ \sum_{\{S\}} \left(\prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j))\textbf{ }\sigma_{q} \sigma_{q}\right) 
+  & = \sum_{\{S\}} \left(\prod_{(i,j) \notin D } ((1 +  t \; (\sigma_i \sigma_j))\right) \left(\prod_{(i,j) \in D} \sigma_i \sigma_j\right) \nonumber \\
+  & = \sum_{\{S\}} \left(\prod_{(i,j) \notin D} ((1 +  t \; (\sigma_i \sigma_j))\right) \left(\prod_{(i,j) \in D} ((1 +  t \; (\sigma_i \sigma_j))\sigma_i \sigma_j \right) \nonumber\\
+  & = \sum_{\{S\}} \left(\prod_{(i,j) \notin D} ((1 +  t \; (\sigma_i \sigma_j))\right) \left(\prod_{(i,j) \in D} (((\sigma_i \sigma_j) +  t)\right)  \nonumber\\
+  & = t^m \sum_{\{S\}} \left(\prod_{(i,j) \notin D} ((1 +  t \; (\sigma_i \sigma_j))\right) \left(\prod_{(i,j) \in D} (((1 + \frac{1}{t}\sigma_i \sigma_j))\right) \nonumber\\
+  &= t^m \sum_{\{S\}} \left(\prod_{(i,j)} (1 + t_{i,j} \; (\sigma_i \sigma_j)) \right) \label{eq: corr_sum}
+\end{align}
+
+\noindent Hierbei ist $m = \#D$ die Anzahl der Paare in $D$. Bis auf den Vorfaktor $t^m$ lässt sich in \eqref{eq: corr_sum} die Summe als Zustandssumme des Ising-Modells mit modifiziertem ortsabhängigem $t$ identifizieren.
+
+\begin{grayframe}[frametitle = {Spin Korrelation als Zustandsumme auf defektem Gitter}]
+\begin{equation}
+\corr{\sigma_{p} \sigma_{q} }_{T,N,V} = \frac{t^m Z_D}{Z}
+\end{equation}
+\begin{equation} \label{eq: Defekte Zustanssumme}
+Z_D = \cosh(\beta J)^{2N} \sum_{\{S\}} \prod_{(i,j)} (1 +  t_{i,j} \; (\sigma_i \sigma_j)) 
+\end{equation}
+\begin{equation} \nonumber
+t_{i,j} = \left\{\begin{array}{ll} t^{-1} & \text{für}\; (i,j)\in D \\
+          t & \text{sonst} \end{array} \right.
+\end{equation}
+\end{grayframe}
+
+\subsection{Graphische Repräsentation der Zustandssumme} \label{sec: GR_Zustandssumme}
+
+Aufgrund von \eqref{eq: Defekte Zustanssumme} muss zur Reformulierung des Ising-Modells ein Ausdruck für die Zustandssumme mit beliebigen $t_{i,j}$ gefunden werden.
+Bei der Auswertung des Produkts in \eqref{eq: Defekte Zustanssumme} erhält man eine Summe, bei der die Summanden aus der Entscheidung für $1$ oder $t_{i,j}\,\sigma_i \sigma_j$ in jedem Multiplikanten herrührt. Es handelt sich also um eine Summation über alle Produkte von Spin-Paaren unterschiedlicher Länge $n \in \{0,1,\dots ,2N\}$. 
+\begin{align}
+\sum_{\{S\}} \prod_{(i,j)} (1 +  t_{i,j} \; (\sigma_i \sigma_j)) 
+&= 
+\sum_{\{S\}} 1 + \sum_{(i,j)} t_{i,j}\,(\sigma_i \sigma_j) + \sum_{(i,j)}\sum_{(k,l)} t_{i,j}\, t_{k,l}\,(\sigma_i \sigma_j)  (\sigma_k \sigma_l) \dots \nonumber \\
+&= \sum_{\{S\}} \, \sum_{\{(i_1,j_1,...,i_n,j_n)\}} t_{i_1,j_1} \cdots t_{i_n,j_n} \, (\sigma_{i_1} \sigma_{j_1})(\sigma_{i_2} \sigma_{i_2}) \cdots (\sigma_{i_n} \sigma_{j_n}) \nonumber
+\end{align}
+
+\noindent Aufgrund der Summation über alle Spinkonfigurationen $S$ tragen alle Produkte, in denen zumindest eine Spinvariable $\sigma_k$ in ungerader Anzahl vorkommt, nicht zum Gesamtergebnisse bei. Denn für jede Konfiguration $S = (\sigma_1, \dots, \sigma_k, \dots, \sigma_{2N})$ gibt es genau eine weitere Konfiguration $S' = (\sigma_1, \dots, -\sigma_k, \dots, \sigma_{2N})$, sodass sich diese dann aufheben. Eine Produkt von Isingsspin Paaren, in dem jede Spinvariable in gerader Anzahl vorkommt, hat hingegen immer den Wert 1, unabhängig von der Spinkonfiguration $S$. Durch die Summation über die Spinkonfigurationen entsteht dann ein Vorfaktor $2^N$ für diese Terme.
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[scale = 1.2]
+    \input{Diagrams/Graphs/on_grid.tex}
+    \end{tikzpicture}
+    \caption{Ein möglicher Graph auf dem Gitter mit einer Selbstüberschneidung}
+    \label{Abb: erlaubte Graphen}
+\end{figure}
+
+\noindent Identifiziert man jedes Spin-Paar als Verbindunsglinie zwischen den zugehörigen Gitterpunkten, so repräsentiert jedes Spin-Paar-Produkt genau einen Graphen $G$ auf dem Gitter. Die Kanten $K_G$ des Graphen entsprechen dann genau den Spin-Paare. Die zugehörigen Gitterpunkte sind die Vertizes $V_G$ des Graphen. Da nur die Produkte beitragen, in denen jede Spin-Variablen in gerader Anzahl vorkommt, schließen an jeden Vertex $0$, $2$ oder $4$ Kanten an. Daher muss ein solcher Graph geschlossen sein. Zudem durchläuft man, wenn man sich in dem Spin-Paar-Produkt von Gitterpunkt zu Gitterpunkt hangelt, jede Kante nur genau einmal, da jedes Spin-Paar nur einmal im Produkt vorkommt. Dabei ist zu beachten, dass ein Graph aus mehreren getrennten sich selbst überschneidenden Schleifen bestehen darf, wie zum Beispiel in Abbildung \ref{Abb: erlaubte Graphen} gezeigt ist. Zudem dürfen die Graphen auch über den periodischen Rand schließen. 
+Da das Produkt in \eqref{eq: Defekte Zustanssumme} über alle Paare nächster Nachbarn und damit Spin-Paare geht, werden alle möglichen Graphen, mit diesen Eigenschaften erzeugt. Man kann die Zustandssumme $Z_D$ dann, wie in \eqref{eq: GR_Zustanssumme} also als Summe über alle geeigneten Graphen schreiben. 
+Das Gewicht eines Graphen wird durch das Produkt der zu den Kanten gehörigen $t_{i,j}$ bestimmt.  
+
+\begin{grayframe}[frametitle = {Graphische Representation der Summe $Z_D$} ]
+\begin{equation} \label{eq: GR_Zustanssumme}
+Z_D = 2^N \cosh(\beta J)^{2N} \sum_{\{G\}} \prod_{(i,j)\in K_{G}} t_{i,j}
+\end{equation} 
+\\
+Die Graphen $G = (V_G, K_G)$ besitzen die Eigenschaften: 
+\begin{itemize}
+\item[i)] Alle Vertices des Graphen liegen auf dem Gitter
+\item[ii)] $G$ ist geschlossen (auch über periodischen Rand)
+\item[iii)] $G$ kann durchlaufen werden ohne eine Kante zweimal zu nutzen. 
+\end{itemize}
+\end{grayframe}
+
+\noindent Für den Fall des nicht defekten Gitters wird das Gewicht der Graphen allein durch die Anzahl $N_K(G)$ der Kanten bestimmt.
+
+\begin{equation} \label{eq: GR_pseudo_ustandssumme}
+\sum_{\{S\}} \prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j)) = 2^N \sum_{\{ G\}} t^{N_K(G)}
+\end{equation}
+
+\subsection{Graphen ausgedrückt durch Graßmann-Variablen } \label{sec: GraßmanGraphs}
+
+\noindent Im Folgenden bezeichne  $\Lambda$ das Ising-Gitter mit $N$ Gitterpunkten. Für jeden Gitterpunkt $\bm{x}_i$ werden vier Graßmann-Variablen $h_{\bm{x}_i}^o, h_{\bm{x}_i}^x, v_{\bm{x}_i}^o, v_{\bm{x}_i}^x$ eingeführt. 
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale = 0.4]
+    \node[draw = none] at (0,0) (center) {$i$} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] at (-1,0) (center) {} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] at (0,-1)  {} ;
+    \node[draw, cross out, very thick, scale = 0.6] at (1,0)  {} ;
+    \node[draw, cross out, very thick, scale = 0.6] at (0,1)  {} ;
+    \node[draw=none] at (-2,0)  {$h_{i}^o$} ;
+    \node[draw=none] at (0,-2)  {$v_{i}^o$} ;
+    \node[draw=none] at (2,0) {$h_{i}^x$} ;
+    \node[draw=none] at (0,2) {$v_{i}^x$} ;
+\end{tikzpicture}
+\caption{Graßmann-Variablen assoziiert mit Gitterpunkt $\bm{x}_i\in\Lambda$}
+\label{Abb: graßmanVariableBeiI}
+\end{figure}
+
+\noindent Neben der Position am Gitter besitzt jede Variable eine Orientierung, gekennzeichnet mit $h$ für ``Horizontal'' und $v$ für ``Vertikal'' und eine Fluss-Richtung, gekennzeichnet durch $o$ für ``hinein'' und $x$ für ``hinaus''. Variablen wie $h_{i}^x$ und $h_{i}^o$  mit gleicher Orientierung und unterschiedlicher Fluss-Richtung werden als zueinander konjugiert bezeichnet. Die Reihenfolge der Generatoren der so erzeugten Graßmann-Algebra wird in dem Graßmann-Vektor \eqref{def: hv_gv_vektor} beziehungsweise in dem ``Integrationsmaß'' \eqref{def: hv_measure} festgehalten.
+\begin{equation} \label{def: hv_gv_vektor}
+\bm{\eta} = \left(h_{\bm{x}_1}^o, h_{\bm{x}_1}^x, v_{\bm{x}_1}^o, v_{\bm{x}_1}^x, \dots, h_{\bm{x}_N}^o, h_{\bm{x}_N}^x, v_{\bm{x}_N}^o, v_{\bm{x}_N}^x \right)
+\end{equation}
+\begin{equation} \label{def: hv_measure}
+\mathrm{D}_{h,v} = \prod_{\bm{x}_i \in \Lambda} \d h_{\bm{x}_i}^x\,\d h_{\bm{x}_i}^o\,\d v_{\bm{x}_i}^x\,\d v_{\bm{x}_i}^o \\
+\end{equation}
+
+ \noindent Die Nummerierung der Gitterpunkte ist dabei grundsätzlich egal, da Paare von Graßmann-Variablen miteinander kommutieren. Um später aber die darstellenden Matrix bezüglich dem in \eqref{def: hv_gv_vektor} angegeben Vektor jedoch möglichst einfach zu gestalten, soll die Numerierung der Gitterpunkt nun wie in Abb. \ref{Abb: Numerierung} festgelegt werden. Diese Nummerierung besitzt die Eigenschaft, dass ein Verschiebung der Indizierung um $2M(M+1)$ durch eine Punktspiegelung erreicht wird. 
+\begin{figure}[h!]
+\centering
+\input{Graphix/Grid_enumeration.tex}
+\caption{Nummerierung eines Gitters für $M=2$ und Veranschaulichung der Punktspiegelung}
+\label{Abb: Numerierung}
+\end{figure}
+
+\noindent Die Idee ist es nun die Zustandssumme $Z$ als Berezin-Integral einer geeigneten Graßmann-Funktion zu schreiben. Dazu wird eine quadratische Wirkung $A$ gemäß \eqref{eq: Ansatz_Wirkung} eingeführt.
+
+\begin{equation} \label{eq: Ansatz_Wirkung}
+    \begin{aligned}
+        A(\bm{\eta})  &= A_{bond}(\bm{\eta}) + A_{corner}(\bm{\eta}) + A_{monomer}(\bm{\eta}) \\
+                 &\\
+        A_{bond}(\bm{\eta}) &= \sum_{\bm{x}_i \in \Lambda} 
+            \; \alpha_g \; h_{\bm{x}_i}^x \,h_{\bm{x}_i+\bm{e}_x}^o
+            + \alpha_h \; v_{\bm{x}_i}^x \,v_{\bm{x}_i+\bm{e}_y}^o \\
+        A_{corner}(\bm{\eta}) &= \sum_{\bm{x}_i \in \Lambda}  
+            \alpha_a h_{\bm{x}_i}^x \,v_{\bm{x}_i}^o  
+            + \alpha_b v_{\bm{x}_i}^x\, h_{\bm{x}_i}^o 
+            + \alpha_c v_{\bm{x}_i}^o \,h_{\bm{x}_i}^o 
+            + \alpha_d v_{\bm{x}_i}^x \,h_{\bm{x}_i}^x\\
+        A_{monomer}(\bm{\eta}) &= \sum_{\bm{x}_i \in \Lambda} 
+            \alpha_e h_{\bm{x}_i}^o \,h_{\bm{x}_i}^x 
+            + \alpha_f v_{\bm{x}_i}^o \,v_{\bm{x}_i}^x
+    \end{aligned}
+\end{equation}
+
+\noindent Um die Zustandssumme mithilfe der Graßmann-Wirkung auszudrücken müssen nun die Koeffizienten C und $\alpha_a$ bis $\alpha_f$ so bestimmt werden, dass \eqref{eq: Condition_G_Wirkung} erfüllt ist.
+
+\begin{equation} \label{eq: Condition_G_Wirkung}
+\sum_{\{ G\}} t^{N_K(G)} \overset{!}{=} C \int \mathrm{D}_{h,v} \mathrm{e}^A
+\end{equation}
+
+\noindent Dazu wird jedem Paar von Graßmann-Variablen eine graphische Interpretation zugeordnet. Diese sind in Abb. \ref{Abb: Graphische Interpretation Graßmann Paare} gezeigt. Die Richtungen der Pfeile repräsentieren dabei die Reihenfolge der Variablen in den Paaren. Ein Vertauschen der Variablen resultiert, graphisch interpretiert, somit in einer Richtungsumkehrung des Pfeils. Im folgenden sollen diese acht Paare immer als $P_{i, \mu}$ abgekürzt werden, wobei $\mu$ der Buchstabe aus Abb. \ref{Abb: Graphische Interpretation Graßmann Paare} bzw. der Index des zugehörigen Koeffizienten $\alpha_{\mu}$ ist.
+
+\begin{figure}[h!]
+    \centering
+    \input{Diagrams/Elements/undirectedGraphs.tex}
+    \caption{Graphische Darstellung der Paare von Graßmann-Variablen in \eqref{eq: Ansatz_Wirkung} }
+    \label{Abb: Graphische Interpretation Graßmann Paare}
+\end{figure}
+
+\noindent Im folgenden sollen ungerichtete Graphen, wie sie in der Summe \eqref{eq: GR_Zustanssumme} auftauchen untersucht werden. Jeder geeignete Graph lässt sich allein durch die graphischen Elemente \ref{Abb: Graphische Interpretation Graßmann Paare}\textit{g)} und \ref{Abb: Graphische Interpretation Graßmann Paare}\textit{h)} eindeutig festlegen. Somit repräsentiert eine Produkt der Paare $P_{i,g}$ und $P_{i,h}$ einen Graphen auf dem Gitter. Die Richtung der Pfeile gibt dabei jedoch nicht die Durchlaufrichtung des Graphen an, sondern die Reihenfolge der Variablen in den assoziierten Paaren. 
+
+\noindent Wird jedoch die Spur eines solchen Produktes gebildet, so verschwindet das Berezin-Integral, da höchstens zwei von vier Graßmann-Variablen pro Gitterpunkt auftauchen können. Die anderen Paare aus Abb. \ref{Abb: Graphische Interpretation Graßmann Paare} werden somit hinzugefügt, sodass jede Variable einmal vorkommt und das Integral nicht verschwindet. 
+
+\noindent Ein Graph, der mit einem Produkten von $2N$ Paaren assoziiert wird, welches nicht unter der Spurbildung verschwindet, hat dabei die folgenden Eigenschaften:
+\begin{itemize}
+\item[i)] Der zugehörige Graph ist geschlossen. Denn wäre dies nicht so, so gäbe es einen Vertex an dem eine ungerade Anzahl an Kanten anschließt. Dies bedeutet aber, dass für den zugehörigen Gitterpunkt maximal 3 zugehörige Variablen im Produkt auftreten. Daher verschwindet die Spur dieses Produktes.
+\item[ii)] Der zugehörige Graph kann durchlaufen werden, ohne eine Kante zweimal zu nutzen. Denn das Durchlaufen des Graphen wird abgehandelt, indem man sich über Paare vom Typ $h)$ oder $g)$ von Gitterpunkt zu Gitterpunkt hangelt. Würde man dabei eine Kante zweimal nutzen, so käme eine Variable im Produkt doppelt vor. Das Produkt würde also verschwinden. 
+\end{itemize}
+
+\noindent Unter der Spurbildung nicht verschwindende Produkte von $2N$ Paaren $P_{i,\mu}$ repräsentieren somit genau die gewünschten Graphen auf dem Gitter. Gitterpunkte, die nicht Teil eines Graphen sind, sollen in Anlehnung an die Arbeit von Stuart Samuel als ``Monomer'' bezeichnet werden und können durch die Produkte $P_a P_b$, $P_cP_d$, $P_e P_f$ dargestellt werden. 
+
+\noindent Betrachtet man die Definition der Exponentialfunktion genauer, so erkennt man, dass $\mathrm{e}^A$ eine Summe aller Produkte von Paaren $P_{i,a}$ bis $P_{i,h}$ beliebiger Paar-Anzahl und Reihenfolge darstellt. 
+\begin{align}
+\mathrm{e}^A &= \exp{\sum_{i \in\Lambda} \sum_{\mu \in \{a,\dots, h\}} a_{\mu} P_{i, \mu }} \nonumber \\
+        &=\sum_{k\in\mathbb N \setminus \{2N\}} \frac{1}{k!}\left( \sum_{i \in\Lambda} \sum_{\mu \in \{a,\dots, h\}} a_{\mu} P_{i, \mu }\right)^k + \frac{1}{(2N)!} \left(\sum_{i \in\Lambda} \sum_{\mu \in \{a,\dots, h\}} a_{\mu} P_{i, \mu }\right)^{2N} \label{eq: exp_sum_combi}
+\end{align}
+
+\noindent Die Spurbildung liefert nur für Produkte von exakt $2N$ Paaren einen von Null verschiedenen Wert. Die linke Doppelsumme verschwindet somit unter der Integration. Die rechte Summe besteht aus alle Produkten aus $2N$ Paaren die auf dem Gitter möglich sind. Von diesen liefern nur jenen einen von null verschiedenen Beitrag, welche einen der gewünschten Graphen aus \eqref{eq: GR_Zustanssumme} auf dem Gitter repräsentieren.
+
+\noindent Um den Beitrag eines nicht verschwindenden Produktes unter der Spurbildung zu berechnen, müssen die Graßmann-Variablen in die richtige Reihenfolge gebracht werden. Der Beitrag eines Produktes ergibt sich dann als das Produkt der Koeffizienten $\alpha_{\mu}$ mal dem, durch die Umordnung entstandenen, Vorzeichen. Jeder Graph $G$ soll nun mit $t^{N_E(G)}$ gewichtet werden. Daher müssen $\alpha_g = \alpha_h = t$ gewählt werden. Für die übgrigen Koeffizienten bleibt nur mehr die Wahl $\pm 1$. 
+
+\noindent Nun wird ein Graph durch mehrere Produkte von Graßmann-Variablen dargestellt. Da Paare von Graßmann-Variablen kommutieren, ist zum Beispiel jede Permutation eines Produktes eine äquivalente Darstellung eines Graphen. Diese, durch Permutation entstehende Multiplizität, wird durch den Faktor $((2N)!)^{-1}$ kompensiert.
+Weitere Multipizitäten entstehen durch die unterschiedlichen Darstellungen der ``Monomer''. Die übrigen Koeffizienten müssen nun so gewählt werden dass jeder Graph, trotz mehrfacher Darstellung mit dem gleichen Vorzeichen und dem korrekten Gewicht in die Summe eingeht.  
+
+
+\subsubsection{Beitrag der Monomer-Paare} \label{sec: vorzeicehnMonomer}
+
+Für die Gitterpunkte die zu keinem Graphen gehören gibt es drei mögliche Darstellungen. Somit kann der selbe Graph $3^{N_M}$ in der Summe \eqref{eq: exp_sum_combi} auftauchen, wobei ${N_M}$ die Anzahl der ``Monomer'' des Graphen ist. Der Beitrag eines Graphen zur Summe ergibt sich dann als Summe der einzelnen Darstellugen. Um den Beitrag eines einzelenen ``Monomer'' zu bestimmen, müssen zunächst die Vorzeichen der einzelnen Darstellungen berechnet werden. Die ``Monomer''-Paare $P_{i,e}$ und $P_{i,f}$ sind bereits richtig angeordnet. 
+\begin{align}
+\iint \,\d h_{i}^x\,\d h_{i}^o \; P_{i,e} &= \iint \,\d h_{i}^x\,\d h_{i}^o h_{i}^o\,h_{i}^x\;  = 1\\
+\iint \,\d v_{i}^x\,\d v_{i}^o \; P_{i,f} &= \iint \,\d v_{i}^x\,\d v_{i}^o v_{i}^o\,v_{i}^x\;  = 1
+\end{align} 
+
+\noindent Daher ergibt sich 
+\begin{equation} \label{eq: sign Monomer}
+-\underbrace{h_{i}^x\, v_{i}^o \,v_{i}^x\,h_{i}^o}_{= P_{i,a}\cdot P_{i,b}} 
+= h_{i}^x\, v_{i}^o\, h_{i}^o\,\,v_{i}^x 
+= \underbrace{h_{i}^o\,h_{i}^x\, v_{i}^o\,v_{i}^x }_{= P_{i,e}\cdot P_{i,f}}= - h_{i}^o\,v_{i}^o\,h_{i}^x\,v_{i}^x 
+= -\underbrace{v_{i}^o\,h_{i}^o\,v_{i}^x\,h_{i}^x}_{= P_{i,c}\cdot P_{i,d}}
+\end{equation} für die 3 Darstellungen der ``Monomer''. Somit trägt jeder Gitterpunkt, der nicht Teil eines Graphen ist, mit einem Faktor 
+$$\alpha_e \alpha_f - \alpha_a \alpha_b - \alpha_c \alpha_d$$
+zum Gesamtgewicht eines Graphen bei. Mit der Wahl $\alpha_e = \alpha_f$, $\alpha_a = \alpha_b$ und $\alpha_c = \alpha_d$ beläuft sich der Beitrag schließlich für jeden Monomer auf $-1$ und beeinflusst daher nur das Vorzeichen mit dem der Graph eingeht. Nun ist der Absolutwert der Gewichtung jedes Graphen eindeutig bestimmt und es bleibt nur noch die übrigen 3 Freiheitsgrade so zu wählen, dass jeder Graph mit dem gleichen Vorzeichen eingeht. 
+% Nun sollen die Variablen der ``Monomer'' weggelassen werden und das Vorzeichen der Graphen bestimmt werden, welche durch umordnen der übrige Variablen entsteht.
+
+\subsubsection{Vorzeichen eines zusammenhängenden inneren Graphen ohne Selbstüberschneidung}
+
+Als innerer Graph wird im folgenden ein geschlossener Graph bezeichnet, der nicht über den periodischen Rand des Gitters schließt. Zusammenhängend heißt hierbei das der Graph nicht aus zwei räumlich getrennten Schleifen wie in Abb. \ref{Abb: erlaubte Graphen} bestehen darf.
+Um das Vorzeichen geschlossener innerer Graphen auswerten zu können, muss man die Graßmann-Variablen derart umordnen, sodass die Integration am Ende $1$ ergibt. Das Vorzeichen ergibt sich aus den notwendigen Vertauschungen. Hierzu soll ein graphisches Vorgehen die Rechnung ersetzen. Die einzelnen Monomer-Paare sind jeweils schon richtig behandelt und können weggelassen werden. Zur Bestimmung des Vorzeichens eines geschlossenen Graphen geht man dann in den folgenden Schritten vor:
+
+\begin{itemize}
+\item[0)] Man wählt ein Paar vom Typ $g$ oder $h$ als das Erste. Graphisch betrachtet, wählt man so auf dem Graphen einen Seite eines Gitterknotens mit einem $x$ als Startpunkt und geht in Richtung des Pfeils zum nächsten Gitterknoten. Diese Richtung legt die Durchlaufrichtung des Graphen fest. 
+\item[1)] Man wählt ein Paar als Nachfolger, welches eine, zur zweiten Variable des Vorgängerpaares konjugierte Variable enthält. Damit ist das Nachfolgerpaar eindeutig festgelegt. Anschließend werden die beiden Variablen im Nachfolgerpaar vertauscht, falls die konjungierte Variable nicht die erste Variable ist. Nun kann ein weiterer Nachfolger bestimmt werden. Graphisch erfolgt ein Vorzeichen wechsel für jeden Pfeil im Graphen, der entgegen der Durchlaufrichtung liegt.
+Der Algorithmus wird fortgesetzt bis das nächste Paar, das erste wäre. Ist dies nie der Fall, ist der Graph nicht geschlossen und somit nicht relevant.
+\item[2)] Nun wird die letzte Variable an den Anfang gehängt und die Paare umgeklammert. Da die erste Variable eine mit $x$ Fluss-Richtung ist, muss im nächsten Schritt eine zusätzliche Vertauschung vorgenommen werden und es ergibt sich ein zusätzlicher Faktor -1. Dieses Vorzeichen geht auf die Schließung des Graphen zurück.
+\item[3)] Durch Umklammern erhält man lauter Paare konjungierter Variablen. Wenn in jedem Paar $o$ vor $x$ kommt, ist das Integral positiv. Somit müssen Paare, wo dies nicht gilt, vertauscht werden. Graphisch fast man dafür bei jedem Knoten die Variablen gleicher Orientierung zusammen, wie im Abb. \ref{Abb: VorzeichenBestimmung} mit roten Ellipsen gekennzeichnet. Kommt hier in Durchlaufrichtung ein $x$ vor einem $o$ führt dies zu einem Vorzeichenwechsel.  
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \captionsetup[subfigure]{labelformat=empty}
+    \begin{subfigure}[c]{0.4\textwidth}
+        \centering
+        \input{Diagrams/Evaluation/uniqueSquareGraph.tex}
+    \end{subfigure}
+    \hspace{0.1\textwidth}
+    \begin{subfigure}[c]{0.4\textwidth}
+        \subcaption{\footnotesize Um das Vorzeichen des Graphen zu bestimmen wählt man einen Startpunkt, hier ein $x$. Dann bewegt man sich in die Richtung des ersten Pfeiles vom Startpunkt weg durch den Graphen. Dabei bewegt man sich bei den Ellipsen immer entlang der längeren Achse. Für jeden Pfeil der entgegen der Bewegungsrichtung zeigt, sowie immer wenn in einer Ellipse $x$ vor $o$ kommt, erhält man einen Vorzeichenwechsel. Hier erhält man 7 Vorzeichenwechsel für die Pfeilrichtung, 6 Vorzeichenwechsel für die $xo$ Paare und einen zusätzlich für die Schließung des Graphen. Insgesamt also $(-1)^{7+6+1} = +1$ als Vorzeichen.  }
+    \end{subfigure}
+    \caption{Vorzeichenbestimmung geschlossener zusammenhängender Graphen } \label{Abb: VorzeichenBestimmung}
+\end{figure}
+\FloatBarrier
+\noindent Mithilfe dieser graphischen Regel kann nun leicht das Vorzeichen eines beliebigen geschlossenen Graphen bestimmt werden. Die Regel ermöglicht jedoch auch eine Segmentierung eines Graphen, in unterschiedliche Bausteine wie in Abb. \ref{Abb: directedElemets}. Aus der in Abb. \ref{Abb: Segmentierung} gezeigten Segmentierung in entgegengesetzte Richtungen lassen sich 12 Bausteine ermitteln, mit denen jeder geschlossene Graph ohne Selbstüberschneidung gebaut werden kann. Die Vorzeichen dieser Bausteine sind in Abb. \ref{Abb: directedElemets} angegeben. Für $b$) ergibt sich zum Beispiel ein Vorzeichenwechsel für das zweite $xo$ Paar und den zweiten Pfeil der gegen die Durchlaufrichtung zeigt. Insgesamt also ein positives Vorzeichen. Das Vorzeichen eines geschlossenen Graphen ohne Selbstüberschneidung ergibt sich dann als Produkt der Vorzeichen der Segmente und dem Vorzeichen für die Schließung des Graphen. Für den geschlossenen Graphen in Abb. \ref{Abb: VorzeichenBestimmung} ergibt sich insgesamt ein positives Vorzeichen. Durch Hinzufügen von Elementen $a$) bis $\bar h$) lässt sich jeder beliebige geschlossene, zusammenhängende Graph ohne Selbsüberschneidung erstellen. Dabei kommen die Elemente $a$) bis $d$) immer paarweise mit ihrer komplementären Sequenz $\bar a$) bis $\bar d$) vor. Somit ändert sich das Vorzeichen nicht und alle geschlossenen zusammenhängenden inneren Graphen ohne Selbsüberschneidung haben positives Vorzeichen. 
+
+\begin{figure}[h!]
+    %\input{Diagrams/Evaluation/uniqueSquareGraph.tex}
+    \begin{subfigure}[c]{0.3\textwidth}
+    \input{Diagrams/Evaluation/counterclockwiseSquareGraph.tex}
+    \subcaption{Segmentierung gegen den Uhrzeigersin}
+    \end{subfigure}
+    \hspace{0.2\textwidth}
+    \begin{subfigure}[c]{0.3\textwidth}
+    \input{Diagrams/Evaluation/clockwiseSquareGraph.tex}
+    \subcaption{Segmentierung in Uhrzeigersinn}
+    \end{subfigure}
+    \caption{Segmentierung des Graphen aus Abb. \ref{Abb: VorzeichenBestimmung}}
+    \label{Abb: Segmentierung}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \input{Diagrams/Elements/directedGraphs.tex}
+    \caption{Alle Teilsequenzen eines beliebigen gerichteten Graphen }
+    \label{Abb: directedElemets}
+\end{figure}
+
+
+\subsubsection{Vorzeichen von Überschneidungen innerer Graphen} 
+
+Das Vorzeichen eines geschlossenen, zusammenhängenden inneren Graphen mit einer Selbstüberschneidung kann mit der selben Methode bestimmt werden, wie für geschlossene innere Graphen ohne Selbstüberschneidung. Das Vorzeichen ergibt sich dann als Produkt des Vorzeichens $V_c$ für die Schließung, des Vorzeichens $V_k$ für die Kreuzung und des Vorzeichens $V_s$ aufgrund der vorkommenden Segmente $a)$ bis $\bar h)$. Die Kreuzung kann durch keines der Segmente $a)$ bis $\bar h)$ dargestellt werden. Der Algorithmus zur Bestimmung des Vorzeichens durch Umordnen legt aber eindeutig fest, wie die Kreuzung durchlaufen wird. Dadurch kann der Graph in zwei Schleifen mit entgegengesetzter Durchlaufrichtung aufgeteilt werden. Ersetzt man die Kreuzung durch zwei Elemente $x$ und $\bar x$, wobei x eines der Segmente  $a)$, $b)$, $c)$ und $d)$ ist, erhält man zwei geschlossenen Graphen mit positiven Vorzeichen, welches sich als Produkt $V_{1,s}\cdot V_{1,c}$ bzw. $V_{2,s}\cdot V_{2,c}$ schreiben lässt. Damit die Ersetzung der Kreuzung durch der Segmentpaare $x-\bar x$ eine gültige Darstellung als Produkt von Graßman Paaren hat, müssen die getrennten Graphen auf dem Gitter außeinandergeschoben werden und die Terme $P_a P_b$ oder $P_c P_d$ hinzugefügt werden. Die Translation am Gitter ändert das Vorzeichen nicht, die zusätzlichen Paare führen jedoch zu einem negativen Vorzeichen. Das Austauschen der Kreuzung trägt also mit einem negativen Vorzeichen bei. Dies erkennt man auch aus der folgenden Rechnung.
+\begin{equation}
+\begin{aligned}
+&V_c \cdot V_k \cdot V_s = V_c \cdot V_k \cdot V_{1,s} \cdot V_{2,s}   \overset{!}{=} V_{1,c} \cdot V_{1,s}  \cdot V_{2,c} \cdot V_{2,s} \\
+\\
+& V_{c} =  V_{1,c} = V_{2,c} = -1  \;\;\;\;\Rightarrow\;\;\;\;   V_k = -1
+\end{aligned}
+\end{equation}
+
+\noindent Die Argumentation lässt sich nun leicht auf Graphen mit $N_k$ Selbstüberschneidungen ausweiten, indem man diese induktiv, wie oben, in Graphen ohne Selbstüberschneidung zerlegt. Dabei liefert jede Kreuzung ein negatives Vorzeichen. 
+
+\subsubsection{Wahl der übrigen Koeffizienten} \label{sec: Wahl der übrigen Koeffizienten}
+Die übrigen Koeffizienten werden zu $-1$ gewählt. Damit tragen alle Gitterpunkte die keine ``Monomer'' oder Kreuzungen sind mit einem Faktor $-1$ zum Gesamtgewicht bei. Da jede Kreuzung in einem Graphen und jeder ``Monomer'' ebenfalls mit $-1$ zum Vorzeichen des  Gesamtgewicht beträgt, gehen nun alle Graphen mit einem Vorzeichen von $(-1)^N$ ein. Damit ergibt sich die Graßmann-Wirkung wie in \eqref{eq: G-Wirkung Ising}.  
+ 
+ \begin{grayframe}[frametitle = {Graßmann-Wirkung zur Reformulierung des Ising-Modells}]
+
+\begin{equation} \label{eq: G-Wirkung Ising}
+    \begin{aligned}
+        A(\bm{\eta})  &= A_{bond}(\bm{\eta}) + A_{corner}(\bm{\eta}) + A_{monomer}(\bm{\eta}) \\
+                 &\\
+        A_{bond}(\bm{\eta}) &= \sum_{\bm{x}_i \in \Lambda} 
+            \; t \; h_{\bm{x}_i}^x \,h_{\bm{x}_i+\bm{e}_x}^o
+            + t \; v_{\bm{x}_i}^x \,v_{\bm{x}_i+\bm{e}_y}^o \\
+        A_{corner}(\bm{\eta}) &= - \sum_{\bm{x}_i \in \Lambda}  
+            h_{\bm{x}_i}^x \,v_{\bm{x}_i}^o  
+            + v_{\bm{x}_i}^x\, h_{\bm{x}_i}^o 
+            + v_{\bm{x}_i}^o \,h_{\bm{x}_i}^o
+            + v_{\bm{x}_i}^x \,h_{\bm{x}_i}^x\\
+        A_{monomer}(\bm{\eta}) &= -\sum_{\bm{x}_i \in \Lambda} 
+            h_{\bm{x}_i}^o \,h_{\bm{x}_i}^x 
+            + v_{\bm{x}_i}^o \,v_{\bm{x}_i}^x
+    \end{aligned}
+\end{equation}
+\end{grayframe}
+
+\noindent Damit die Zustandssumme positiv ist, muss diese letzten Endes noch mit einem Vorfaktor $C = (-1)^N$ multipliziert werden. 
+Abschließend sei angemerkt, dass die Diskussion für das Vorzeichen eines geschlossenen Graphen nur für jene gilt, die nicht über den periodischen Rand schließen (innere Graphen) oder durch eine Translation auf einen solchen Graphen abgebildet werden können.  Für die übrigen Graphen, welche als äußere Graphen bezeichnet werden sollen, gilt die Diskussion nicht, da das Vorzeichen für die Schließung nicht auftritt. Das Vorzeichen eines äußeren Graphen ist somit $(-1)^{(N-1)}$  und verfälscht daher die Gesammtsumme.
+Da ein äußerer Graph aber zumindest $\sqrt{N}$ Kanten haben muss, verschwindet der Beitrag eines solchen Graphen im Thermodynamischen Limes, da $t<1$ gilt. Diese Terme führen tatsächlich noch in einem gewissen Temperaturbereich zu Problemen mit dem Vorzeichen, wenn es zur Berechnung der Zustandssumme kommt, wie in Appendix \ref{Appendix: Zustandsumme} genauer geschildert wird. Dieses Phänomen kann jedoch bei der Berechnung der Magnetisierung, aufgrund der Darstellung als Quotient zweier Zustandssummen, vernachlässigt werden können. 
+
+\noindent Mithilfe der in \eqref{eq: G-Wirkung Ising} definierte Wirkung $A$ lässt sich somit eine Graßmann-Dichte $\mathrm{e}^A$ definieren, deren Spur gemäß \eqref{eq: Zustandssumme-GV-Darstellung} mit der Zustandssumme in Verbindung steht. Die Gleichheit gilt jedoch nur asymptotisch im Thermodynamischen Limes, was durch ``$\approx$'' angedeutet wird. 
+
+\begin{grayframe}[frametitle = {Zustandssumme als Spur einer Graßmann-Funktion}]
+\centering
+\begin{equation} \label{eq: Zustandssumme-GV-Darstellung}
+\sum_{\{ G\}} t^{N_K(G)} \approx (-1)^N \int \mathrm{D}_{h,v} \,\mathrm{e}^A 
+\end{equation}
+
+\end{grayframe}
+ 
+\noindent Die Wirkung $A$ in \eqref{eq: G-Wirkung Ising} beschreibt zunächst nur dass nicht defekte homogene Gitter. Da aber die Koeffizienten der Paare $P_{i,g}$ und $P_{i,h}$ die Gewichtung der Gitterverbindungen bestimmen, müssen nur diese abgeändert werden um das defekte Gitter beschreiben zu können. Um eine Kantengewichtung auf $t_{i,j}$ zu ändern, muss daher nur das entsprechende Graßmann-Paar mit einem Vorfaktor $(t_{i,j}-t)$ zur Wirkung addiert werden. Dies wurde z.B. in \eqref{eq: G_Wikrung_Defekt} benutzt.
+ 
+ 
+ \subsection{Fouriertransformation der Graßmann-Wirkung} \label{sec: Fouriertransformation der Graßmann-Wirkung}
+
+\noindent Die darstellende Matrix $\bm A$ der Graßmann-Wirkung $A$ ist stark besetzt. Dies macht es schwierig diese aufzustellen beziehungsweise die Pfaffsche Determinante zu berechnen. Da periodische Randbedingungen angenommen wurden, ist zu erwarten, dass eine diskrete Fouriertransformation der darstellenden Matrix $\bm{A}$ in einer Art Block-Diagonalmatrix $\bm{\hat{A}}$ resultiert und das Problem erheblich erleichtert.\\
+Um diese Transformation durchzuführen, werden alle Variablen mit gleicher Orientierung und gleicher Fluss-Richtung zu einer Familie von Variablen, gekennzeichnet durch den Index $\nu \in \{(h,x), (h,o), (v,x), (v,o)\} $, zusammengefasst. Somit bezeichnet zum Beispiel $(\eta_i^{(v,x)})_{i \in \Lambda} = (v^x_i)_{i \in \Lambda}$ die Familie aller vertikal ausgerichteten Graßmann-Variablen mit Fluss-Richtung $x$ auf dem Gitter $\Lambda$. Es gibt dann insgesamt vier solcher Familien. Die diskrete Fouriertransformation wird nun für jede Familie von Graßmann-Variablen getrennt durchgeführt. Dabei bezeichnet $\bm{x} = (x_1, x_2)$ die expliziten Koordinaten auf dem Gitter und $\bm{k} = (k_1,k_2)$ die Koordinaten im reziproken Raum, welche innerhalb der ersten Brillouin-Zone $\bar{\Lambda}$ liegen. 
+\begin{equation} \label{def: Brillouin-Zone}
+\bar{\Lambda} = \left\{ \frac{2\pi}{2M+1}(q1, q2) \;\; | \;\; q_1,q_2 \in \{-M,\dots,M\} \right\} 
+\end{equation}
+
+\noindent Die Transformationsvorschrift ist in \eqref{eq: Fourer2D invers} und \eqref{eq: Fourer2D} angegeben. Da es sich bei der Fouriertransformation um eine unitäre, und damit invertierbare lineare Transformation handelt, bilden die fouriertransformierten Variablen einen äquivalenten Satz von Graßmann-Variablen. 
+\begin{align}
+\eta_{\bm{x}}^{\nu} &= \frac{1}{\sqrt{N}} \sum_{\bm{k} \in \bar{\Lambda}} \hat{\eta}_{\bm{k}}^{\nu}\; \mathrm{e}^{-i \bm{k} \cdot \bm{x}}  \label{eq: Fourer2D invers}\\
+\hat{\eta}_{\bm{k}}^{\nu} &= \frac{1}{\sqrt{N}} \sum_{\bm{x} \in \Lambda} \hat{\eta}_{\bm{x}}^{\nu}\; \mathrm{e}^{\,i \bm{k} \cdot \bm{x}} \label{eq: Fourer2D}
+\end{align}
+
+\noindent Bezeichnet $\bm{\hat{\eta}}^{\nu}$ den Vektor der fouriertransformierten Variablen einer Familie so kann diese Transformation auch mithilfe einer Matrix $\bm{W}$ geschrieben werden.
+\begin{align}
+\bm{\hat{\eta}}^{\nu} &= \bm{W} \bm{\eta} ^{\nu} \\
+\bm{\eta}^{\nu} &= \bm{W}^{\dagger} \bm{\hat{\eta}}^{\nu}
+\end{align}
+
+\noindent Die Nummerierung der Gitterpunkte im K-Raum ist letztlich ebenfalls maßgeblich für die Form der darstellenden Matrizen der Fouriertransformation und der transformieten Wirkung $\hat{A}$. Da das Gitter quadratisch ist, ist auch das reziproke Gitter quadratisch. Die Nummerierung der Punkte innerhalb der Brillouin-Zone soll daher genau wie auf dem ursprünglichen Gitter erfolgen.
+
+\noindent Als nächstes soll der Vorfaktor berechnet werden, der durch diese lineare Transformation entsteht. Das Integrationsmaß für die fouriertransformierten Graßmann-Variablen ist in \eqref{def: fouriertransformiertes Graßmann Maß} angegeben.
+\begin{equation} \label{def: fouriertransformiertes Graßmann Maß}
+\hat{\mathrm{D}}_{h,v} = \prod_{i = 1}^N \d\hat{h}_{i}^x\,\d\hat{h}_{i}^o\,\d\hat{v}_{i}^x\,\d\hat{v}_{i}^o
+\end{equation}
+
+\noindent Um den Vorfaktor für diese Transformation zu bestimmen, muss beachtet werden, dass jede Familie separat transformiert wird. Die Reihenfolge der Variablen der Algebra muss dazu umgeordnet werden. Es sei $\bm{P}$ die darstellende Matrix der Permutation, welche dieser Umordnung entspricht. Dann ergibt sich für die Fouriertransformation die folgende Vorschrift.
+\begin{equation} \label{eq: ft_matrix}
+\bm{\eta} = \bm{P}^{-1} \left(\begin{array}{cccc} 
+               \bm{W}^{\dagger}  &0&0&0 \\
+        0&     \bm{W}^{\dagger}  &0&0 \\
+        0&0&   \bm{W}^{\dagger}  &0 \\
+        0&0&0& \bm{W}^{\dagger}   \\
+    \end{array}\right) 
+    \bm{P} \, \bm{\hat{\eta}}
+\end{equation}
+
+\noindent Mithilfe der Substitutionsformel \eqref{eq: Graßmann Transformationsformel} für Berezin-Integrale ergibt sich dann 
+\begin{equation} \label{eq: FT Integral wd}
+ \int {\mathrm{D}}_{h,v} \, f  = \det{\bm{P}}\,\det{\bm{W}}^4\, \det{\bm{P}^{-1}} \int \hat{\mathrm{D}}_{h,v} \, \hat{f}  =  \det{\bm{W}}^4 \int \hat{\mathrm{D}}_{h,v} \, \hat{f}
+\end{equation} 
+für das Integral der Fouriertransformierten $\hat{f}(\bm{\hat{\eta}}) = f(\bm{\eta}(\bm{\hat{\eta}}))$ einer Graßmann-Funktion. Im Anhang wird gezeigt dass $det(\bm{W}) = \pm 1$. Daher stimmen die Integrale sogar überein.  
+\begin{equation} \label{eq: FT Integral}
+ \int \mathrm{D}_{h,v} \, f  = \int \hat{\mathrm{D}}_{h,v} \, \hat{f}
+\end{equation}
+
+\noindent Als nächsten Schritt muss eine darstellende Matrix für die fouriertransformierte Wirkung gefunden werden. Dazu wird einfach der Ausdruck  \eqref{eq: Fourer2D invers} in \eqref{eq: G-Wirkung Ising} eingesetzt. Dies sei zunächst etwas allgemeiner vorgeführt.
+\begin{align}
+\sum_{j = 0}^{N-1} \; \eta^{\nu}_{\bm{x}_j} \,\eta^{\nu'}_{\bm{x}_j+\bm{b}}
+& = \sum_{\bm{x}_j \in \Lambda} \; \frac{1}{\sqrt{N}} \sum_{\bm{k} \in \bar{\Lambda}} \hat{\eta}_{\bm{k}}^{\nu}\; \mathrm{e}^{-i \bm{k} \cdot \bm{x}_j} \frac{1}{\sqrt{N}} \sum_{\bm{k'} \in \bar{\Lambda}} \hat{\eta}_{\bm{k'}}^{\nu'}\; \mathrm{e}^{-i  \bm{k'} \cdot (\bm{x}_j+\bm{b})} \nonumber \\
+&  = \sum_{\bm{k} \in \bar{\Lambda}} \sum_{\bm{k'} \in \bar{\Lambda}} \mathrm{e}^{-i  \bm{k'} \cdot \bm{b}} \, \hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{\bm{k'}}^{\nu'} \, \frac{1}{N} \sum_{\bm{x}_j \in \Lambda} \mathrm{e}^{-i (\bm{k} + \bm{k'})\cdot \bm{x}_j } \nonumber \\ 
+&  = \sum_{\bm{k} \in \bar{\Lambda}} \sum_{\bm{k'} \in \bar{\Lambda}} \mathrm{e}^{-i  \bm{k'} \cdot \bm{b}} \, \hat{\eta}_{\bm{k}}^{\nu} \, \hat{\eta}_{\bm{k'}}^{\nu'} \; \delta(\bm{k} + \bm{k'}) \nonumber \\
+& = \sum_{\bm{k} \in \bar{\Lambda}}  \mathrm{e}^{\,i  \bm{k} \cdot \bm{b}} \,\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'} \nonumber
+\end{align}\\
+
+\noindent Entsprechende Substitutionen für $\bm{b}$, $\eta^{\nu}$ und $\eta^{\nu'}$ ergeben alle Terme der transformierten Graßmann-Wirkung $\hat{A}$.
+\begin{alignat}{2}
+        & \hat{A}   &&= \hat{A}_{bond} + \hat{A}_{corner} + \hat{A}_{monomer} \nonumber \\
+        \nonumber \\
+        &\hat{A}_{bond} &&= \;\;\; \sum_{\bm{k} \in \bar{\Lambda}}  
+            t \mathrm{e}^{\,i k_1} \hat{h}_{\bm{k}}^{x} \, \hat{h}_{-\bm{k}}^{o} 
+            + t \mathrm{e}^{\,i k_2} \hat{v}_{\bm{k}}^{x} \, \hat{h}_{-\bm{k}}^{o}  \nonumber\\
+       & \hat{A}_{corner} &&= -\sum_{\bm{k} \in \bar{\Lambda}} 
+            h_{\bm{k}}^x \,v_{-\bm{k}}^o 
+            + v_{\bm{k}}^x\, h_{-\bm{k}}^o
+            + v_{\bm{k}}^o \,h_{-\bm{k}}^o 
+            + v_{\bm{k}}^x \,h_{-\bm{k}}^x \nonumber\\
+       &  \hat{A}_{monomer}&&= -\sum_{\bm{k} \in \bar{\Lambda}} 
+            \, h_{\bm{k}}^o \,h_{-\bm{k}}^x
+            +  v_{\bm{k}}^o \,v_{-\bm{k}}^x \nonumber
+\end{alignat}
+
+\noindent Der Anteil $\hat{A}_{monomer}$ kann, unter Beachtung der Antikommutations-Eigenschaft und einer Umindizierung $\bm{k'} \rightarrow -\bm{k}$, umgeschrieben werden.
+\begin{equation}
+-\sum_{\bm{k} \in \bar{\Lambda}} h_{\bm{k}}^o \,h_{-\bm{k}}^x = \sum_{\bm{k} \in \bar{\Lambda}} h_{-\bm{k}}^x \, h_{\bm{k}}^o  = 
+\sum_{\bm{k'} \in \bar{\Lambda}} h_{\bm{k'}}^x \, h_{-\bm{k'}}^o  
+\end{equation}
+
+\noindent Daher können die Terme von $\hat{A}_{bond}$ und $\hat{A}_{monomer}$ unter Einführung der Koeffizienten $\xi(k)$ zusammengefasst werden. 
+\begin{equation} 
+\xi(k) = 1 + t\,\mathrm{e}^{\,ik} 
+\end{equation}
+
+\noindent Durch Verdoppelung und anschließender Umindizierung $\bm{k'} \rightarrow -\bm{k}$ aller Terme, kann eine Antisymmetrisierung der Darstellung der Wirkung erreicht werden.
+
+\begin{align}
+    2\,\hat{A}  
+        &= \sum_{\bm{k} \in \bar{\Lambda}}  
+        \xi(k_1) \; \hat{h}_{\bm{k}}^{x} \,\hat{h}_{-\bm{k}}^{o} 
+        + \xi(k_2) \; \hat{v}_{\bm{k}}^{x} \,\hat{v}_{-\bm{k}}^{o}  
+        - \xi(-k_1) \;  \hat{h}_{\bm{k}}^{o} \,\hat{h}_{-\bm{k}}^{x}
+        - \xi(-k_2) \; \hat{v}_{\bm{k}}^{o} \,\hat{v}_{-\bm{k}}^{x}   \nonumber\\
+        & + \sum_{\bm{k} \in \bar{\Lambda}}  
+        - h_{\bm{k}}^x \,v_{-\bm{k}}^o 
+        - v_{\bm{k}}^x\, h_{-\bm{k}}^o
+        - v_{\bm{k}}^o \,h_{-\bm{k}}^o 
+        - v_{\bm{k}}^x \,h_{-\bm{k}}^x 
+        + v_{\bm{k}}^o \, h_{-\bm{k}}^x  
+        + h_{\bm{k}}^o \, v_{-\bm{k}}^x
+        + h_{\bm{k}}^o \, v_{-\bm{k}}^o 
+        + h_{\bm{k}}^x \, v_{-\bm{k}}^x  \nonumber 
+\end{align}
+
+\noindent Durch Einführung der Vekoren $\bm{\hat{\eta}}_{\bm{k}} = (\hat{h}_{\bm{k}}^{o}, \hat{h}_{\bm{k}}^{x}, \hat{v}_{\bm{k}}^{o}, \hat{v}_{\bm{k}}^{x} )$ und der Matrizen $\bm{\hat{A}}_{\bm{k}}$ lässt sich die folgende Darstellung erreichen. 
+\begin{equation} \label{eq: Darstellung Wirkung}
+    \hat{A} = \frac{1}{2} \sum_{\bm{k} \in \bar{\Lambda}} \bm{\hat{\eta}}_{\bm{k}}^T\, \bm{\hat{A}}_{\bm{k}} \bm{\hat{\eta}}_{-\bm{k}}
+\end{equation}
+
+\begin{equation}
+    \bm{\hat{A}}_{\bm{k}} = \left(\begin{array}{cccc} 
+        0         &-\xi(-k_1)  &  1       & 1        \\
+        \xi(k_1)&0         &  -1       &  1        \\
+        -1        &1        &  0       & -\xi(-k_2)  \\
+        -1         &-1        &\xi(k_2)&  0        \\
+    \end{array}\right) 
+\end{equation}
+
+\noindent Der Graßmann-Vektor $\bm{\hat{\eta}}$ der fouriertransformierte Variablen lässt sich als Zusammenfassung der Vektoren $\bm{\hat{\eta}}_{\bm{k}}$ auffassen.
+\begin{equation}
+\bm{\hat{\eta}} = \left(\hat{h}_{\bm{k}_1}^o, \hat{h}_{\bm{k}_1}^x, \hat{v}_{\bm{k}_1}^o, \hat{v}_{\bm{k}_1}^x, \dots, \hat{h}_{\bm{k}_N}^o, \hat{h}_{\bm{k}_N}^x, \hat{v}_{\bm{k}_N}^o, \hat{v}_{\bm{k}_N}^x \right) = \left(\bm{\hat{\eta}}_{\bm{k}_0}, \bm{\hat{\eta}}_{\bm{k}_1}, \cdots, \bm{\hat{\eta}}_{\bm{k}_N}  \right) \nonumber
+\end{equation}
+
+\noindent Damit kann man dann aus \eqref{eq: Darstellung Wirkung} die darstellende Matrix $\bm{\hat{A}}$ der Graßmann-Wirkung $\hat{A}$ ablesen. 
+\begin{grayframe}[frametitle = { Darstellende Matrix der fouriertransformierten Graßmann-Wikrung $\hat{A}$ }]
+\begin{equation} \label{eq: Darstellung Matrix Wirkung}
+\renewcommand{\arraystretch}{1.5}
+\bm{\hat{A}} = \frac{1}{2}
+\left(\begin{array}{c|ccc|ccc} 
+\bm{\hat{A}}_{\bm{k}_0}  & \bm{0}   & \cdots    & \bm{0} & \bm{0} & \cdots  & \bm{0} \\ \hline
+\bm{0}  & \bm{0}       & \cdots   & \bm{0}    & \bm{\hat{A}}_{\bm{k}_1} & \cdots  & \bm{0} \\
+\vdots  &\vdots        & \ddots   & \vdots    & \vdots                  & \ddots  & \vdots \\
+\bm{0}  & \bm{0}       & \cdots   & \bm{0} & \bm{0} & \cdots  & \bm{\hat{A}}_{\bm{k}_{2M(M+1)}}  \\ \hline
+\bm{0}  & \bm{\hat{A}}_{\bm{k}_{2M(M+1)+1}} & \cdots  & \bm{0} & \bm{0} & \cdots  & \bm{0} \\
+\vdots  &\vdots        & \ddots   & \vdots    & \vdots                  & \ddots  & \vdots \\
+\bm{0}  & \bm{0}       & \cdots   &\bm{\hat{A}}_{\bm{k}_{N}} & \bm{0} & \cdots  & \bm{0} 
+\end{array} \right) 
+\end{equation}
+\end{grayframe}
+
+\noindent Da $\xi(k) = - \xi(-k)  $ nur für $k = 2\mathbb{N}\pi$ erfüllt ist, kann nur  $\bm{\hat{A}}_{\bm{k}_0}$, mit ${\bm{k}_0} = (0,0)$, antisymmetrisch sein. Für die übrigen $\bm{\hat{A}}_{\bm{k_i}}$ gilt jedoch $-\bm{\hat{A}}_{\bm{k_i}}^T = \bm{\hat{A}}_{-\bm{k_i}}$. Aufgrund der gewählten Nummerierung der Gitterpunkte folgt dann $\bm{\hat{A}}_{-\bm{k}_i} = \bm{\hat{A}}_{\bm{k}_{i+2M(M+1)}}$. 
+Daher ist die Matrix $\hat{\bm{A}}$ insgesamt antisymmetrisch und somit eindeutig bezüglich dieses Satzes von Graßmann-Variablen. 
+

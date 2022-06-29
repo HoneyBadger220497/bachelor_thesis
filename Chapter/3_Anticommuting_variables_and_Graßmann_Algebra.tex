@@ -1,0 +1,442 @@
+Um eine möglichst einfache, gut brauchbare Darstellung für die Zustandssumme des Ising-Modells zu finden, werden die sogenannten Graßmann-Zahlen eingeführt. Als Grundlage für die Berechnung in den folgenden Kapiteln, sollen in diesem Abschnitt die wichtigsten abstrakten algebraischen Eigenschaften und Operationen für diese Zahlen vorgestellt werden. 
+Als mögliches Nachschlagewerk empfiehlt sich \cite{BookRefForGV}.
+
+\subsection{Graßmann-Variablen und Graßmann-Funktionen}
+
+Als Graßmann-Algebra wird eine assoziative $\mathbb C$-Algebra $(\mathcal A, \cdot, +, \wedge)$ mit Eins bezeichnet, welche von einer Familie von Generatoren $(\eta_1, \eta_2, \dots, \eta_n)$  erzeugt wird, welche die Eigenschaft 
+\begin{equation} \label{eq: antikommutingProb}
+\forall\;i,j\in\{1,\dots,n\}: \eta_i \wedge \eta_j = - \eta_j \wedge \eta_i
+\end{equation}
+ erfüllen. Die Generatoren $(\eta_i)_{i=1}^n$ sind linear unabhängig und werden als Graßmann-Variablen bezeichnet. Fortan soll in der Notation, wie es auch in der Literatur üblich ist, die explizite Unterscheidung von $\wedge$ und $\cdot$ in der Notation weggelassen werden. Für eine Familie von $n$ Graßmann-Variablen bildet $\mathcal A$ einen $2^n$-dimensionalen Vektorraum. Eine mögliche Basis $\mathcal B$ ist dabei durch die Monome \eqref{def: Monom} in den Graßmann-Variablen bis zum Grad $n$ gegeben, wo $ p $ den Grad des Monomes bezeichnet.
+\begin{equation} \label{def: Monom}
+    \mathcal B = \{\eta_{i_1}\,  \eta_{i_2}  \cdots \eta_{i_p} \;| \; i_1 < i_2 < \dots i_p \;\;\text{und}\;\; p\leq n \}  
+\end{equation}
+
+\noindent Die Variablen sind für die Monome immer in aufsteigender Reihenfolge angegeben. Im folgenden sei ein Beispiele für $n = 3$ angegeben. Für $p = 0$ wird das Eins-Element der Algebra als zugehöriges Monom definiert. 
+\begin{align}
+    p = 0 &: 1 \nonumber \\
+    p = 1 &: \eta_1,\; \eta_2,\; \eta_3 \nonumber \\
+    p = 2 &: \eta_1\,\eta_2,\; \eta_1\,\eta_3,\; \eta_2,\eta_3 \nonumber \\
+    p = 3 &: \eta_1\,\eta_2\,\eta_3 \nonumber 
+\end{align}
+
+
+\noindent  Ein Element $f\in\mathcal A$ kann dann eindeutig in der Basis als Polynom maximal $n$-ten Grades in den Graßmann-Variablen dargestellt werden \cite{BookRefForGV}.  $f$ heißt eine Graßmann-Zahl oder, aufgrund der Polynomdarstellung, auch Graßmann-Funktion. Die historisch begründete Bezeichnung als Variable oder Funktion ist dabei ein wenig irreführend, da sowohl die Generatoren als auch die Funktionen fixe Elemente der selben Algebra $\mathcal A$ sind und keine variablen Eigenschaften aufweisen. Jede Graßmann-Funktion lässt sich als eindeutige Linearkombination der Monome darstellen, wodurch die allgemeinste Graßmann-Funktion durch 
+\begin{equation} \label{def: GraßmannFunktion}
+    f(\eta_1, \dots ,\eta_n) = f_0 + \sum_{i} f_i \;\eta_i + \sum_{i_1<i_2} f_{i_1,i_2} \;\eta_{i_1} \,\eta_{i_2} + \sum_{i_1<i_2<i_3} \dots \;+ f_{1,2,\dots,n} \; \eta_{1}\,\eta_{2}\,\cdots\,\eta_{n}
+\end{equation}
+gegeben ist.  Aus \eqref{def: GraßmannFunktion} ist zudem auch ersichtlich, dass sich jede Graßmann-Funktion für jede Variable gemäß 
+\begin{align} 
+    f(\eta_1,\dots,\eta_n) &= \bar f(\eta_1,\dots,\eta_{k-1},\eta_{k+1}, \dots ,\eta_n) + \eta_k f'(\eta_1,\dots,\eta_{k-1},\eta_{k+1}, \dots ,\eta_n) \nonumber\\
+        & = \bar f + \eta_k f' \label{eq: GraßmannZerlegung}
+\end{align}
+in eindeutiger Weise zerlegen lässt, sodass die Teile $\bar f$ und $f'$ nicht mehr von dieser Variable abhängen. \cite{GVinQuantumMechanics} \cite{GVFieldTheory} Im Folgenden sind noch einige, leicht einsehbare Rechenregeln für die Monome gegeben. Für $p=1$ ergibt sich der Spezialfall einzelner Graßmann-Variablen.
+
+\begin{grayframe}
+    Seien $\phi_p$ und $\psi_q$ zwei Monome vom Grad $p$ bzw. $q$, so gilt:
+    \begin{align}
+        \phi_p^2 &= 0  ,\label{eq: GraßmanProp 2}\\
+        \phi_p \, \psi_q &= \left\{ \begin{array}{ll} 0 & \text{für}\; p+q > n \\ (-1)^{pq} \psi_q \phi_p  & \text{für}\; p+q \leq n\end{array} \right. \label{eq: GraßmanProp 3}
+    \end{align}
+\end{grayframe}
+
+\noindent Die Reihendarstellungen von komplexen analytische Funktionen können benutzt werden, um Graßmann-Funktionen zu definieren. Aufgrund der Eigenschaften \eqref{eq: GraßmanProp 2} brechen diese immer nach einer endlichen Anzahl von Termen ab. Dies ist im folgenden für die Exponentialfunktion vorgeführt. 
+\begin{equation} \label{eq: exp()}
+    f(\eta_1) = \exp{\eta_1} = 1 + \eta_1 + \frac{\eta_1^2}{2} + \dots = 1 + \eta_1
+\end{equation}
+\vspace{0.2cm}\\
+Dies funktioniert für beliebige andere Graßmann-Zahlen und ist nicht auf die Generatoren der Algebra beschränkt. Es kann zum Beispiel ein beliebiges Monom eingesetzt werden, welches ja selbst eine Graßmann-Funktion der Generatoren ist. 
+
+\begin{equation} \label{eq: exp()_2}
+    f(\phi_p) = \exp{\phi_p} = 1 + \phi_p + \frac{\phi_p^2}{2} + \dots = 1 + \phi_p
+\end{equation}\\
+
+\noindent Es ist jedoch darauf zu achten, dass sich diese Exponentialfunktion nicht immer verhält, wie man es von den Reellen Zahlen gewohnt ist. Seien dazu $\phi_p$ und $\psi_q$ Monome in den Graßmann-Variablen vom Grad $p$ und $q$; 
+\begin{align}
+    f(\phi_p, \psi_q) 
+        &= \exp{\phi_p + \psi_q} \nonumber \\
+        &= 1 + (\phi_p + \psi_q) + \frac{1}{2}(\phi_p + \psi_q)^2 + \dots \nonumber\\
+        &= 1 + (\phi_p + \psi_q) + \frac{1}{2}(\phi_p^2 + \phi_p\psi_q +\psi_q\phi_p + \psi_q^2) + \dots \nonumber\\
+     &= 1 + (\phi_p + \psi_q) + \frac{1}{2}( \phi_p\psi_q +\psi_q\phi_p), \\
+    \nonumber \\
+    \bar{f}(\phi_p, \psi_q) 
+        &= \exp{\phi_p}\exp{\psi_q} \nonumber \\
+        &= (1 + \phi_p)(1 +\psi_q) \nonumber \\
+    &= 1+  \phi_p + \psi_q + \phi_p\psi_q 
+\end{align}
+
+\noindent Man erkennt mithilfe von \eqref{eq: GraßmanProp 3} dass $f = \bar f$ für z.B. $p=q = 2$ gilt, nicht jedoch für $ p = q = 1 $.
+
+\subsection{Spur-Operation und Berezin-Integral}
+
+Als nächstes soll eine lineare Operation $\mathrm{Sp}:\mathcal A \rightarrow \mathbb C$ eingeführt werden, welche als Spur einer Graßmann-Zahl bezeichnet wird. Dazu wird das sogenannte Berezin-Integral für Graßmann-Variablen verwendet. Dieses Integral ist als eine lineare Operation $\int: \mathcal A \rightarrow \mathcal A$ zu verstehen und hat nichts, außer einigen algebraischen Eigenschaften, mit dem lebesgue'schen oder riemann'schen Integralbegriff zu tun. Benutzt man die Zerlegung \eqref{eq: GraßmannZerlegung}, so definiert die Vorschrift 
+\begin{align} 
+\int \mathrm{d} \eta_i \; f = \int \mathrm{d} \eta_i \; \bigg(\bar{f} + \eta_i f'\bigg) &= f' \label{def: Berezin}
+\end{align}
+das Berenzin-Intergal in einer Graßmann-Variable auf ganz $\mathcal A$ in eindeutiger Weise. Als Beispiel ist im folgenden diese Integration in der 2-ten Variable für eine Graßmann Funktion $f$ auf einer Algebra mit 2 Generatoren $\eta_1, \eta_2$ vorgeführt.
+\begin{align} 
+\int \mathrm{d}\eta_2 f(\eta_1,\eta_2,\eta_n) &= \int \mathrm{d}\eta_2 \; \bigg( f_0 + f_1 \eta_1 + f_2 \eta_2 + f_{1,2} \eta_1 \eta_2  \bigg) \nonumber \\
+&= \int \mathrm{d}\eta_2 \; \bigg( (f_0 + f_1 \eta_1) + \eta_2 (f_2  - f_{1,2} \eta_1) \bigg) \nonumber\\
+&= f_2  - f_{1,2} \eta_1 \label{bsp: BerezinRechnung}
+\end{align}
+
+\noindent Dabei ist zu beachten, dass das negative Vorzeichen von $f_{1,2}$ von den antikommutierenden Eigenschaften der Variablen bei der Zerlegung in $\bar f$ und  $f'$ herrührt. In \eqref{def: Berezin} und \eqref{bsp: BerezinRechnung} fällt auf, dass die Berezin-Integraloperation sich wie eine algebraische Ableitungsvorschrift für Polynome verhält. Einige leicht einzusehenden Eigenschaften des Berezin-Integrals sind in den folgenden Formeln zusammengefasst. Oftmals werden diese als definierende Eigenschaften heran gezogen und daraus die Vorschrift \eqref{def: Berezin} abgeleitet. 
+\begin{align}
+    \int \mathrm{d}\eta_i 1 &= 0 \label{eq: Berezin1}\\
+    \int \mathrm{d}\eta_i \eta_j &= \delta_{i,j} \\
+    \int \mathrm{d}\eta_i \eta_j \eta_k &=  \delta_{i,j} \eta_k = - \delta_{i,k} \eta_j \label{eq: Berezin3}
+\end{align}
+
+\noindent Ein Berezin-Integral über mehrere Variablen ist dann über die Hintereinanderausführung der Integrale bezüglich einzelnen Variablen definiert. 
+\begin{equation}
+\iint \mathrm{d} \eta_{i}\, \mathrm{d} \eta_{j}\; f := \int \mathrm{d} \eta_{i} \left( \int \mathrm{d} \eta_{j}\; f\; \right)
+\end{equation}
+
+\noindent Aus den antikommutativen Eigenschaften der Graßmann-Variablen und der Definition des Integrals folgt damit auch eine Antikommutations-Relation für die Mehrfachintegrale. Das Vorzeichen hängt dabei dann von der Integrationsreihenfolge ab. Dies wird für Mehrfachintegral durch die Reihenfolge der Variablen im ``Integrationsmaß'' festgehalten.
+\begin{equation}
+\iint \mathrm{d} \eta_{i}\, \mathrm{d} \eta_{j}\; f = - \iint \mathrm{d} \eta_{j}\, \mathrm{d}\eta_{i}\; f
+\end{equation}
+
+\noindent Integriert man dann in aufsteigener Reihenfolge über alle Variablen so ergibt sich der Koeffizient des höchsten Monoms in der Basisdarstellung von $f$. Dieser Koeffizient liegt zudem in $\mathbb C$. Durch ein derartiges Berezin-Integral wird die Spur-Operation definiert. 
+\begin{grayframe}[frametitle = {Definition: Spur-Operation}]
+    \begin{equation} \label{def: GraßmannSpur}
+        \forall \;f\in \mathcal A : \;\;\;\; \Sp f := \int \cdots \int \mathrm{d}\eta_n\,\mathrm{d}\eta_{n-1}\cdots \mathrm{d}\eta_1\, f = f_{1,2,\dots,n}
+    \end{equation}
+\end{grayframe}
+
+\noindent Nun soll das Verhalten der Spur-Operation unter einer linearen Variablensubstitution, 
+\begin{equation} \label{def: Graßmann_linearTransform_Matrix}
+    \bm{\eta}\left(\bm{\theta}\right) = \bm{M}\,\bm{\theta}
+\end{equation}
+\begin{equation} \label{def: Graßmann_linearTransform}
+    \eta_i\left( \theta_1,\dots,\theta_n \right) = \sum_{j=1}^n M_{i,j}\; \theta_j
+\end{equation}
+untersucht werden. Ist $\bm{M}$ regulär, so bildet eines solche Transformation eine Familie $\left(\theta_i\right)_{i = 1}^n$ von Graßmann-Variablen auf eine Familie $\left(\eta_i\right)_{i = 1}^n$ ab, die ebenfalls Generatoren der Algebra ab. Dies ist dadurch zu erkennen, dass invertierbare Abbildungen die lineare Unabhängigkeit erhalten und auch die Eigenschaft der Antikommutativität nach 
+\begin{alignat}{4}
+    \eta_i \,\eta_j 
+        &= \left(\sum_{k=1}^n M_{i,k} \; \theta_k  \right) \left(\sum_{l=1}^n M_{j,l} \;\theta_l\right)     
+        &&= \sum_{k=1}^n \sum_{l=1}^n\; M_{i,k}\; M_{j,l} \;\theta_k \;\theta_l &&& \nonumber \\
+        &= \sum_{k=1}^n \sum_{l=1}^n M_{i,k} M_{j,l} \left(-\theta_l \theta_k \right)\
+        &&= - \sum_{k=1}^n \sum_{l=1}^n M_{j,l}\; M_{i,k} \;\theta_l \;\theta_k &&&\;= - \eta_j  \,\eta_i \nonumber
+\end{alignat}
+erhalten bleibt. Die beiden Familien von Graßmann-Variablen sind äquivalent in der Hinsicht, dass alle bislang hergeleiteten Eigenschaften für jede Familie von Generatoren gelten. Für die Monome gilt, dass jedes Monom vom Grad $p$ auf ein Polynom vom gleichen Grad in den neuen Graßmann-Variablen abgebildet wird,
+$$ \eta_{i_1}, \dots, \eta_{i_p} = \sum_{{j_1}=1}^n\;\cdots \sum_{{j_p}=1}^n M_{{i_1},{j_1}}\cdots M_{{i_p},{j_p}}\;\theta_{j_1} \cdots \theta_{j_p} $$
+
+\noindent Durch den Versuch ein beliebiges Produkt von Graßmann-Variablen durch paarweise Vertauschung in ihre natürliche Reihenfolge umzuordnen, macht man sich leicht den Zusammenhang   
+\begin{equation} \label{eq: sort_graßmann}
+\theta_{j_1} \cdots \theta_{j_p} = \epsilon_{j_1,\dots,j_n} \, \theta_{1} \cdots \theta_{n}
+\end{equation}
+ mit dem Levi-Civita-Symbol (Siehe Appendix \ref{Apenndix: Permutationen}) klar. 
+\noindent Für eine beliebige Graßmann Funktion ergibt sich dann 
+\begin{align}
+f(\bm{\eta}\,(\theta_1, \dots, \theta_n))
+&= \bar{f} + f_{1,\dots,n}\;\eta_1(\theta_1, \dots, \theta_n)\cdots\eta_n(\theta_1, \dots, \theta_n) \nonumber \\
+&= \bar{f} + f_{1,\dots,n} \sum_{{j_1}=1}^n\;\cdots \sum_{{j_n}=1}^n M_{{1},{j_1}}\cdots M_{{n},{j_n}}\;\theta_{j_1} \cdots \theta_{j_n} \nonumber \\
+&= \bar{f} + f_{1,\dots,n} \left(\sum_{{j_1}=1}^n\;\cdots \sum_{{j_n}=1}^n M_{{1},{j_1}}\cdots M_{{n},{j_n}}\; \epsilon_{j_1,\dots,j_n}\right) \theta_{1} \cdots \theta_{n} \nonumber \\
+&= \bar{f} + f_{1,\dots,n} \; \det{\bm{M}} \; \theta_{1} \cdots \theta_{n} \label{eq: transform last coeff} 
+\end{align}\\
+unter der Transformation. Dabei ist $\bar f$ ein Polynom von höchstens Grad $n-1$. Mit der Notation $\mathrm{D}_{\eta} = \mathrm{d}\eta_n\,\mathrm{d}\eta_{n-1}\,\cdots \mathrm{d}\eta_1 $ und unter der Beachtung der Definition \eqref{def: GraßmannSpur} der Spur-Operation erhält man die Relation \eqref{eq: Graßmann Transformationsformel}, welche zur Transformationsformel für Riemannintegrale ähnlich ist. Im Gegensatz zum Riemann-Integral ist jedoch die Determinante der Transformationsmatrix $\bm{M}$ zu bilden, nicht die der Inversen $\bm{M}^{-1}$. \\
+\begin{grayframe}[frametitle = {Für Variablentransformationen $\bm{\eta}\left(\bm{\theta}\right) = M\,\bm{\theta}$ gilt:}]
+\begin{align} \label{eq: Graßmann Transformationsformel}
+    \int \mathrm{D}_{\bm{\theta}}\, f\left(\bm{\eta}\left(\bm{\theta}\right)\right)  &= \det{\bm{M}} \int \mathrm{D}_{\bm{\eta}}\, f(\bm{\eta}\,) \\
+    \nonumber \\
+    \Sp{f( \bm{M}\,\bm{\theta}\,)} &=  \det{\bm{M}} \,\Sp{f(\bm{\eta}\,)}
+\end{align}
+\end{grayframe}
+
+\newpage
+
+\subsection{Gauß-Berezin-Integrale und Pfaffsche Determinante}
+
+In diesem Abschnitt sollen Berezin-Integrale der Form 
+\begin{equation} \label{def: Gaussintegral}
+\int \cdots \int \mathrm{d}\eta_n\,\mathrm{d}\eta_{n-1}\cdots \mathrm{d}\eta_1\, \exp{\frac{A\left(\bm{\eta}, \bm{\eta}\right)}{2}}
+\end{equation}
+\begin{equation} \label{def: QuadratWirkung}
+A\left(\bm{\eta}, \bm{\eta}\right) = \bm{\eta}^{\,T} \bm{A}\, \bm{\eta} = \sum_{i=1}^n \sum_{j=1}^n A_{i,j}\; \eta_i\; \eta_j 
+\end{equation}
+betrachtet werden, da diese immer wieder in der Arbeit auftauchen werden. Integrale diesen Typs sollen fortan als Gauß-Berezin-Integrale bezeichnet werden. Die Größe $A\left(\bm{\eta}, \bm{\eta}\right)$ aus \eqref{def: QuadratWirkung} wird als quadratische Wirkung in den Graßmann-Variablen oder als quadratische Graßmann-Wirkung bezeichnet. $\bm{A}$ ist dabei die darstellende Matrix der Quadratischen Form bezüglich der Familie von Generatoren $\eta_1, ... \eta_n$. Die Graßmann-Funktion $e^{A/2}$ wird als Gauß-Graßmann-Dichte bezeichnet.\\
+Die Matrix $\bm{A}^T$ steht hierbei für die Transponierte von $\bm{A}$. Diese ist nicht zu verwechseln mit der adjungierten $\bm{A}^\dagger$. Eine mit diesen Integralen eng zusammenhängende Größe ist die sogenannte Pfaffsche Determinante $\pf{\bm{A}}$ einer antisymmetrischen Matrix. Für eine antisymmetrische Matrix $\bm{A}$ der Größe $2n \times 2n$ ist diese gemäß 
+\begin{equation} \label{def: Pfaffian}
+pf(\bm{A}) = \frac{1}{2^n\,n!} \sum_{P \in S_{2n}} \sign{P} \prod_{i=1}^n A_{P(2i-1),P(2i)} 
+\end{equation}
+definiert. Für antisymetrische quadratische Matrizen $\bm{A}$ ungerader Dimension verschwindet $\pf{\bm{A}}$. Die Summation in \eqref{def: Pfaffian} wird dabei über alle Permutationen $P$ der Zahlen $1$ bis $2n$ ausgeführt. $S_{2n}$ bezeichnet die zugehörige Symetrische Gruppe, also die Menge aller solcher Permutationen. Mit $\sign{P}$ wird das Vorzeichen der Permutation $P$ bezeichnet. \\
+Für eine $2\times2$ bzw. eine $4\times4$ Matrix kann die Pfaff'sche Determinate leicht für den allgemeinen Fall explizit angegeben werden.
+
+\begin{align}
+pf\left(\begin{array}{cc}  
+        0  &  a  \\
+        -a &  0  \\
+        \end{array} \right) &= a \nonumber \\
+\label{eq: expl. pfaffian}\\
+& \nonumber\\
+pf\left(\begin{array}{cccc}  
+        0  &  a  &  b & c \\
+        -a &  0  &  d & e \\
+        -b & -d  &  0 & f \\
+        -c & -e  & -f & 0 \\
+        \end{array} \right) &= af - be +dc \nonumber 
+\end{align}\\
+\newpage
+\noindent Es besteht der folgende Zusammenhang zwischen einem Gauß-Berezin-Integral und den Pfaffschen Determinanten.
+
+\begin{grayframe}[frametitle = {Gauß-Berezin-Integrale}]
+Für jede quadratische Graßmann-Wirkungen $A$, gibt es genau ein $ \mathbf{A}\in\mathbb{C}^{n\times n}$ mit $\mathbf{A}^T = -\mathbf{A}$ sodass gilt :
+    \begin{equation} \label{Satz: Gauß-Berezin 1}
+        A\left(\bm{\eta}, \bm{\eta} \right) = \sum_{i=1}^n \sum_{j=1}^n A_{i,j}\; \eta_i\; \eta_j  \;\;
+    \end{equation}
+Dann gilt für das zugehörige Gauß-Berezin-Integral der quadratischen Graßmann-Wirkung:
+    \begin{equation} \label{Satz: Gauß-Berezin 2}
+        \Sp{e^{A/2}} = \int \cdots \int d\eta_n\,d\eta_{n-1}\cdots d\eta_1\, \exp{\frac{A\left(\bm{\eta}, \bm{\eta}\right)}{2}} = \pf{\mathbf{A}}
+    \end{equation}
+\end{grayframe}
+
+\noindent Zuerst soll gezeigt werden, dass jede quadratische Graßmann-Wirkung genau eine schief symmetrische darstellende Matrix besitzt. Dies kann man einsehen, indem man eine beliebige symmetrische Matrix $\bm{B}$ betrachtet. Die durch $\bm{B}$ definierte quadratische Wirkung $B$ erweist sich dann, gemäß 
+\begin{align}
+B\left(\bm{\eta}, \bm{\eta}\right) 
+    & = \sum_{i=1}^n \sum_{j=1}^n B_{i,j}\; \eta_i\; \eta_j = \sum_{i=1}^n \sum_{j=1}^n \frac{1}{2} (B_{i,j} + B_{j,i})\; \eta_i\; \eta_j \nonumber \\
+    & =  \frac{1}{2}\left( \sum_{i=1}^n \sum_{j=1}^n B_{i,j}\; \eta_i\; \eta_j - \sum_{i=1}^n \sum_{j=1}^n B_{j,i}\; \eta_j\; \eta_i\right)  = 0 \label{eq: Symetrische Wirkung}
+\end{align}
+als das Null-Element der Graßmann Algebra. Durch Aufteilen einer Matrix $\bm{A}$ in einen Symmetrischen Anteil $\frac{\bm{A}+\bm{A}^T}{2}$ und einen antisymmetrischen Anteil $\frac{\bm{A}-\bm{A}^T}{2}$, lässt sich immer eine antisymmetrische darstellende Matrix finden. Diese ist dann eindeutig. Denn für zwei antisymmetrische darstellende Matrizen $\bm{A}$ und $\bm{B}$ der selben Wirkung $A$ gilt
+\begin{equation} 
+\sum_{i=1}^n \sum_{j=1}^n (A_{i,j} - B_{i,j})\; \eta_i\, \eta_j = A\left(\bm{\eta}, \bm{\eta}\right)  - A\left(\bm{\eta}, \bm{\eta}\right)  = 0 \nonumber
+\end{equation}
+
+\noindent Aufgrunder der linearen Unabhängigkeit der Monome $\eta_i\,\eta_j$ folgt dann aber, dass alle Koeffizienten verschwinden müssen und somit $\bm{A}=\bm{B}$. \\
+\noindent Sei nun $\bm{A} \in\mathbb{C}^{2n \times 2n}$ die eindeutige, antisymmetrische darstellende Matrix einer quadratischen Graßmann-Wirkung $A$ aus einer, von $2n$  Graßmann-Variablen erzeugten, Algebra. Um die Integration auszuführen, muss eine geeignete Polynom-Darstellung von $e^{A/2}$ berechnet werden. Dazu wird die Definition der Exponentialfunktion als Potenzreihe benutzt. 
+\begin{align}
+e^{A/2} 
+&= \exp{ \sum_{i=1}^{2n} \sum_{j=1}^{2n} \frac{A_{i,j}}{2} \eta_i \eta_j } 
+= \sum_{n=1}^{\infty} \frac{1}{2^n\,n!} \left(\sum_{i=1}^{2n} \sum_{j=1}^{2n} A_{i,j} \eta_i \eta_j \right)^n  \nonumber \\
+& = \frac{1}{2^n\,n!} \left(\sum_{i=1}^{2n} \sum_{j=1}^{2n} A_{i,j} \eta_i \eta_j \right)^n  + \sum ' \nonumber\\
+&= \frac{1}{2^n\,n!} \sum_{P \in S_{2n}} \, \prod_{i=1}^n  A_{P(2i-1),P(2i)}\eta_{P(2i-1)}\eta_{P(2i)} + \sum ' \label{eq: exp_polynom}
+\end{align}
+
+\noindent Dabei steht $\sum'$ für eine Summe von Monomen vom Grad höchstens $n-1$. Monome vom Grad echt größer als $n$ verschwinden aufgrund der Eigenschaft \eqref{eq: GraßmanProp 3}. Die Summe $\sum'$ verschwindet unter der Spurbildung. Unter Berücksichtigung der Linearität der Spuroperation folgt somit:
+\begin{align}
+\Sp{e^{A/2}} &= \Sp{\frac{1}{2^n\,n!} \sum_{P \in S_{2n}} \, \prod_{i=1}^n  A_{P(2i-1),P(2i)}\eta_{P(2i-1)}\eta_{P(2i)} + \sum '} \nonumber \\
+&= \frac{1}{2^n\,n!} \sum_{P \in S_{2n}} \, \Sp{ \prod_{i=1}^n  A_{P(2i-1),P(2i)}\eta_{P(2i-1)}\eta_{P(2i)}} + \Sp{\sum'} \nonumber \\
+&= \frac{1}{2^n\,n!} \sum_{P \in S_{2n}} \, \Sp{ \prod_{i=1}^n \eta_{P(2i-1)}\eta_{P(2i)}} \prod_{i=1}^n A_{P(2i-1),P(2i)}  \label{eq: PfaffCalc_2} 
+\end{align}
+\noindent Mithilfe von Glg. \eqref{eq: sort_graßmann} lässt sich leicht für eine beliebige Permutation $P \in S_{2n}$ der Zusammenhang
+\begin{align} \label{eq: permuteVariableproducts}
+\sign{P} = \Sp{\eta_{P(1)} \cdots \eta_{P(2n)}}  = \,\Sp{ \prod_{i=1}^n \eta_{P(2i-1)}\eta_{P(2i)} }
+\end{align} \\
+\noindent einsehen. Mithilfe von \eqref{eq: permuteVariableproducts} erkennt man in \eqref{eq: PfaffCalc_2} die Definition der Pfaffschen Determinante. Somit ist die Aussage für $\bm{A} \in\mathbb{C}^{2n \times 2n}$ gezeigt. Für $\bm{A} \in\mathbb{C}^{2n+1 \times 2n+1}$ gilt $\Sp{e^{A/2}} = 0$ (Beweis in Appendix \ref{Appendix: Pfaffians with GV}).\\
+
+\noindent In \eqref{eq:pfaff 1} bis \eqref{eq:pfaff 6} sind noch einige wichtige Eigenschaften von Pfaffschen Determinanten festgehalten. Diese können Eigenständig über die Definition \eqref{def: Pfaffian} der Pfaffschen Determinante bewiesen werden. Beweise können zum Beispiel in \cite{Haber2009NotesOA} gefunden werden. Die Definition über das Berezin-Integral bildet jedoch einen alternativen, sehr eleganten Zugang, um all diese Beweise zu führen. Hier sollen nur die Resultate zusammengefasst werden, die Beweise befinden sich in Appendix \ref{Appendix: Pfaffians with GV}.
+\newpage
+\begin{grayframe}[frametitle = {Eigenschaften von Pfaffschen Determinanten}]
+    Sei $\bm{A} \in \mathbb{C}^{2n\times2n}$ eine schiefsymmetrische Matrix, dh $\bm{A}^T = -\bm{A}$. so gilt
+        \begin{align}
+            \pf{-\bm{A}} &= (-1)^n\, \pf{\bm{A}} \label{eq:pfaff 1}\\
+            \pf{\bm{A}}^2 &= \det{\bm{A}}      \label{eq:pfaff 2}
+        \end{align}
+    Sei $\bm{M} \in \mathbb{C}^{2n\times2n} $ eine beliebige invertierbare Matrix. so gilt:
+        \begin{equation}
+            \pf{\bm{M}^T \,\bm{A}\, \bm{M}} = \det{\bm{M}} \pf{\bm{A}} \label{eq:pfaff 3}
+        \end{equation}
+    Seien $\bm{A}_i \in \mathbb{C}^{2n_i\times2n_i}$ schiefsymmetische Matrizen sodass sich $\bm{A}$ als Blockmatrix \\
+    ${\bm{A} = \bigoplus_{i = 1}^k \bm{A}_i}$ schreiben lässt, dann gilt:
+        \begin{equation}
+            \pf{\bigoplus_{i = 1}^k \bm{A}_i} = \prod_{i=1}^k \pf{\bm{A}_i} \label{eq:pfaff 4}
+        \end{equation}
+    Ist $\bm{A} \in \mathbb{C}^{2n\times2n}$ invertierbar so gilt:
+        \begin{equation}
+        \pf{\bm{A}^{-1}} = (-1)^n\, \pf{\bm{A}}^{-1} = \pf{-\bm{A}}^{-1} \label{eq:pfaff 5}
+        \end{equation}
+    Sei $\bm{M} \in \mathbb{C}^{n\times n} $ beliebig. So gilt
+        \begin{equation}
+            \pf{
+                \begin{array}{cc}
+                    0    & \bm{M} \\
+                    -\bm{M}^T & 0 
+                \end{array}
+            } = (-1)^{n(n-1)/2} \; \det{\bm{M})} \label{eq:pfaff 6}
+        \end{equation}
+\end{grayframe}
+
+\subsection{Graßmann-Korrelationen}
+
+Zuletzt sollen Größen der Form 
+\begin{equation} \label{def: Graßmann-Korrelationen}
+\corr{f} = \frac{\Sp{e^{A/2} f(\eta_{i_1} \cdots \eta_{i_k})}}{\Sp{e^{A/2}}} 
+\end{equation}
+betrachtet werden. Diese sollen, in  Anlehnung an die Wahrscheinlichkeitstheorie oder Statistische Physik, als Graßmann-Korrelationen bezeichnet werden. Während der Nenner in \eqref{def: Graßmann-Korrelationen} über eine Pfaffsche Determinante berechnet werden kann, muss für den Zähler noch ein wenig Arbeit geleistet werden. Es soll nun ein expliziter Ausdruck für den Fall, dass $f$ ein Monom in den Graßmann-Variablen ist, hergeleitet werden.
+\begin{equation} \label{def: Graßmann-Korrelationen monom}
+\corr{\eta_{i_1} \cdots \eta_{i_k}} = \frac{\Sp{e^{A/2}\eta_{i_1} \cdots \eta_{i_k}}}{\Sp{e^{A/2}}} 
+\end{equation}
+
+\noindent Die Korrelation verschwindet sobald eine Graßmann-Variable zwei mal vorkommt, da das Produkt dann die 0 ergibt. Es sei $P: \{1,\dots, n\} \mapsto \{i_i, \dots, i_k, j_1, \dots, j_{n-k}\}$ eine Permutation sodass $i_1 < i_2 < \dots < i_{k}$ und $j_1 < j_2 < \dots < j_{n-k}$ gilt. Im folgenden bezeichnet $\bm{A}^{\cancel{I}\cancel{I}}$ die Matrix, die man erhält, wenn man in $\bm{A}$ die Zeilen und Spalten mit den Indices aus $I$ streicht. $\bm{A}^{I \cancel{I}}$ bezeichnet die Matrix die man erhält wenn man in $\bm{A}$ alle Zeilen streicht, deren Index nicht in $I$ liegt und alle Spalten, deren Index doch in $I$ liegen. $\bm{A}^{\cancel{I} I}$ und $\bm{A}^{II}$ sind analog definiert. Um $\bm{A}^{II}$ zu erhalten, streicht man z.b. alle Spalten und Zeilen von $\bm{A}$ deren Index nicht in $I$ liegt.
+Durch die Transformation der Matrix $\bm{A}$ mithilfe von $\bm{P}$ erhält man dann
+\begin{equation}
+   \bm{\tilde{A}} =  \bm{P}^T \bm{A} \bm{P} =
+        \left( \begin{array}{cc}
+        \bm{A}^{II}          & \bm{A}^{I \cancel{I}} \\
+        \bm{A}^{\cancel{I} I} & \bm{A}^{\cancel{I} \cancel{I}}
+        \end{array} \right).
+\end{equation}
+\noindent Unter dieser Ähnlichkeitstransformation bleibt die Antisymmetrie der Matrix erhalten. Mit der Transformationsformel für das Berezin-Intergal und der Definionen $ \bm{\theta} = \bm{P} \bm{\eta} $ bzw. $ (\theta_1, \dots, \theta_n) =  (\eta_{i_1}, \dots ,\eta_{i_k}, \eta_{j_1}, \dots, \eta_{i_{n-k}}) $ folgt für die Korrelation: 
+\begin{align}
+\corr{\eta_{i_1} \cdots \eta_{i_k}} 
+    & = \frac{\int \mathrm{D}_{\bm{\eta}}\, \exp{ \frac{1}{2}\bm{\eta}^T \bm{A}\, \bm{\eta}\;}  \eta_{i_1}\cdots\eta_{i_k}}{\int \mathrm{D}_{\bm{\eta}} \,\exp{\frac{1}{2} \bm{\eta}^T \bm{A}\, \bm{\eta}\;}} \nonumber \\
+    & =  \frac{ \det{\bm{P}} \int \mathrm{D}_{\bm{\theta}}\, \exp{ \frac{1}{2} \bm{\theta}^T \bm{\tilde{A}}\, \bm{\theta}\;}  \theta_{1}\cdots\theta_k}{\det{\bm{P}} \int \mathrm{D}_{\bm{\theta}} \,\exp{ \frac{1}{2} \bm{\theta}^T \bm{\tilde{A}}\, \bm{\theta}\;}} \nonumber \\
+    & = \frac{ \int \mathrm{D}_{\bm{\theta}}\, \exp{ \frac{1}{2} \bm{\theta}^T \bm{\tilde{A}}\, \bm{\theta}\;}  \theta_{1}\cdots\theta_k}{\pf{\bm{\tilde{A}}}} \label{eq: transformed Korrelation}
+\end{align}
+\noindent Der Ausdruck in \eqref{eq: transformed Korrelation} kann weiter umgeformt werden, indem man den Integranten $e^{A/2}\,\theta_{1}\cdots\theta_k$ faktorisiert und anschließend die Integration teilweise ausführt. Es sei $\mathcal{N} = \{1,\dots,n\} \times \{1,\dots,n\}$ die Indexmenge der Summation für die Matrix Darstellung \eqref{eq: Graßmann Transformationsformel} der quadratischen Graßmann-Wirkung. Die Mengen $\mathcal{J} = \{n-k+1,\dots,n\} \times \{n+k-1,\dots,n\}$ und $\mathcal{J}^C = \mathcal{N} \setminus \mathcal{I} $ bilden eine Partition von $\mathcal{N}$. Mit dieser Aufteilung der Indexmenge lässt sich der Integrand, unter Ausnutzung der Kommutativität von Paaren von Graßmann-Variablen, faktorisieren.
+\begin{align}
+\exp{ \frac{1}{2} \bm{\theta}^T \bm{\tilde{A}}\, \bm{\theta}\;}  \theta_{1}\cdots\theta_k 
+    & = \exp{ \frac{1}{2}\sum_{(i,j) \in \mathcal{N}} \tilde A_{i,j}\, \theta_i, \theta_j\;}  \theta_{1}\cdots\theta_k \nonumber\\
+    & = \prod_{(i,j) \in \mathcal{N}} \exp{ \frac{1}{2} \tilde A_{i,j}\, \theta_i, \theta_j\;}  \theta_{1}\cdots\theta_k \nonumber \\
+    & = \, \prod_{(i,j) \in \mathcal{J}} \exp{ \frac{1}{2} \tilde A_{i,j}\, \theta_i, \theta_j} \prod_{(i,j)\in \mathcal{J^C}} \left( 1 + \frac{1}{2} \tilde A_{i,j}\, \theta_i, \theta_j\;\right) \theta_{1}\cdots\theta_k \nonumber \\
+     & = \left(\, \prod_{(i,j) \in \mathcal{J}} \exp{ \frac{1}{2} \tilde A_{i,j}\, \theta_i, \theta_j}\right) \theta_{1}\cdots\theta_k  \label{eq: gauschen_integranten_faktoriesieren}
+\end{align}
+
+\noindent Dabei wurde in \eqref{eq: gauschen_integranten_faktoriesieren} verwendet, dass Quadrate von Graßmann-Variablen verschwinden, sodass im Multiplikant nur $1$ einen Beitrag liefert. Der Multiplikator hängt nun nicht mehr von $\theta_{1},\dots,\theta_k$ ab, sodass die Integration über $\theta_{1}\cdots\theta_k$ vorgezogen werden kann.
+
+\begin{align}
+    &\int \d \theta_n \cdots \d \theta_1\, \exp{ \frac{1}{2} \bm{\theta}^T \bm{\tilde{A}}\, \bm{\theta}\;}  \theta_{1}\cdots\theta_k \nonumber\\
+    &=\int \d \theta_n \cdots \d \theta_1\, \left(\, \prod_{(i,j) \in \mathcal{J}} \exp{ \frac{1}{2} \tilde A_{i,j}\, \theta_i, \theta_j}\right) \theta_{1}\cdots\theta_k \nonumber \\
+    &=  \int \d\theta_n \cdots \d\theta_{n-k+1} \, \left(\prod_{(i,j) \in \mathcal{J}} \exp{ \frac{1}{2} \tilde A_{i,j}\, \theta_i, \theta_j} \int d\theta_k \cdots \theta_{1} \; \theta_{1}\cdots\theta_k \right) \nonumber \\
+    &=  \int \d \theta_n \cdots \d\theta_{n-k+1} \, \prod_{(i,j) \in \mathcal{J}} \exp{ \frac{1}{2} \tilde A_{i,j}\, \theta_i, \theta_j} \nonumber \\
+    &= \pf{\bm{A}^{\cancel{I} \cancel{I}}} \nonumber
+\end{align}
+
+\noindent Für die Graßmann-Korrelationen ergibt sich somit der Zusammenhang 
+\begin{equation}
+\corr{\eta_{i_1} \cdots \eta_{i_k}}  = \frac{\pf{\bm{A}^{\cancel{I} \cancel{I}}} }{\pf{\bm{\tilde{A}}}} = \frac{\pf{\bm{A}^{\cancel{I} \cancel{I}}} }{\det{\bm{P}} \pf{\bm{A}}} \label{eq: calc_GV_Korr_small}
+\end{equation}
+
+\noindent Als nächstes sollen nun Korrelationen von beliebigen Monomen in den Graßmann-Variablen auf Paarkorrelationen zurückgeführt werden. Als erster Schritt wird dazu die Matrix $\bm{\tilde{A}}$ wie in \eqref{eq: Matrixfaktorisierung} faktorisiert.
+\begin{equation}
+    \bm{\tilde{A}} = 
+    \left( \begin{array}{cc}
+        \bm{A}^{II}          & \bm{A}^{I \cancel{I}} \\
+        \bm{A}^{\cancel{I} I} & \bm{A}^{\cancel{I} \cancel{I}}
+    \end{array} \right)
+      = 
+    \left(\begin{array}{cc} 
+        \mathds{1}_{k,k}      &  \bm{G} \\
+        0 &  \mathds{1}_{n-k, n-k}
+    \end{array}\right)
+    \left(\begin{array}{cc} 
+        \bm{B}      &  0 \\
+        0 &  \bm{A}^{\cancel{I} \cancel{I}}
+    \end{array}\right)
+    \left(\begin{array}{cc} 
+        \mathds{1}_{k,k}        &  0 \\
+         \bm{F}  &  \mathds{1}_{n-k, n-k}
+    \end{array}\right) \label{eq: Matrixfaktorisierung}
+\end{equation}
+
+\noindent Mit den Matrizen:
+\begin{align}
+\bm{B} &= \bm{A}^{I,I} -\bm{A}^{\cancel{I} I}\, (\bm{A}^{\cancel{I} \cancel{I}})^{-1} \,\bm{A}^{I \cancel{I}} \nonumber\\
+\bm{G} &= \bm{A}^{I \cancel{I} }\, (\bm{A}^{\cancel{I} \cancel{I}})^{-1} \nonumber \\
+\bm{F} &= (\bm{A}^{\cancel{I} \cancel{I}})^{-1} \,\bm{A}^{\cancel{I} I} \nonumber
+\end{align}
+
+\noindent Dabei wird vorausgesetzt, dass der untere Diagnoalblock $\bm{A}^{\cancel{I} \cancel{I}}$ invertierbar ist. Dies kann für nicht verschwindende Korrelationen vorausgesetzt werden. Denn wäre $\bm{A}^{\cancel{I} \cancel{I}}$ nicht invertierbar, so folgt $pf(\bm{A}^{\cancel{I} \cancel{I}})^2 = \det{\bm{A}^{\cancel{I} \cancel{I}}} = 0$ und somit wegen \eqref{eq: calc_GV_Korr_small} dass die Korrelation verschwindet. Es kann auch vorausgesetzt werden, dass $\bm{B}$ invertierbar ist. Denn wäre $\bm{B}$ nicht invertierbar, so folgt aus \eqref{eq: Matrixfaktorisierung} über den Produktsatz für Determinanten, dass $\tilde A$ nicht invertierbar sein kann. Daraus folgt aber, dass $pf(\bm{\tilde{A}}) = 0$ und die Korrelation wäre somit nicht wohldefiniert. 
+Für die Inverse Matrix $\bm{\tilde{A}}^{-1}$ ergibt sich dann mit
+\begin{equation}
+    \tilde{\bm{A}}^{-1} = 
+    \left(\begin{array}{cc} 
+        \mathds{1}_{k,k}      &  0 \\
+        -\bm{F} &  \mathds{1}_{n-k, n-k}
+    \end{array}\right)
+    \left(\begin{array}{cc} 
+        \bm{B}^{-1}      &  0 \\
+        0 &  (\bm{A}^{\cancel{I} \cancel{I}})^{-1}
+    \end{array}\right)
+    \left(\begin{array}{cc} 
+        \mathds{1}_{k, k}      &  -\bm{G} \\
+         0  &  \mathds{1}_{n-k,n-k}
+    \end{array}\right) \label{eq: InverseFaktoriesierung}
+\end{equation}
+ eine analoge Formel, welche leicht durch Nachrechnen verifiziert werden kann. Aufgrund der Tatsache, dass Permutationen orthogonal sind, dh. $\bm{P}\bm{P}^T=\bm{P}^T\bm{P} = \mathds{1}$, folgt aus $ \mathds{1} = \bm{P}^T\bm{A}^{-1}\bm{P} \bm{P}^T \bm{A}\bm{P}$ der Zusammenhang 
+\begin{equation}
+    \bm{\tilde{A}}^{-1} = \bm{P}^T \bm{A}^{-1} \bm{P} = \left( \begin{array}{cc}
+        (\bm{A}^{-1})^{\,II}          & (\bm{A}^{-1})^{\,I \cancel{I}} \\
+        (\bm{A}^{-1})^{\,\cancel{I} I} & (\bm{A}^{-1})^{\,\cancel{I} \cancel{I}}
+    \end{array} \right) \label{eq: inverse tilde A}
+\end{equation}
+für die Inverse der Matrix $\bm{\tilde{A}}$. Daraus erkennt man mit  \eqref{eq: InverseFaktoriesierung} und \eqref{eq: inverse tilde A}, durch einfaches Nachrechnen, dass
+\begin{equation}
+(\bm{A}^{-1})^{\,II} = 
+    \left(\begin{array}{cc} 
+        \mathds{1}_{K K}      &  0
+    \end{array}\right) \bm{\tilde{A}}^{-1}
+    \left(\begin{array}{c} 
+        \mathds{1}_{K K}      \\
+        0
+    \end{array}\right) 
+    = \bm{B}^{-1} \label{eq: AII is B}
+\end{equation}
+ gilt. Aus der Antisymmetrie der Matrix $\bm{\tilde{A}}$ folgt $ - \bm{A}^{\cancel{I} I} = (\bm{A}^{I\cancel{I}})^T
+$ und $ (\bm{A}^{\cancel{I} \cancel{I}})^T = - \bm{A}^{\cancel{I} \cancel{I}}$ und damit $\bm{G}^T = \bm{F}$.
+\begin{alignat}{3}
+    \bm{G}^T 
+    &= (\bm{A}^{I \cancel{I} }\, (\bm{A}^{\cancel{I} \cancel{I}})^{-1})^T 
+    &&=((\bm{A}^{\cancel{I} \cancel{I}})^{-1})^T (\bm{A}^{I \cancel{I} })^T &&\nonumber \\
+    &= -\,((\bm{A}^{\cancel{I} \cancel{I}})^T))^{-1}\bm{A}^{\cancel{I}I  } 
+    &&= (\bm{A}^{\cancel{I} \cancel{I}})^{-1}\bm{A}^{\cancel{I}I  }
+    &&= \bm{F} \nonumber
+\end{alignat}
+
+\noindent Mithilfe der Transformationsformel \eqref{eq:pfaff 3} und der Diagonalblockformel für Pfaffsche Determinanten \eqref{eq:pfaff 4} folgt:
+\begin{equation}
+\pf{\bm{\tilde{A}}} = \det{
+    \begin{array}{cc} 
+        \mathds{1}_{k,k}      &  0 \\
+        \bm{F} &  \mathds{1}_{n-k, n-k}
+    \end{array}}
+    \pf{
+    \begin{array}{cc} 
+        \bm{B}     &  0 \\
+        0 &  \bm{A}^{\cancel{I} \cancel{I}}
+    \end{array}
+    }
+    =
+    \pf{\bm{B}} \pf{ \bm{A}^{\cancel{I} \cancel{I}}} \nonumber
+\end{equation}
+
+\noindent Unter Ausnutzung der Formel \eqref{eq:pfaff 5} für die Pfaffsche Determinanten der Inversen Matrix und Gleichung \eqref{eq: AII is B} ergibt sich letztlich:
+\begin{equation}
+    \corr{\eta_{i_1} \cdots \eta_{i_k}}  = \frac{\pf{\bm{A}^{\cancel{I} \cancel{I}}} }{\pf{\bm{\tilde{A}}}} = \pf{\bm{B}}^{-1} = \pf{-(\bm{B})^{-1}} = \pf{-(\bm{A}^{-1})^{\,II}}\nonumber
+\end{equation}
+
+\noindent Die Berechnung der Korrelationen lässt sich also wie folgt zusammenfassen.
+
+\begin{grayframe}[frametitle = {Graßmann-Korrelationen von Monomen}]
+Sei $\bm{A}$ die antisymmetrische Matrix, welche die Graßmann-Dichte $e^{A/2}$ definiert. Dann gilt:
+\begin{equation} \label{eq: Calculate_GV_Corr}
+    \corr{\eta_{i_1} \cdots \eta_{i_k}}
+    =  \left\{ \begin{array}{cl} 0 & \;\;\text{wenn}\;\; \det{\bm{A}^{\cancel{I} \cancel{I}}} = 0 \\ \pf{-(\bm{A}^{-1})^{\,II}} & \;\; \text{sonst} \end{array} \right. 
+\end{equation} 
+
+\noindent Dabei sind $\bm{A}^{\cancel{I} \cancel{I}}$ bzw. $\bm{A}^{II}$ die Matrizen die man durch Streichen aller Zeilen und Spalten mit Indices in $I$ bzw. nicht in $I$ erhält.
+\end{grayframe}
+
+\noindent Betrachtet man die Indizierung $I=(i,j)$ so folgt
+\begin{equation}
+\corr{\eta_i\,\eta_j} 
+    = \pf{(-\bm{A}^{-1})^{\,II} }
+    = \pf{  
+    -\left(\begin{array}{cc} 
+        0 & (A^{-1})_{i,j}     \\
+        (A^{-1})_{j,i} & 0
+    \end{array}\right) }
+    = -(A^{-1})_{i,j} 
+    = - (A^{-1})_{i,j}  \nonumber
+\end{equation}
+für Paar-Korrelationen. Dadurch kann die Korrelation von beliebig vielen Variablen auf die Berechnung von Paar-Korrelationen zurückgeführt werden.
+
+\begin{grayframe}[frametitle = {Berechnung von Monom Korrelation mit Paar-Korrelationen}]
+Sei $\bm{M}$ die Matrix mit Einträgen $M_{j,l} = \corr{\eta_{i_j} \eta_{i_l}}$ so gilt:
+
+\begin{equation} \label{eq: calc monom corr with pair corr matrix}
+    \corr{\eta_{i_1} \cdots \eta_{i_k}}
+    =  \pf{\bm{M}}
+\end{equation} 
+
+\end{grayframe}

@@ -1,0 +1,235 @@
+\documentclass[fontsize = 12pt]{scrartcl}
+
+% Encoding of documents
+	\usepackage[utf8]{inputenc}
+	\inputencoding{utf8}
+	\usepackage[T1]{fontenc}
+
+% Silbensetzung und Automatisch Anpassung der Sprache in generierten Inhalten
+	\usepackage[ngerman]{babel}
+
+% Mathematical character set 
+    \usepackage{amsmath,amssymb, amsfonts, bm}
+	%\usepackage{amsmath,amssymb, amstext, amsfonts}
+	\usepackage{dsfont}
+	%\usepackage{newtxmath}
+	\usepackage[makeroom]{cancel}
+ 	
+ 	% equation enumeration
+ 	\numberwithin{equation}{section}
+% Hyperef
+	\usepackage{hyperref}
+
+% Font
+	\usepackage{txfonts} % TimesNewRoman als Shrift des Fließtextes
+					     % Helvetica als serifenlose Schrift für Beispielsweise Überschrift 		
+    %\usepackage{pxfonts}
+	% \usepackage{lmodern}
+
+	%\usepackage{setspace} % zum Einstellen des zeilenabstandes
+	%\setstretch{1.00}
+
+	% Tabular and figure caption
+	\usepackage[nooneline]{caption} % noonline sorgt dafür das beschriftung linksbündig ist
+	%More info:  https://www.namsu.de/Extra/pakete/Caption.html	
+    %	\captionsetup[figure]{labelfont=it, textfont=it} % figure captions
+	%   \captionsetup[table]{labelfont=bf, textfont=it} % tabular captions
+
+
+% including pictures
+\usepackage{rotating} % Einfügen und rotieren von Bildern und Graphiken
+% \usepackage[final]{graphicx} % Einfügen von Bildern
+						     % Setze das Optionale Argument zu 'draft' für schnelleres komplilieren
+						     % dann werden bilder durch Rahmen ersetzt.
+\usepackage{subcaption}
+\usepackage{wrapfig}         % bilder im Fließtext
+
+% tabulars
+\usepackage{arydshln} % dashed hlines
+
+% tikz
+\usepackage{tikz}
+\input{Diagrams/tikz_setup.tex}
+
+% Utils
+\usepackage{placeins}
+
+% pdf einbinden
+\usepackage{pdfpages}
+
+% Makro-commands
+\newcommand{\corr}[1]{\left\langle #1 \right\rangle}
+\newcommand{\Sp}[1]{\mathrm{Sp}\left( #1 \right)}
+\renewcommand{\exp}[1]{\mathrm{exp}\left( #1 \right)}
+%\renewcommand{\cos}[1]{\mathrm{cos}\left( #1 \right)}
+%\renewcommand{\sin}[1]{\mathrm{sin}\left( #1 \right)}
+%\renewcommand{\sinh}[1]{\mathrm{sinh}\left( #1 \right)}
+%\renewcommand{\tanh}[1]{\mathrm{tanh}\left( #1 \right)}
+\newcommand{\atanh}[1]{\mathrm{atanh}\left( #1 \right)}
+\newcommand{\sign}[1]{\mathrm{sign}\left( #1 \right)}
+\renewcommand{\det}[1]{\mathrm{det}\left( #1 \right)}
+\newcommand{\pf}[1]{\mathrm{pf}\left( #1 \right)}
+\renewcommand{\ln}[1]{\mathrm{ln}\left( #1 \right)}
+\renewcommand{\d}[0]{\mathrm{d}}
+\newcommand{\tlim}{ \underset{V,N \to \infty}{\text{lim}^{*}}}
+
+% Umgebungs-commands
+\usepackage{mdframed}
+\newmdenv[backgroundcolor=black!5, skipabove=12pt, linecolor=white, innerbottommargin = 10pt,
+frametitlerule=true, frametitlerulecolor=black, frametitlebackgroundcolor=black!10, frametitlerulewidth=0pt]{grayframe}
+
+\newmdenv[backgroundcolor=black!0, skipabove=12pt, linecolor=white, innerbottommargin = 10pt,
+frametitlerule=true, frametitlerulecolor=black, frametitlebackgroundcolor=black!0, frametitlerulewidth=0pt]{whiteframe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%\title{Analytische Berechnung der spontanen Magnetisierung von isotropen homogenen Ising Ferromagneten unter der Verwendung von Graßmann Zahlen}
+% \subtitle{Bachelor Thesis}
+%\author{Joachim Pomper}
+%\date{22. September 2020}
+
+%\maketitle
+%\thispagestyle{empty}
+
+%\newpage
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+            
+        \LARGE
+        \textbf{Analytische Berechnung der spontanen Magnetisierung von isotropen homogenen Ising Ferromagneten unter der Verwendung von Graßmann Zahlen}
+            
+        \vspace{1.5cm}    
+        
+        \large   
+        Eingereicht von:\\
+        \vspace{0.3cm}
+        \textbf{Joachim Pomper} \\
+        \vspace{1.5cm}
+        \text{September 2020}\\
+        
+        \vspace{1.5cm}
+        Betreut von:\\
+        \vspace{0.3cm}
+        Univ.-Prof. Dipl.-Phys. Dr.rer.nat. Wolfgang von der Linden\\
+        
+        \vfill
+            
+        Bachelorarbeit
+            
+        \vspace{0.8cm}
+            
+        % \includegraphics[width=0.4\textwidth]{university}
+            
+        \Large
+        Technische Universität Graz\\
+        %Universität Graz \\
+            
+    \end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{plain}
+\thispagestyle{empty}
+\begin{center}
+    \Large
+    \textbf{Analytische Berechnung der spontanen Magnetisierung von isotropen homogenen Ising Ferromagneten unter der Verwendung von Graßmann Zahlen}
+        
+    \vspace{0.4cm}
+    \large
+        
+    \vspace{0.4cm}
+    \textbf{Joachim Pomper}
+       
+    \vspace{0.9cm}
+    \Large
+    \textbf{Abstract}
+\end{center}
+
+\input{Chapter/Abstract.tex}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{page}{1}
+
+\section{Einleitung} \label{sec: introduction}
+    \input{Chapter/1_Introduction.tex}
+
+\section{Grundlagen} \label{sec: fundamentals}
+    \input{Chapter/2_Fundamentals.tex}
+
+\section{Antikommutierende Variablen und Graßmann Algebra} \label{sec: grassmann}
+   \input{Chapter/3_Anticommuting_variables_and_Graßmann_Algebra.tex}
+
+\section{Reformulierung des Ising-Modells} \label{sec: reformulation}
+    \input{Chapter/4_Reformulation_of_Ising_Models.tex}
+
+\section{Exakte Berechnung der horizontalen Spin-Spin-Korrelation} \label{sec: calcC}
+    \input{Chapter/5_Exact_calculation_of_spin_correlation.tex}
+
+\section{Exakte Berechnung der spontanen Magnetisierung} \label{sec: calcM}
+    \input{Chapter/6_Exakt_calculation_of_magnetization}
+
+\section{Zusammenfassung und Fazit} \label{sec: conclusion} \label{sec: conclusio}
+    \input{Chapter/7_Conclusio.tex}
+
+\newpage 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+
+\section{Appendix: Explizite Berechnung der Zustandssumme}
+    \label{Appendix: Zustandsumme}
+    \input{Appendix/Zustandssumme.tex}
+    \newpage 
+\section{Appendix: Beweise der Eigenschaften Pfaffscher Determinanten mithilfe von Graßmann-Variablen}
+    \label{Appendix: Pfaffians with GV}
+    \input{Appendix/Pfaffian_Beweise.tex}
+    \newpage 
+\section{Appendix: Permutationen}
+    \label{Apenndix: Permutationen}
+    \input{Appendix/Permutationen.tex}
+    \newpage 
+\section{Appendix: Fouriermatrix auf 2d Gitter }
+    \label{Appendix: Det Fouerier}
+    \input{Appendix/Fouriermatrix2D.tex}
+    \newpage 
+\section{Appendix: Satz über Koeffizienten des charakteristischen Polynoms }
+    \label{appendix: Satz über Koeffizienten des Charakteristischen Polynoms}
+    \input{Appendix/Satz_ueber_charakteristisches_polynom.tex}
+    \newpage 
+\section{Appendix: Nachtrag der verschobenen Rechnungen aus Kapitel \ref{sec: calcM} }
+    \label{Appendix: Nachtrag Rechnung}
+    \input{Appendix/Nachtrag_Rechnungen.tex}
+    \newpage 
+
+    
+    
+
+%\section{Appendix: On the strong Szego limit theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Literaturverzeichnis etc. 
+\newpage
+% \listoffigures
+% \listoftables
+
+\bibliographystyle{Literature/seminarstyle}
+\bibliography{Literature/Literature}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+

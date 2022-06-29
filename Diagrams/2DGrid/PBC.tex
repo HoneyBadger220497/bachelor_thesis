@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale = 1.5]
+\begin{scope}
+    \input{Diagrams/2DGrid/grid_section.tex}
+    \draw[arrow_grid_out] (m2p1) -- (m1p1);
+    \draw[arrow_grid_out] (m2p0) -- (m1p0);
+    \draw[arrow_grid_out] (m2m1) -- (m1m1);
+
+\end{scope}
+\begin{scope}[shift = {(2,0)}]
+    \input{Diagrams/2DGrid/grid_section.tex}
+    \node[draw = none, scale = 1] at (-0.34,0.5)   (J) {$J_{i,j}$};
+    \node[draw = none, scale = 1] at ( 0.5,-0.28)   (J) {$J_{i,k}$};
+    \node[draw = none, scale = 0.8] at (0.1, -0.1)   (J) {$i$};
+    \node[draw = none, scale = 0.8] at (1.1, -0.1)   (J) {$k$};
+    \node[draw = none, scale = 0.8] at (0.1,  0.9)   (J) {$j$};
+    %\node[draw = none, scale = 1] at (-0.25, -0.2)   (J) {$\sigma_i$};
+\end{scope}
+\begin{scope}[shift = {(4,0)}]
+    \input{Diagrams/2DGrid/grid_section.tex}
+    \draw[arrow_grid_out] (p1p0) -- (p2p0);
+    \draw[arrow_grid_out] (p1p1) -- (p2p1);
+    \draw[arrow_grid_out] (p1m1) -- (p2m1);
+\end{scope}
+
+\end{tikzpicture}

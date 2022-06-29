@@ -1,0 +1,42 @@
+%\begin{tikzpicture}[node distance=0.2, scale = 2.5]
+   % \draw[step=1cm,gray, ultra thin] (-1.5,-1.5) grid (1.4,1.5);
+
+%% 3x3 Grid
+\visible<2-4>{\input{Diagrams/Evaluation/3x3Lattice}}
+
+%% grid enumeration
+\node[draw = none] at (0,0) (1c){$\sigma_1$};
+\node[draw = none] at (1,0) (2c){$\sigma_2$};
+\node[draw = none] at (1,1) (3c){$\sigma_3$};
+\node[draw = none] at (0,1) (4c){$\sigma_4$};
+\node[draw = none] at (-1,1) (5c){$\sigma_5$};
+\node[draw = none] at (-1,0) (6c){$\sigma_6$};
+\node[draw = none] at (-1,-1) (7c){$\sigma_7$};
+\node[draw = none] at (0,-1) (8c) {$\sigma_8$};
+\node[draw = none] at (1,-1) (9c){$\sigma_9$};
+
+%% graph
+% connections
+\only<1-2>{
+\draw[-, black!50, very thick] (7c) -- (8c);
+\draw[-, black!50, very thick,] (8c) -- (9c);
+\draw[-, black!50, very thick] (9c) -- (2c);
+\draw[-, black!50, very thick] (2c) -- (3c);
+\draw[-, black!50, very thick] (4c) -- (3c);
+\draw[-, black!50, very thick] (5c) -- (4c);
+\draw[-, black!50, very thick] (6c) -- (5c);
+\draw[-, black!50, very thick] (7c) -- (6c);
+}
+
+\only<3-4>{
+% connections
+\draw[arrow_outer] (7hx) -- (8ho);
+\draw[arrow_outer] (8hx) -- (9ho);
+\draw[arrow_outer] (9vx) -- (2vo);
+\draw[arrow_outer] (2vx) -- (3vo);
+\draw[arrow_outer] (4hx) -- (3ho);
+\draw[arrow_outer] (5hx) -- (4ho);
+\draw[arrow_outer] (6vx) -- (5vo);
+\draw[arrow_outer] (7vx) -- (6vo);
+}
+

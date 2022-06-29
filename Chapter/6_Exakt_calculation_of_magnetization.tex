@@ -1,0 +1,272 @@
+
+Zu Berechnung der spontanen Magnetisierung $\mathcal{M}_S$  wird die Definition \eqref{spontaneMagnetisierung} über die langreichweitige Spin-Spin-Korrelation $l^*$
+genutzt.
+\begin{equation}
+\mathcal{M}_S   = n \mu l^* = n \mu \lim_{m \rightarrow \infty} \sqrt{\corr{\sigma_{0,0}\,\sigma_{m,0}}} 
+\end{equation}
+
+\noindent Die benötigte horizontale Spin-Spin-Korrelation lässt sich als Determinante einer komplexen $m+1 \times m+1$ Toeplitz-Matrix schreiben. Mit steigenden $m$ wird die Berechnung zunehmend komplizierter. Zur Berechnung des Grenzwertes der Determinante wird nun die von Elliott W. Montroll, Renfrey B. Potts und John C. Ward verwendete Methode angewandt \cite{Montroll_Potts_Ward}. Dazu wird der starke Szegö Grenzwertsatz benötigt. Eine Formulierung dieses Satzes sei im Folgenden angegeben.    
+
+%\begin{grayframe}[frametitle = {Grenzwertsatz von Szegö}]
+%\end{grayframe}
+
+
+\begin{grayframe}[frametitle = {Starker Grenzwertsatz von Szegö \cite{StrongSzegoeTheorem_Silbermann} }] %\cite{StrongSzegoeTheorem_Hirschman} 
+Es sei 
+\begin{equation}
+f(\omega) = \sum_{k = -\infty}^{\infty} \hat{f}(k)\mathrm{e}^{i k \omega}
+\end{equation}
+eine Funktion, welche die folgenden Kriterien 
+\begin{equation} \label{eq: szego condition}
+\sum_{k = -\infty}^{\infty} |\hat{f}(k)| < \infty \;\;\;\text{, }\;\;\;
+\sum_{k = -\infty}^{\infty} |\hat{f}(k)|^2 |k| < \infty \\
+\end{equation}
+erfüllt, die  keine Nullstellen 
+\begin{equation}
+\forall \omega \in [-\pi,\pi]\;\; :\;\; f(\omega) \neq 0
+\end{equation}
+auf dem Definitionsintervall besitzt und deren Windungszahl 
+\begin{equation}
+\left[\mathrm{arg}\left( f\right)\right]_{-\pi}^{\pi} = 0 
+\end{equation}
+verschwindet. Dann gilt mit
+\begin{equation}
+D_m(f) = \det{\bm{M}} \;\;\text{ mit}\,\, M_{i,j} = \hat{f}(i-j) 
+\end{equation}
+dass im Limes $m \rightarrow \infty$ 
+\begin{equation}
+ln{D_m(f)} = (m+1)\hat{s}(0) + \sum_{k = 1}^{\infty} k \hat{s}(k)\hat{s}(-k) + { \scriptstyle \mathcal{O}}(1)
+\end{equation}
+gilt, wobei
+\begin{equation}
+\hat{s}(k) = \frac{1}{2 \pi }  \int_{-\pi}^{\pi} \ln{f(\omega)} \mathrm{e}^{-i k \omega} d \omega 
+\end{equation}
+\end{grayframe}
+
+\noindent Der starke Szegö Grenzwertsatz liefert damit den Grenzwert einer Folge von Determinaten von Töplitz-Matrizen mit Einträgen $M_{i,j} = \hat{f}(i-j)$, welche sich als Fourier-Koeffizienten einer geeigneten Funktion $f(\omega)$ darstellen lassen. Um diesen Satz für $\det{\bm{C}}$ anwenden zu können, muss also eine geeignete Darstellung der Matrix $\bm{C}$ gefunden werden.
+
+\subsection{Vorbereitung für Szegö-Grenzwertsatz}
+
+Da sich die benötigten Ausdrücke $\corr{h_{l-1,0}^x h_{l',0}^o}$ für die Graßmann-Korrelationen nach dem Übergang in den Thermodynamischen Limes als ein, einem Fourier-Integral ähnlichen, Integral \eqref{eq: corr Integral} schreiben lässt, folgt mit
+\begin{equation}
+\delta_{l,l+r} = \frac{1}{(2\pi)^2} \int_{-\pi}^{\pi}\int_{-\pi}^{\pi} \d k_1 \d k_2 \mathrm{e}^{i  r k_1}
+\end{equation}
+und
+\begin{equation}
+\corr{h^{x}_{(l-1,0)}\, h^{o}_{(l+r, 0)} } = \frac{1}{(2\pi)^2}\int_{-\pi}^{\pi} \int_{-\pi}^{\pi} \d k_1 \d k_2 \,\,\mathrm{e}^{i\, (r+1) \,k_1} \frac{F_{\xi}(k_1,k_2)}{\Delta(k_1, k_2)} 
+\end{equation}
+aufgrund der Linearität des Integrals, der Ausdruck
+\begin{equation}
+C_{l,l+r} = \frac{1}{(2\pi)^2} \int_{-\pi}^{\pi}\int_{-\pi}^{\pi} \d k_1 \d k_2 \;\left( t\,\mathrm{e}^{i  r k_1} + (1-t^2) \,\,\mathrm{e}^{i\, (r+1) \,k_1} \frac{F_{\xi}(k_1,k_2)}{\Delta(k_1, k_2)} \right)
+\end{equation}
+für die Koeffizienten der Matrix $\bm{C}$.
+Der Integrand wird auf gleichen Nenner gebracht
+\begin{align}
+t\mathrm{e}^{i  r k_1} + (1-t^2)\mathrm{e}^{i(r+1)k_1}\frac{F_{\xi}(k_1,k_2)}{\Delta(k_1, k_2)} = \mathrm{e}^{i  r k_1} \frac{t \Delta(k_1, k_2) + (1-t^2) \mathrm{e}^{ik_1} F_{\xi}(k_1,k_2)}{\Delta(k_1, k_2)} \nonumber
+\end{align}
+und anschließend der Zähler durch Rückeinsetzen explizit berechnet.
+\begin{align}
+t \Delta(k_1, k_2) + (1-t^2)\mathrm{e}^{ik_1} F_{\xi}(k_1,k_2) &= 2t(1+t^2) - t^2(1-t^2)\mathrm{e}^{-i k_1} - (1-t^2)\mathrm{e}^{i k_1} % =: \tilde{f}(k_1)  \nonumber
+\end{align}
+Der Zähler hängt nun nicht mehr von $k_2$ ab. Die Integration über $k_2$ kann explizit ausgeführt werden. Mithilfe der Substitutionen \eqref{subs: kappa} bis \eqref{subs: omega} für $\kappa$, $\gamma$ und $\Omega$ ergibt sich
+\begin{equation}
+\Delta(k_1, k_2) = \Omega - \kappa \cos(k_2)
+\end{equation}
+Durch Nachrechnen erhält man 
+\begin{equation}
+ \frac{\gamma}{\kappa} = \frac{(1+t^2)^2}{2t(1-t^2)}> 2 \;\;\;\text{für}\;\;\; t\in \left[0,1\right] 
+\end{equation}
+und daher  
+\begin{equation}
+\frac{\kappa}{\Omega} = \frac{\kappa}{\gamma - \kappa \cos(k_1)}  = \frac{1}{\frac{\gamma}{ \kappa} - \cos(k_1)} < 1 
+\end{equation}
+Mit der Identität 
+\begin{equation}
+\int_{\pi}^{\pi} \frac{dx}{1 - a\,\cos{x}} = \frac{2\pi}{\sqrt{1 - a^2}} \;\;\;\text{für}\;\;\; |a| < 1 
+\end{equation}
+ergibt sich das Integral über $k_2$ dann zu
+\begin{equation}
+\frac{1}{2\pi}\int_{-\pi}^{\pi} \d k_2  \frac{1}{\Delta(k_1, k_2)} = \frac{1}{2\pi}\int_{-\pi}^{\pi} \d k_2  \frac{1}{\Omega - \kappa \cos{k_2}} = \frac{1}{\sqrt{\Omega^2 - \kappa^2}}  
+\end{equation}
+sodass man insgesamt 
+\begin{equation}
+C_{l,l+r} = \frac{1}{2\pi} \int_{-\pi}^{\pi} \d k_1  \;\mathrm{e}^{i  r k_1} \frac{2t(1+t^2) - t^2(1-t^2)\mathrm{e}^{-i k_1} - (1-t^2)\mathrm{e}^{i k_1}}{\sqrt{\Omega^2 - \kappa^2}}
+\end{equation}
+als Darstellung für die Elemente der Matrix $\bm{C}$ erhält. Damit das ganze nun mit der Definition des Fourier-Integrals in Szegös Grenzwertsatz übereinstimmt, wird mit $\omega = -k_1$ substituiert. Insgesamt ergibt sich dann die folgende Darstellung.  
+
+\begin{grayframe}
+\begin{equation}
+C_{l,l+r} = \frac{1}{2\pi} \int_{-\pi}^{\pi} \d\omega  \;\mathrm{e}^{-i  r \omega} \frac{\tilde{f}(\omega)}{\sqrt{\Omega^2 - \kappa^2}}
+\end{equation}
+\begin{equation}
+\tilde{f}(\omega) = 2t(1+t^2) - t^2(1-t^2)\mathrm{e}^{i \omega} - (1-t^2)\mathrm{e}^{-i \omega}
+\end{equation}
+\end{grayframe}
+
+\noindent Wie in \cite{Montroll_Potts_Ward} soll nun die Funktion
+\begin{equation}
+\delta^*(\omega) = \frac{1}{2i} \ln{\frac{(1-tt^*\mathrm{e}^{i\omega})(t-t^*\mathrm{e}^{-i\omega})}{(1-tt^*\mathrm{e}^{-i\omega})(t-t^*\mathrm{e}^{i\omega})}}
+\end{equation}
+eingeführt werden, wobei 
+\begin{equation}
+t^* = \frac{(1-t)}{(1+t)}
+\end{equation}
+gilt.  Die Darstellung der Matrixelemente kann dadurch weiter vereinfacht werden. Im Appendix \ref{Appendix: Nachtrag Rechnung} wird gezeigt dass
+\begin{equation} \label{eq: Missing Equation 1}
+\mathrm{e}^{2i\delta^*} = \frac{\tilde{f}^{\;2}}{\Omega^2 - \kappa^2}
+\end{equation}
+gilt. Damit folgt dann 
+\begin{equation} \label{eq: f = pm e_i_delta}
+\pm \mathrm{e}^{i\delta^*} = \frac{\tilde{f}}{\sqrt{\Omega^2 - \kappa^2}}
+\end{equation}
+Da für die Spin-Spin-Korrelation im Grenzfall
+\begin{equation}
+C_{1,1} = \corr{\sigma_{0,0}\, \sigma_{1,0}} \xrightarrow[ T \rightarrow 0 ]{} 1
+\end{equation}
+gelten muss, wird, da $\delta(\omega) \xrightarrow[ T \rightarrow 0 ]{} 0$ gilt, in \eqref{eq: f = pm e_i_delta} das positive Vorzeichen gewählt. Zusammengefasst erhält man dann das folgende Resultat.
+
+\begin{grayframe}[frametitle = {Darstellung der Matrixelemente $C_{l,l+r}$ als Fourier-Koeffizienten}]
+\begin{equation}
+C_{l,l+r} = \frac{1}{2\pi} \int_{-\pi}^{\pi}\d\omega  \;\mathrm{e}^{-i  r \omega} \mathrm{e}^{i\delta^*}
+\end{equation}
+\begin{equation}
+i\delta^*(\omega) = \frac{1}{2} \ln{\frac{(1-tt^*\mathrm{e}^{i\omega})(t-t^*\mathrm{e}^{-i\omega})}{(1-tt^*\mathrm{e}^{-i\omega})(t-t^*\mathrm{e}^{i\omega})}}
+\end{equation}
+\end{grayframe}
+
+
+\noindent Es folgt
+$$i\delta^*(-\omega) = -i\delta^*(\omega)$$
+für $\omega \in \left[-\pi,\pi\right]$ und $i\delta^*(-\pi) =  i\delta^*(\pi) = 0$, da $\mathrm{e}^{-i \pi} = -1 = \mathrm{e}^{i \pi}$ gilt. 
+Zudem ist $ i\delta^* $ als Logarithmuss einer rationalen Funktion ohne Polstellen auf dem Einheitskreis eine holomorphe Funktion in $z= \mathrm{e}^{i\omega}$ für alle $t \in (0,1)$. Daher ist $i\delta^*$ zumindest 2 mal stetig differenzierbar in $\omega \in \left[-\pi,\pi\right]$.  Somit existiert die Fourier-Reihe von $\mathrm{e}^{i\delta^*}$. Diese konvergiert zudem dann gleichmäßig gegen die Funktion und die Reihe selbst konvergiert normal (d.h. wie in \eqref{eq: szego condition} gefordert). Zudem konvergiert die, durch gliedweise Differentiation erhaltene, Reihe auch normal, wodurch sich
+\begin{equation}
+ \sum_{k = -\infty}^{\infty} |\hat{f}(k)|^2|k| < \sum_{k = -\infty}^{\infty} |\hat{f}(k)|^2|k|^2 < \left(\sum_{k = -\infty}^{\infty} |\hat{f}(k)||k|\right)^2 < \infty
+\end{equation}
+ergibt. Die Funktion $\mathrm{e}^{i\delta^*}$ erfüllt daher alle Vorraussetzungen des starken Grenzwertsatzes von Szegö.
+
+\subsection{Die kritische Temperatur $T_C$}
+
+Um nun den Satz von Szegö zu benutzen müssen die Größen  $\hat{s}(k)$ berechnet werden.
+Da $f = \mathrm{e}^{i\delta^*}$ gilt, folgt $\ln{f)} = i \delta^*$ und daher
+\begin{equation}
+\hat{s}(0) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \d\omega\; i \delta^*(\omega)  = 0
+\end{equation}
+da $i \delta^*$ eine ungerade Funktion in $\omega$ ist. Zur Berechnung der Fourier-Koeffizienten von $\ln{f}$ wird $i\delta^*$,  wie in \cite{Montroll_Potts_Ward}, mithilfe der Reihendarstellung des Logarithmus in eine Laurent-Reihe entwickelt.
+\begin{equation} \label{eq: idelta = frac} 
+i\delta^* = \frac{1}{2} \ln{\frac{(1-tt^*\mathrm{e}^{i\omega})(1-\frac{t^*}{t}\mathrm{e}^{-i\omega})}{(1-tt^*\mathrm{e}^{-i\omega})(1-\frac{t^*}{t}^*\mathrm{e}^{i\omega})}}
+\end{equation}
+Um die Reihen-Darstellung des Logarithmus verwenden zu können, muss jedoch sowohl $tt^* < 1$ als auch $t^* < t $ gelten. Während erstere Bedingung immer erfüllt ist, führt die zweite Bedingung auf die Ungleichung
+\begin{equation}
+(1-t) < (1+t)t  
+\end{equation}
+bzw. durch umformen
+\begin{equation}
+\sqrt{2}-1 < t
+\end{equation}
+für den Parameter $t$. Über die Definiton des Parameters $t = \tanh(\frac{J}{k_B T})$ ergibt sich dann 
+\begin{equation} \label{eq: umformun condition krit temp}
+\frac{J}{k_B T} > \mathrm{atanh}\left(\sqrt{2}-1\right) = \frac{1}{2} \ln{\frac{1+(\sqrt{2}-1)}{1+(\sqrt{2}-1)}} = \frac{1}{2} \ln{1+\sqrt{2}}
+\end{equation}
+als Bedingung für die Temperatur. Dadurch lässt sich eine kritische Temperatur $T_c$ für das System definieren.
+\begin{grayframe}[frametitle = {Kritische Temperatur $T_C$}]
+\begin{equation}
+T_C  := \frac{2 J}{ \ln{1+\sqrt{2}} k_B}
+\end{equation}
+\end{grayframe}
+
+\subsection{Magnetisierung für $T < T_C$}
+
+Für den Fall $T < T_C$ gilt
+$$ t^* < t$$
+und es lässt sich die vorherige Darstellung \eqref{eq: idelta = frac} für $i\delta^*$ verwenden. 
+Hier wird analog zu \cite{Montroll_Potts_Ward} vorgegangen. Durch Anwendung der Rechenregeln für den Logarithmus erhält man dann
+\begin{equation} \nonumber
+i\delta^* = \frac{1}{2} \left(\ln{1-tt^*\mathrm{e}^{i\omega}} + \ln{1-\frac{t^*}{t}\mathrm{e}^{-i\omega}} - \ln{(1-tt^*\mathrm{e}^{-i\omega}} - \ln{1-\frac{t^*}{t}^*\mathrm{e}^{i\omega}} \right)
+\end{equation}
+und mithilfe der Reihendarstellung
+\begin{equation} \nonumber 
+\ln{1-x} = \sum_{k=1}^{\infty} -\frac{x^k}{k}
+\end{equation}
+ergibt sich dann 
+\begin{align} \nonumber
+i\delta^* &= \frac{1}{2} \left(  \sum_{k=1}^{\infty} -\frac{(tt^*)^k}{k}\mathrm{e}^{i k \omega} - \frac{(t^*)^k}{t^kk}\mathrm{e}^{-i k \omega} + \frac{(tt^*)^k}{k}\mathrm{e}^{-i k \omega} + \frac{(t^*)^k}{t^kk}\mathrm{e}^{i k \omega}\right) \nonumber \\
+          &= \left(  \sum_{k=1}^{\infty} \left(\frac{(t^*)^k}{t^k}-(tt^*)^k\right)\frac{1}{2 k}\mathrm{e}^{i k \omega} + \left((tt^*)^k - \frac{(t^*)^k}{t^k}\right)\frac{1}{2 k}\mathrm{e}^{-i k \omega} \right)
+\end{align}
+Aus dieser Darstellung lässt sich
+\begin{equation}  \nonumber
+\hat{s}(k) = - \hat{s}(-k) = \frac{1}{2 k} \left((\frac{(t^*)^k}{t^k} - tt^*)^k\right)
+\end{equation}
+für die Fourier-Koeffizienten der Funktion $\ln{f}$ ablesen. Damit folgt
+\begin{equation}  
+\hat{s}(k)\hat{s}(-k) =  -\frac{1}{4k}\left(\frac{(( tt^*)^2)^k}{k} + \left(\frac{(t^*)^{2}}{t^{2}}\right)^k \frac{1}{k}- 2\frac{((t^*)^2)^k}{k}\right)
+\end{equation}
+und somit 
+\begin{align} 
+% \sum_{k=1}^{\infty} \hat{s}(k)\hat{s}(-k)k
+\sum_{k = 1}^n k \hat{s}(k)\hat{s}(-k) &= -\frac{1}{4} \sum_{k=1}^{\infty}  \left(\frac{(( tt^*)^2)^k}{k} + \left(\frac{(t^*)^{2}}{t^{2}}\right)^k \frac{1}{k}- 2\frac{((t^*)^2)^k}{k}\right) \nonumber \\
+&= \frac{1}{4} \left(\ln{1-(tt^*)^2} + \ln{1-\frac{(t^*)^{2}}{t^{2}}} - 2\ln{1-(t^*)^2} \right) \nonumber \\
+&= \ln{\left(\frac{(1-(tt^*)^2)(1-\frac{(t^*)^{2}}{t^{2}})}{(1-(t^*)^2)^2}\right)^{\frac{1}{4}}}  \nonumber
+\end{align}
+Durch Rücksubstitution und Umformung folgt 
+\begin{equation} \label{eq: Missing Equation 2}
+\ln{\left(\frac{(1-(tt^*)^2)(1-\frac{(t^*)^{2}}{t^{2}})}{(1-(t^*)^2)^2}\right)^{\frac{1}{4}}} = \frac{1}{4} \ln{1 - \frac{(1-t^2)^4}{16t^4}}
+\end{equation}
+wie in Appendix \ref{Appendix: Nachtrag Rechnung} ausführlich bewiesen wird. Für den Grenzübergang mit $D_m = \det{\bm{C}^{I_m I_m}}$ folgt dann aufgrund des starken Szegö Grenzwertsatzes
+\begin{align}  \nonumber
+ \lim_{m \rightarrow \infty} \ln{D_m} & = \frac{1}{4} \ln{1 - \frac{(1-t^2)^4}{16t^4}}
+ \end{align}
+Dabei wurde $\hat{s}(0)= 0$ verwendet. Für die spontane Magnetisierung ergibt sich letztlich   
+\begin{align} \nonumber
+\frac{\mathcal{M}_S}{n\mu} =  \lim_{m \rightarrow \infty} \sqrt{D_m} =  \left(1 - \frac{(1-t^2)^4}{16t^4}\right)^{\frac{1}{8}}
+ \end{align}
+Als letztes erfolgt die Rücksubstitution des Systemparameters $t=\tanh(\frac{J}{k_B T})$. 
+\begin{align} \nonumber
+\frac{1-t^2}{16t^4} = \frac{1}{\sinh(\frac{J}{k_B T})^4 \cosh(\frac{J}{k_B T})^4} = \frac{1}{\sinh(\frac{2J}{k_B T})^4} 
+ \end{align}
+\begin{grayframe}[frametitle = {Spontane Magnetisierung für $T < T_C$}]
+\begin{equation} \label{eq: result magnetisation low}
+\mathcal{M}_S = n\mu\left(1-\frac{1}{\sinh(\frac{2J}{k_B\,T})^4}\right)^{\frac{1}{8}}
+\end{equation}
+\end{grayframe}
+
+\subsection{Magnetisierung für $T > T_C$}
+
+Für den Fall $T > T_C$ gilt
+$$ t^* > t$$
+und der Ausdruck \eqref{eq: idelta = frac} für $i\delta^*$ muss, wie in \cite{Montroll_Potts_Ward}, anders umgeformt werden, um die Reihen-Darstellung des Logarithmus nutzen zu können. In der Form
+\begin{align}
+i \delta^* &= \frac{1}{2} \ln{ \frac{(1-tt^*\mathrm{e}^{i\omega})(1-\frac{t}{t^*}\mathrm{e}^{-i\omega})}                                  {(1-tt^*\mathrm{e}^{-i\omega})(1-\frac{t}{t^*}\mathrm{e}^{i\omega})}\mathrm{e}^{-2i\omega} } \nonumber 
+\end{align}
+kann der Logarithmus auch in der Variable $t/t^*$ in eine Taylorreihe entwickelt werden.
+Durch anwenden der Rechenregeln und Reihen-Darstellung des Logarithmus erhält man
+\begin{align}
+i \delta^* &= \frac{1}{2}\left( \sum_{k = 1}^{\infty} - \frac{(tt^*)^k}{k}\mathrm{e}^{i\omega k} - \frac{1}{k}\frac{(t)^k}{(t^*)^k}\mathrm{e}^{-i\omega k} + \frac{(tt^*)^k}{k}\mathrm{e}^{-i\omega k} + \frac{1}{k}\frac{(t)^k}{(t^*)^k}\mathrm{e}^{i\omega k}\right) -i\omega  \nonumber 
+\end{align}
+Die Gerade $i\omega$ wird am Einheitskreis als imaginäre Sägezahn-Funktion  periodisch fortgesetzt. Die Fourierkoeffizienten
+\begin{equation} \nonumber
+\frac{1}{2 \pi } \int_{- \pi}^{\pi}\d\omega \; i\omega \mathrm{e}^{-i k \omega} = \frac{\cos(k \pi)}{k}  = \frac{(-1)^k}{k}
+\end{equation}
+ergeben sich leicht durch partielle Integration. Zusammengefasst in der Darstellung
+\begin{align} \nonumber
+i \delta^* &= \sum_{k = 1}^{\infty} \frac{1}{2k} \left(  \left(\frac{(t)}{(t^*)}\right)^k - (tt^*)^k + 2(-1)^k  \right)\mathrm{e}^{i\omega k} +  \frac{1}{2k} \left(  \left((tt^*)^k - \frac{(t)}{(t^*)}\right)^k - 2(-1)^k \right)  \mathrm{e}^{-i\omega k}
+ \nonumber 
+\end{align}
+erkennt man dass
+\begin{align} \nonumber
+\hat{s}(k) = - \hat{s}(-k) = \frac{1}{2k} \left(  \left(\frac{(t)}{(t*)}\right)^k - (tt*)^k + 2(-1)^k  \right)
+\end{align} 
+für die Fourier-Koeffizienten der Funktion $\ln{f} = i\delta^*$ gilt. Damit folgt
+\begin{align} \nonumber
+\hat{s}(k)\hat{s}(-k)k = -\frac{1}{k} - \frac{1}{4k} \left(  \left(\frac{(t)}{(t*)}\right)^k - (tt*)^k\right)^2 - (-1)^n  \left(  \left(\frac{(t)}{(t*)}\right)^k - (tt*)^k\right)
+\end{align}
+und somit gilt für den Grenzübergang
+\begin{align} \nonumber
+ \lim_{m \rightarrow \infty} \ln{D_m} & = \lim_{m \rightarrow \infty} \sum_{k = 1}^{m} \hat{s}(k)\hat{s}(-k)k = -\infty 
+\end{align}
+da die harmonische Reihe immer divergiert. Somit verschwindet die Magnetisierung für $T > T_C$
+
+\begin{grayframe}[frametitle = {Spontane Magnetisierung für $T < T_C$}]
+\begin{equation} \label{eq: result magnetisation high}
+\mathcal{M}_S = n\mu\ \lim_{m \rightarrow \infty} D_m = 0
+\end{equation}
+\end{grayframe}

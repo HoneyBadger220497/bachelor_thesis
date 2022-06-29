@@ -1,0 +1,70 @@
+\documentclass[fontsize = 12pt]{scrartcl}
+
+% Encoding of documents
+	\usepackage[utf8]{inputenc}
+	\inputencoding{utf8}
+	\usepackage[T1]{fontenc}
+
+% Silbensetzung und Automatisch Anpassung der Sprache in generierten Inhalten
+	\usepackage[english]{babel}
+	
+
+% Mathematical character set 
+	\usepackage{amsmath,amssymb,amstext}
+ 	
+% Hyperef
+	\usepackage{hyperref}
+
+% Font
+	\usepackage{txfonts} % TimesNewRoman als Shrift des Fließtextes
+					     % Helvetica als serifenlose Schrift für Beispielsweise Überschrift 		
+    % \usepackage{pxfonts}
+	% \usepackage{lmodern}
+
+	%\usepackage{setspace} % zum Einstellen des zeilenabstandes
+	%\setstretch{1.00}
+
+	% Tabular and figure caption
+	\usepackage[nooneline]{caption} % noonline sorgt dafür das beschriftung linksbündig ist
+	%More info:  https://www.namsu.de/Extra/pakete/Caption.html	
+    %	\captionsetup[figure]{labelfont=it, textfont=it} % figure captions
+	%   \captionsetup[table]{labelfont=bf, textfont=it} % tabular captions
+
+
+% Einführen von Bildern
+\usepackage{rotating} % Einfügen und rotieren von Bildern und Graphiken
+% \usepackage[final]{graphicx} % Einfügen von Bildern
+						     % Setze das Optionale Argument zu 'draft' für schnelleres komplilieren
+						     % dann werden bilder durch Rahmen ersetzt.
+\usepackage{subcaption}
+\usepackage{wrapfig}         % bilder im Fließtext
+
+% Utils
+\usepackage{braket}
+\usepackage{autonum}
+\usepackage{tikz}
+
+% Makro-commands
+\newcommand{\corr}[1]{\left\langle #1 \right\rangle}
+\newcommand{\Sp}[1]{\textit{Sp}\left( #1 \right)}
+\renewcommand{\exp}[1]{\textit{exp}\left( #1 \right)}
+\newcommand{\tlim}{ \underset{V,N \to \infty}{\text{lim}^{*}}}
+
+% Umgebungs-commands
+\usepackage{mdframed}
+\newmdenv[backgroundcolor=black!5, skipabove=12pt, linecolor=white, innerbottommargin = 10pt,
+frametitlerule=true, frametitlerulecolor=black, frametitlebackgroundcolor=black!10, frametitlerulewidth=0pt]{grayframe}
+
+
+%tikz commands
+\input{tikz_setup.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{figure}
+    \centering
+    \input{Graphix/Permutation.tex}
+\end{figure}
+
+
+\end{document}

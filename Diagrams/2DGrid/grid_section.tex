@@ -1,0 +1,57 @@
+\node[draw = none] at (0,0)   (p0p0) {$\sigma$};
+\node[draw = none] at (0,1)   (p0p1) {$\sigma$};
+\node[draw = none] at (1,0)   (p1p0) {$\sigma$};
+\node[draw = none] at (0,-1)  (p0m1) {$\sigma$};
+\node[draw = none] at (-1,0)  (m1p0) {$\sigma$};
+\node[draw = none] at (1,-1)  (p1m1) {$\sigma$};
+\node[draw = none] at (-1,1)  (m1p1) {$\sigma$};
+\node[draw = none] at (-1,-1) (m1m1) {$\sigma$};
+\node[draw = none] at (1,1)   (p1p1) {$\sigma$};
+
+\node[draw = none] at (1.7,0)   (p2p0) {};
+\node[draw = none] at (1.7,1)   (p2p1) {};
+\node[draw = none] at (1,1.7)   (p1p2) {};
+\node[draw = none] at (0,1.7)   (p0p2) {};
+\node[draw = none] at (-1,1.7)  (m1p2) {};
+\node[draw = none] at (-1.7,1)  (m2p1) {};
+\node[draw = none] at (-1.7,0)  (m2p0) {};
+\node[draw = none] at (-1.7,-1) (m2m1) {};
+\node[draw = none] at (-1,-1.7) (m1m2) {};
+\node[draw = none] at (0,-1.7)  (p0m2) {};
+\node[draw = none] at (1,-1.7)  (p1m2) {};
+\node[draw = none] at (1.7,-1)  (p2m1) {};
+
+%% arrows
+\draw[arrow_grid_in] (p0p0) -- (p0p1);
+\draw[arrow_grid_in] (p0p0) -- (p1p0);
+
+\draw[arrow_grid_in] (p1p0) -- (p1p1);
+
+
+\draw[arrow_grid_in] (p0p1) -- (p1p1);
+\draw[arrow_grid_out] (p0p1) -- (p0p2);
+
+\draw[arrow_grid_out] (p1p1) -- (p1p2);
+
+
+\draw[arrow_grid_in] (p1m1) -- (p1p0);
+
+
+\draw[arrow_grid_in] (p0m1) -- (p0p0);
+\draw[arrow_grid_in] (p0m1) -- (p1m1);
+
+\draw[arrow_grid_in] (m1m1) -- (m1p0);
+\draw[arrow_grid_in] (m1m1) -- (p0m1);
+
+\draw[arrow_grid_in] (m1p0) -- (m1p1);
+\draw[arrow_grid_in] (m1p0) -- (p0p0);
+
+\draw[arrow_grid_in] (m1p1) -- (p0p1);
+\draw[arrow_grid_out] (m1p1) -- (m1p2);
+
+
+
+\draw[arrow_grid_out] (m1m2) -- (m1m1);
+\draw[arrow_grid_out] (p0m2) -- (p0m1);
+\draw[arrow_grid_out] (p1m2) -- (p1m1);
+

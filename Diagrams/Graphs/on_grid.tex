@@ -1,0 +1,56 @@
+ \draw[step=1cm,gray, ultra thin] (-3.5,-1.5) grid (4.5,1.5);
+
+\node[grid_point] at (-3,1)   (m3p1) {};
+\node[grid_point] at (-3,0)   (m3p0) {};
+\node[grid_point] at (-3,-1)  (m3m1) {};
+
+\node[grid_point] at (-2,1)   (m2p1) {};
+\node[grid_point] at (-2,0)   (m2p0) {};
+\node[grid_point] at (-2,-1)  (m2m1) {};
+
+\node[grid_point] at (-1,1)   (m1p1) {};
+\node[grid_point] at (-1,0)   (m1p0) {};
+\node[grid_point] at (-1,-1)  (m1m1) {};
+
+\node[grid_point] at (0,1)   (p0p1) {};
+\node[grid_point] at (0,0)   (p0p0) {};
+\node[grid_point] at (0,-1)  (p0m1) {};
+
+\node[grid_point] at (3,1)   (p3p1) {};
+\node[grid_point] at (3,0)   (p3p0) {};
+\node[grid_point] at (3,-1)  (p3m1) {};
+
+\node[grid_point] at (2,1)   (p2p1) {};
+\node[grid_point] at (2,0)   (p2p0) {};
+\node[grid_point] at (2,-1)  (p2m1) {};
+
+\node[grid_point] at (1,1)   (p1p1) {};
+\node[grid_point] at (1,0)   (p1p0) {};
+\node[grid_point] at (1,-1)  (p1m1) {};
+
+\node[grid_point] at (4,1)   (p4p1) {};
+\node[grid_point] at (4,0)   (p4p0) {};
+\node[grid_point] at (4,-1)  (p4m1) {};
+
+%% Graph
+\draw[-, black!100, very thick] (m3p1) -- (m2p1) ;
+\draw[-, black!100, very thick] (m2p1) -- (m1p1) ;
+\draw[-, black!100, very thick] (m1p1) -- (m1p0) ;
+\draw[-, black!100, very thick] (m1p0) -- (p0p0) ;
+\draw[-, black!100, very thick] (p0p0) -- (p0m1) ;
+\draw[-, black!100, very thick] (p0m1) -- (m1m1) ;
+\draw[-, black!100, very thick] (m1m1) -- (m2m1) ;
+\draw[-, black!100, very thick] (m2m1) -- (m3m1) ;
+\draw[-, black!100, very thick] (m3m1) -- (m3p0) ;
+\draw[-, black!100, very thick] (m3p0) -- (m3p1) ;
+
+\draw[-, black!100, very thick] (p1p1) -- (p2p1) ;
+\draw[-, black!100, very thick] (p2p1) -- (p3p1) ;
+\draw[-, black!100, very thick] (p3p1) -- (p3p0) ;
+\draw[-, black!100, very thick] (p3p0) -- (p4p0) ;
+\draw[-, black!100, very thick] (p4p0) -- (p4m1) ;
+\draw[-, black!100, very thick] (p4m1) -- (p3m1) ;
+\draw[-, black!100, very thick] (p3m1) -- (p3p0) ;
+\draw[-, black!100, very thick] (p3p0) -- (p2p0) ;
+\draw[-, black!100, very thick] (p2p0) -- (p1p0) ;
+\draw[-, black!100, very thick] (p1p0) -- (p1p1) ;

@@ -1,0 +1,353 @@
+Zur Berechnung der Magnetisierung wird die Korrelation zweier beliebig weit entfernter Spins benötigt. Da das Gitter isotrop ist und aufgrund der periodischen Randbedingung Translationsinvarianz vorliegt reicht es sich auf die Berechnung der horizontalen Spin-Spin-Korrelation $\corr{\sigma_{0,0}\,\sigma_{m,0}}$ zu beschränken.
+Diese soll nun in diesem Abschnitt berechnet werden.
+
+\subsection{Spin-Spin-Korrelationen ausgedrückt als Graßmann-Korrelationen}
+
+Ausgangspunkt ist Gleichung \eqref{eq: Defekte Zustanssumme}, mithilfe der sich die Spin-Spin-Korrelation $\corr{\sigma_i \sigma_j}$ als Quotient zweier Zustandssummen schreiben lies. Die Zustandssumme im Zähler ist dabei die eines Defekten Gitters. Die Gitterdefekte sowie die zugehörigen Gitterpunkte, zusammengefasst in $L_D$ liegen in diesem Fall alle auf einer Strecke parallel zur X-Achse.
+\begin{equation}
+L_D = \{ x \;\;|\;\;  \exists\, l \in \{0, \dots, m-1\} : x = (l, 0)\}
+\end{equation}
+
+\noindent Da sich die Vorfaktoren der Zustandssummen küerzen, kann dieser Ausdruck, unter Vernachlässigung der Korrektur $\Omega$, mithilfe von \eqref{eq: Zustandssumme-GV-Darstellung} als Quotient zweier Berezin-Integrale geschrieben werden.  
+\begin{equation} \label{eq: corr_as_Berezion_int}
+\corr{\sigma_{x,y} \sigma_{x+m,y}}  = \frac{t^m \, \tilde{Z}_D}{\tilde{Z}} = \frac{t^m \, \Sp{e^{A_D}}}{\Sp{e^A}}
+\end{equation}
+
+\noindent $A$ ist dabei die Graßmann-Wirkung des isotropen 2D-Ising Gitters und $A_D$ die des defekten Gitters. Diese stehen über \eqref{eq: G_Wikrung_Defekt} miteinander in Zusammenhang.
+\begin{equation} \label{eq: G_Wikrung_Defekt}
+A_D = A - \sum_{x \in \Lambda_D} t\, h_{\bm{x}}^x\, h_{\bm{x} + \bm{e}_x}^o + \sum_{x_k \in \Lambda_D} t^{-1}\, h_{\bm{x}_k}^x\, h_{\bm{x}_k + \bm{e}_x}^o
+\end{equation}
+
+\noindent Unter Verwendung der Tatsache dass Paare von Graßmann Variablen kommutieren und \eqref{eq: G_Wikrung_Defekt} lässt sich $e^{A_D}$ dann gemäß \eqref{eq: coor_fun} umschreiben.
+\begin{align}
+e^{A_D} 
+    & = e^{A} \prod_{x \in \Lambda_D} \exp{(t^{-1} - t)\, h_{\bm{x}}^x\, h_{\bm{x} + \bm{e}_x}^o} \nonumber \\
+    & = e^{A} \prod_{x \in \Lambda_D} 1 + (t^{-1} - t)\, h_{\bm{x}}^x\, h_{\bm{x} + \bm{e}_x}^o \nonumber \\
+    & = e^{A} \prod_{l = 0}^{m-1} 1 + (t^{-1} - t)\, h_{l,0}^x\, h_{l+1,0}^o \label{eq: coor_fun}
+\end{align}
+
+\noindent Setz man \eqref{eq: coor_fun} in \eqref{eq: corr_as_Berezion_int} ein, erkennt man dass sich die Spin-Spin-Korrelation als Korrelation einer Graßmann-Funktion schreiben lässt.  
+\begin{equation} \nonumber
+\corr{\sigma_{x,y} \sigma_{x+m,y}} 
+    =\frac{t^m \, \Sp{e^{A_D}}}{\Sp{e^A}} 
+    =  t^m \, \corr{\prod_{l = 0}^{m-1} 1 + (t^{-1} - t)\, h_{l,0}^x\, h_{l+1,0}^o} 
+\end{equation}
+
+\noindent Durch Ausmultiplizieren des Produktes und unter Verwendung der Linearität der Korrelation lässt sich die Spin-Spin-Korrelation als Summe von Graßmann-Korrelationen beschreiben. 
+\begin{align}
+\prod_{l = 0}^{m-1} 1 + (t^{-1} - t)\, h_{l,0}^x\, h_{l+1,0}^o
+= 1 + \sum_{k = 1}^{m} (t^{-1}-t)^k \sum_{l_1 < \dots < l_k} h_{l_1,0}^x\, h_{l_1+1,0}^o \cdots h_{l_k,0}^x\, h_{l_k+1,0}^o
+\end{align}
+
+\begin{grayframe}[frametitle = {Spin-Spin-Korrelation als Summe von Graßmann-Korrelationen}]
+\begin{equation} \label{eq: Spin-Spin-Corr as Sum of GV corr}
+    \corr{\sigma_{0,0} \sigma_{m,0}} = t^m  + \sum_{k = 1}^{m} t^{m-k} \, (1-t^2)^{k} \sum_{l_1 < \dots < l_k}  \corr{h_{l_1,0}^x\, h_{l_1+1,0}^o \cdots h_{l_k,0}^x\, h_{l_k+1,0}^o}
+\end{equation}
+\end{grayframe}
+
+\subsection{Berechnung von Graßmann-Paar-Korrelationen}
+Um \eqref{eq: Calculate_GV_Corr} zur Berechung der Korrelationen nutzen zu können, muss die Darstellende Matrix der Graßmanm-Dichte ${e^A}$ bekannt sein. Da die Darstellene Matrix für den Satz Fouriertransformierter Graßmann-Variablen eine einfache Gestalt hat, bietet es sich an die Berechnung für diese Durchzuführen und dann über die Fouriertransformation die Ursprüngliche Korrelation zu berechnen. 
+
+\subsubsection{Fouriertransformation der Korrelationen}
+Aufgrund der Periodischen Randbedingungen sind die Graßmann-Korrelationen Translationsinvairant. Daher ergibt sich \eqref{eq: gv_multi_translation} für $\corr{\eta_{\bm{x}_l}^{\nu}\, \eta_{\bm{x}_{l'}}^{\nu'} }.$ Dabei indiziert $\nu$ wieder eine der vier Famielen von Graßmann-Variablen auf dem Gitter, wie schon in Abschnitt \ref{sec: Fouriertransformation der Graßmann-Wirkung}. 
+\begin{equation} \label{eq: gv_multi_translation}
+\corr{\eta_{\bm{x}_l}^{\nu}\, \eta_{\bm{x}_{l'}}^{\nu'} } = \frac{1}{N} \sum_{\bm{x} \in \Lambda} \corr{\eta_{\bm{x}_l + \bm{x}}^{\nu} \,\eta_{\bm{x}_{l'} + \bm{x}}^{\nu'} }
+\end{equation}
+
+\noindent Durch Einsetzen der Definiton \eqref{eq: Fourer2D invers} für die Fourier-Transformation in die Graßmann-Paar-Korrelation, erhält man die folgende Darstellung in den fouriertransformierten Variablen.
+\begin{align} \label{eq: ft_gv_pair_corr}
+\frac{1}{N} \sum_{\bm{x} \in \Lambda} \corr{\eta_{\bm{x}_l + \bm{x}}^{\nu} \,\eta_{\bm{x}_{l'} + \bm{x}}^{\nu'} }
+& = \frac{1}{N} \sum_{\bm{x} \in \Lambda} \; \corr{\frac{1}{\sqrt{N}} \sum_{\bm{k} \in \bar{\Lambda}} \hat{\eta}_{\bm{k}}^{\nu}\; e^{-i \bm{k} \cdot (\bm{x}_l + \bm{x})} \frac{1}{\sqrt{N}} \sum_{\bm{k'} \in \bar{\Lambda}} \hat{\eta}_{\bm{k'}}^{\nu'}\; e^{-i  \bm{k'} \cdot (\bm{x}_{l'}+\bm{x})}} \nonumber \\
+&  = \frac{1}{N} \sum_{\bm{k} \in \bar{\Lambda}} \sum_{\bm{k'} \in \bar{\Lambda}} e^{-i  (\bm{k} \cdot \bm{x}_l + \bm{k'} \cdot \bm{x}_{l'})} \, \corr{\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{\bm{k'}}^{\nu'}} \, \frac{1}{N} \sum_{\bm{x} \in \Lambda} e^{-i (\bm{k} + \bm{k'})\cdot \bm{x} } \nonumber \\ 
+&  = \frac{1}{N} \sum_{\bm{k} \in \bar{\Lambda}} \sum_{\bm{k'} \in \bar{\Lambda}} e^{-i  (\bm{k} \cdot \bm{x}_l + \bm{k'} \cdot \bm{x}_{l'})} \, \corr{\hat{\eta}_{\bm{k}}^{\nu} \, \hat{\eta}_{\bm{k'}}^{\nu'}} \; \delta(\bm{k} + \bm{k'}) \nonumber \\
+& = \frac{1}{N} \sum_{\bm{k} \in \bar{\Lambda}}  e^{-i  \bm{k} \cdot (\bm{x}_l - \bm{x}_{l'})} \,\corr{\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'}} \nonumber
+\end{align}
+
+\noindent Die Korrelationen die zur Berechnung von \eqref{eq: Spin-Spin-Corr as Sum of GV corr} benötigt werden, liegen alle auf einer Linie parallel zur x-Achse. Daher ergibt sich letztlich die Folgenden Darstellungen für die Fourier-Transformation der horizontalen Korrelationen.
+
+\begin{grayframe}[frametitle = {Fouriertransformierte horizontale Graßmann-Korrelationen}]
+\begin{equation} \label{eq: horz_gv_pair_corr}
+\corr{\eta^{\nu}_{(l,0)}\, \eta^{\nu'}_{(l', 0)} } = \frac{1}{N} \sum_{\bm{k} \in \bar{\Lambda}}  e^{-i\,(l- l') \,k_1} \,\corr{\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'}}
+\end{equation} 
+\end{grayframe}
+
+\subsubsection{Korrelationen im K-Raum}
+
+Zur Berechnung der Paar-Korrelationen im K-Raum nutzt man die Formel \eqref{eq: Calculate_GV_Corr} zur Berechnung der Korrelation über die Darstellende Matrix der Graßmann-Dichte. Damit ergibt sich 
+
+\begin{equation} 
+    \corr{\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'}} 
+    =
+    \frac{\Sp{e^{\hat{A}}\;\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'}}}{\Sp{e^{\hat{A}}}} 
+    = 
+    \frac{pf(2\bm{\hat{A}}^{\cancel{I} \cancel{I}}) }{sign(P) pf(2\bm{\hat{A}})} 
+\end{equation} 
+als zu berechnender Ausdruck. $I = \{i_{1}, i_{2} \}$ ist die Indexmenge, der zu streichenden Zeilen und Spalten. $i_{1}$ ist der zu $hat{\eta}_{\bm{k}}^{\nu}$ gehörige  und $i_{2}$ der zu $hat{\eta}_{-\bm{k}}^{\nu'}$ gehörige Index. Aufgrund der gewählten Numerierung der Gitterpunkte gilt $i_{1} < i_2$. Bei der Berechnung kommt einem die Blockmatrixform der Darstellenden Matrix $\bm{\hat{A}}$ sehr entgegen, denn die zu streichenden Zeilen und Spalten betreffen immer nur die zu $\bm{k}$ bzw. $\bm{-k}$ gehörigen Matrix-Blöcke. Der Rest der Matrix bleibt unverändert und auch die Blockmatrixgestalt bleibt erhalten. Die Permutaion $P$ ist jene, welche die in $\bm{\hat{A}}^{\cancel{I} \cancel{I}}$ gestrichenen Spalten in $\bm{\hat{A}}$ ganz nach links verschieben würde. 
+
+\begin{equation}
+\renewcommand{\arraystretch}{1.5}
+\bm{A}^{\cancel{I} \cancel{I}} = \frac{1}{2}
+\left(\begin{array}{c|cc:c:cl|cc:c:cl}  
+\bm{\hat{A}}_{\bm{k}_0}& \bm{0}   & \cdots  & \bm{0}   & \cdots & \bm{0} & \bm{0} & \cdots & \bm{0}   & \cdots & \bm{0} \\ \hline
+\bm{0}  & \bm{0}       & \cdots & \bm{0}       & \cdots  & \bm{0}    & \bm{\hat{A}}_{\bm{k}_1} & \cdots & \bm{0} & \cdots  & \bm{0} \\
+\vdots  & \vdots       & \ddots & \vdots       & \cdots  & \vdots    & \vdots & \ddots & \vdots & \ddots  & \vdots \\ \hdashline
+\bm{0}  & \bm{0}       & \cdots & \bm{0}      & \cdots    &\bm{0}   & \bm{0} & \cdots  & \bm{\hat{A}}_{\bm{k}}^{\cancel{I} \cancel{I}} &  \cdots  & \bm{0} \\ \hdashline
+\vdots  & \vdots       & \ddots & \vdots       & \cdots  & \vdots    & \vdots & \ddots & \vdots & \ddots  & \vdots \\
+\bm{0}  & \bm{0}       & \cdots & \bm{0}       & \cdots  & \bm{0}    & \bm{0} & \cdots & \bm{0} & \cdots  & \bm{\hat{A}}_{\bm{k}_{2M(M+1)}}  \\ \hline
+\bm{0}  & \bm{\hat{A}}_{\bm{-k}_1}       & \cdots & \bm{0}       & \cdots  & \bm{0}    & \bm{0} & \cdots & \bm{0} & \cdots  & \bm{0} \\
+\vdots  & \vdots       & \ddots & \vdots       & \cdots  & \vdots    & \vdots & \ddots & \vdots & \ddots  & \vdots \\ \hdashline
+\bm{0}  & \bm{0}       & \cdots & \bm{\hat{A}}_{\bm{-k}}^{\cancel{I} \cancel{I}}     & \cdots    &\bm{0}   & \bm{0} & \cdots  & \bm{0} &  \cdots  & \bm{0} \\ \hdashline
+\vdots  & \vdots       & \ddots & \vdots       & \cdots  & \vdots    & \vdots & \ddots & \vdots & \ddots  & \vdots \\
+\bm{0}  & \bm{0}       & \cdots & \bm{0}       & \cdots  & \bm{\hat{A}}_{-\bm{k}_{2M(M+1)}}     & \bm{0} & \cdots & \bm{0} & \cdots  & \bm{0}  \\ 
+\end{array} \right) \nonumber
+\end{equation}
+
+\noindent Mithilfe der Blockmatrixformel \eqref{eq:pfaff 4} und der Anti-Diagonalblock-Formel \eqref{eq:pfaff 6} Pfaffscher Determinanten erhält man den Ausdruck \eqref{eq: expl. Spur} für $pf(2\bm{\hat{A}}) $.
+\begin{align}
+pf(2\bm{\hat{A}}) 
+    &= pf(\bm{\hat{A}}_{\bm{k}_0}) (-1)^{4\frac{N-1}{2} \left(4\frac{N-1}{2}-1 \right) \, \frac{1}{2}}
+        \; det\left(\begin{array}{ccc}  
+        \bm{\hat{A}}_{\bm{k}_1} & \cdots  & \bm{0} \\
+        \vdots                  & \ddots  & \vdots \\
+        \bm{0}                  & \cdots  & \bm{\hat{A}}_{\bm{k}_{2M(M+1)}} 
+        \end{array} \right)  \nonumber \\
+    &= pf(\bm{\hat{A}}_{\bm{k}_0}) \prod_{i = 1}^{2M(M+1)}  det(\bm{\hat{A}}_{\bm{k}_i}) \label{eq: expl. Spur}
+\end{align}
+
+\noindent Ein Analoges Produkt ergibt sich für $pf(2\bm{\hat{A}}^{\cancel{I} \cancel{I}})$. Im Quotienten kürzen sich alle Terme weg die zu Matrizen $\hat{\bm{A}}_{\bm{k'}}$ gehören, in denen keine Zeilen oder Spalten gestrichen werden. Es ergibt sich der Quotient \eqref{eq: corr_det_quotient} für die Korrelationen.
+\begin{equation} \label{eq: corr_det_quotient}
+\corr{\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'}} = \frac{pf(2\bm{\hat{A}}^{\cancel{I} \cancel{I}})}{sign(P)\,pf(2\bm{\hat{A}})} =  \frac{det(\bm{\hat{A}}_{\bm{k}}^{\cancel{I} \cancel{I}})}{sign(P)\,det(\bm{\hat{A}}_{\bm{k}})}
+\end{equation}
+
+% Da nur zwei Zeilen gestrichen werden, hängt das Vorzeichen der Permutation lediglich von der Anzahl der Vertauschungen ab um die in $\bm{\hat{A}}_{\bm{k}}^{\cancel{I} \cancel{I}}$ gestrichene Zeile rechts neben die in $\bm{\hat{A}}_{\bm{k}}^{\cancel{I} \cancel{I}}$ gestrichene Zeile zu Bewegen. Dazu sind exakt 2
+% Da jeder Matrixblock die Größe $4\times 4$ hat hängt dass Vorzeichen jedoch nur von den Vertauschungen ab die nötig sind um diese Zeilen innerhalb des Blockes $\bm{\hat{A}}_{\bm{k}}^{\cancel{I} \cancel{I}}$ ganz nach links zu bewegen. 
+
+\noindent Die Matrizen $\bm{\hat{A}_{\bm{k}}}$ wurde in Abschnitt \ref{sec: Fouriertransformation der Graßmann-Wirkung} aufgestellt. Ihre Struktur ist noch einmal in \ref{eq: struct A_k} aufgeschlüsselt.
+\begin{equation} \label{eq: struct A_k}
+\renewcommand{\arraystretch}{1.5}
+    \bm{\hat{A}}_{\bm{k}} : \;\;\;\; \begin{array}{c|c:c:c:c} 
+                           & \hat{h}_{-\bm{k}}^o & \hat{h}_{-\bm{k}}^x & \hat{v}_{-\bm{k}}^o & \hat{h}_{-\bm{k}}^x  \\ \hline
+        \hat{h}_{\bm{k}}^o & 0                   & -\xi(-k_1)            &  1                  & 1                   \\ \hdashline
+        \hat{h}_{\bm{k}}^x & \xi(k_1)          & 0                   &  -1                  &  1                   \\ \hdashline
+        \hat{v}_{\bm{k}}^o &-1                   & 1                  &  0                  & -\xi(-k_2)             \\ \hdashline
+        \hat{v}_{\bm{k}}^x & -1                   & -1                  &\xi(k_2)           &  0                   \\ 
+    \end{array}
+\end{equation}
+
+\noindent Mithilfe des Laplac'schen Entwicklungssatzes ergibt sich nun
+\begin{equation} \label{eq: expl det(A_K) xi} 
+det(\bm{\hat{A}}_{\bm{k}}) = \xi(k_1)\xi(-k_1)\xi(k_2)\xi(-k_2) -(\xi(k_1)+\xi(-k_1))(\xi(k_2)+\xi(-k_2)) + 4 
+%det(\bm{\hat{A}}_{\bm{k}}) = (1+t^2)^2 - 2t(1-t^2)\,(cos(k_1) + cos(k_2))
+\end{equation}
+für die Determinante von $\bm{\hat{A}}_{\bm{k}}$. Mit den Zwischenergebnissen
+\begin{align} \nonumber
+\xi(k)+\xi(-k) &= 2(1 + t\,cos(k)) \nonumber \\
+\xi(k)\xi(-k) &= 1 + 2t\,cos(k) + t^2 \nonumber
+\end{align} kann dieses Ergebnis weiter aufgelöst werden. Nach einigen algebraischen Umformung erhält man dann
+\begin{equation} \label{eq: expl. det(A_k)}
+det(\bm{\hat{A}}_{\bm{k}})
+    = (1+t^2)^2 - 2t(1-t^2)\,(cos(k_1) + cos(k_2))
+\end{equation}
+
+\noindent Nun müssen die unterschiedlichen Fälle getrennt behandelt werden. Für $\corr{\hat{h}_{\bm{k}}^x\, \hat{h}_{-\bm{k}}^o} $ ergibt sich 
+\begin{equation} 
+    \bm{\hat{A}}_{\bm{k}}^{\cancel{I} \cancel{I}} = \left(\begin{array}{ccc} 
+        -\xi(-k_1)  &  1       & 1        \\
+        1        &  0       & -\xi(-k_2)  \\
+        -1        &\xi(k_2)&  0        \\
+    \end{array}\right) 
+\end{equation}
+durch Streichen der zu $\hat{h}_{\bm{k}}^x$ gehörigen Zeile bzw. zu $\hat{h}_{\bm{-k}}^o$ gehörigen Spalte.
+Die Determinate dieser Matrix kann wieder leicht per hand berechnet werden.
+\begin{align} \label{eq: det A_K_II HxHo}
+    det(\bm{\hat{A}}_{\bm{k}}^{\cancel{I} \cancel{I}}) &= 
+    \xi(k_2) + \xi(-k_2) - \xi(-k_1)\xi(k_2)\xi(-k_2)    
+\end{align}
+
+\noindent Um die, zu $\hat{h}_{\bm{k}}^x$ gehörige,  gestrichene Spalte rechts neben die, zu $\hat{h}_{\bm{-k}}^o$ gehörige Spalte zu bewegen benötigt man $4(2M(2M+1))$ paarweise Vertauschungen. Sind die beiden Zeilen nebeneinander und werden gemeinsam bewegt ändert sich das Vorzeichen nicht mehr, da ein Schritt nach links immer mit 2 paarweisen Vertauschungen einhergeht. Bislang wurde eine gerade Anzahl an Vertauschungen vorgenommen, um die beiden Zeilen ganz nach links zu Bewegen. Da aber der zu $\bm{k}$ gehörige Gitterpunk einen niedrigeren Index hat als der zu $-\bm{k}$ gehörige Punkt, müssen die beiden Spalten noch einmal getauscht werden. In diesem Fall gilt also 
+$$sign(P) =  -1$$
+für Vorzeichen der Permutation $P$. Somit ergibt sich 
+\begin{grayframe}[frametitle = {Horizontale Graßmann-Paar-Korrelation im K-Raum}]
+\begin{equation} \label{eq: expl grassmann_pair_corr}
+\corr{\hat{h}_{\bm{k}}^x\, \hat{h}_{-\bm{k}}^o} = \frac{\xi(-k_1)\xi(k_2)\xi(-k_2) -\xi(k_2) - \xi(-k_2)}{(1+t^2)^2 - 2t(1-t^2)\,(cos(k_1) + cos(k_2))} 
+\end{equation}
+\end{grayframe}
+\noindent Für $\corr{\hat{h}_{\bm{k}}^x\, \hat{h}_{-\bm{k}}^x} $ und $\corr{\hat{h}_{\bm{k}}^o\, \hat{h}_{-\bm{k}}^o} $ verfährt man analog. Man erhält dann das folgende Ergebnis.
+\begin{grayframe}
+\begin{equation} \label{eq: expl grassmann_pair_corr 0}
+\corr{\hat{h}_{\bm{k}}^x\, \hat{h}_{-\bm{k}}^x} = \corr{\hat{h}_{\bm{k}}^o\, \hat{h}_{-\bm{k}}^o} \propto \frac{2i\,sin(k_2)}{(1+t^2)^2 - 2t(1-t^2)\,(cos(k_1) + cos(k_2))} 
+%\corr{\hat{h}_{\bm{k}}^x\, \hat{h}_{-\bm{k}}^x} = \corr{\hat{h}_{\bm{k}}^o\, \hat{h}_{-\bm{k}}^o} \propto \frac{\xi(k_2) -\xi(-k_2)}{(1+t^2)^2 - 2t(1-t^2)\,(cos(k_1) + cos(k_2))} 
+\end{equation}
+\end{grayframe}
+
+\noindent Eine Sonderstellung nehmen die Korrelationen für $\bm{k} = \bm{0}$ ein. Diese erhält man nicht über \eqref{eq: corr_det_quotient} sonder werden müssen mithilfe von 
+\begin{equation}
+\corr{\hat{\eta}_{\bm{0}}^{\nu}\, \hat{\eta}_{\bm{0}}^{\nu'}} = 
+\frac{pf(2\bm{\hat{A}}^{\cancel{I} \cancel{I}})}{sign(P)\,pf(2\bm{\hat{A}})} = \frac{pf(\bm{\hat{A}}_{\bm{0}}^{\cancel{I} \cancel{I}})}{sign(P)\,pf(\bm{\hat{A}}_{\bm{0}})}
+\end{equation}
+berechnet werden. Dabei gilt $ \corr{\hat{h}_{\bm{0}}^x\, \hat{h}_{\bm{0}}^x} = \corr{\hat{h}_{\bm{0}}^o\, \hat{h}_{\bm{0}}^o} = 0$, da Quadrate von Graßmann-Variablen verschwinden. Da aber $sin(0) = 0$ ist, kann das Ergebnisse aus Ausdruck \eqref{eq: expl grassmann_pair_corr} stetig für den Fall $\bm{k} = 0$ fortgesetzt werden. Für $\corr{\hat{h}_{\bm{0}}^x\, \hat{h}_{\bm{0}}^o} $ ergibt sich 
+\begin{equation}
+pf(\bm{\hat{A}}_{\bm{0}}^{\cancel{I} \cancel{I}}) = pf\left(\begin{array}{cc} 0 & -(1+t) \\ (1+t) & 0\end{array}\right) = -1-t
+\end{equation}
+und 
+\begin{equation}
+pf(\bm{\hat{A}}_{\bm{0}})= pf\left(\begin{array}{cccc} 
+        0         &-(1+t)  &  1       & 1        \\
+        1+t&0         &  -1       &  1        \\
+        -1        &1        &  0       & -(1+t)  \\
+        -1         &-1        &1+t&  0        \\
+    \end{array}\right) = t^2 + 2t - 1
+\end{equation}
+sodass man für die Korrelation
+\begin{equation}
+\corr{\hat{h}_{\bm{0}}^x\, \hat{h}_{\bm{0}}^o}  = -\corr{\hat{h}_{\bm{0}}^o\, \hat{h}_{\bm{0}}^x} = - \frac{-1-t}{t^2 + 2t - 1} = \frac{1+t}{t^2 + 2t - 1}
+\end{equation}
+erhält. Ergänzt man den Bruch oben und unten um $t^2 + 2t - 1$, so erkennt man mit den Zwischenschritten
+$$ (t^2 + 2t - 1)^2 = (1+t^2)^2 - 4t(1-t^2) =(1+t^2)^2 - 2t(1-t^2)\,(cos(0) + cos(0)$$
+und 
+$$ (1+t)(t^2 + 2t - 1) = (1+t)^3 - (1+t) - (1+t) = \xi(0)\xi(0)\xi(0) -\xi(0) - \xi(0) $$
+dass das Resultat \eqref{eq: expl grassmann_pair_corr} für die horizontale Graßmann-Korrelation ebenfalls stetig auf den Spezialfall $\bm{k} = 0$ fortgesetzt werden kann. 
+\subsubsection{Übergang in den Thermodynamischen Limes}
+Wenn man an die Definition \eqref{def: Brillouin Zone} der Vektoren $\bm{k}$ zurückdenkt, so erkennt man mit der Korrespondenz 
+\begin{equation} \nonumber
+\bm{k} = (k_1, k_2)  =  (\frac{2\pi q_1}{2M+1}, \frac{2\pi q_2}{2M+1}) 
+\end{equation}
+dass
+\begin{equation} \nonumber
+\frac{1}{N} = \frac{1}{(2M+1)^2} = \Delta q_1 \Delta q_2 = \frac{\Delta k_1}{2\pi}\frac{\Delta k_2}{2\pi} 
+\end{equation}
+Damit können die der Ausdruck in \eqref{eq: horz_gv_pair_corr} dann als Riemannsumme identifiziert werden. Diese konvergiert dann im Thermodymischen Limes gegen ein Integral über die gesammte erste Brillouin Zone. 
+\begin{equation} \nonumber
+\sum_{\bm{k} \in \bar{\Lambda}}  e^{-i\,(l-l') \,k_1} \,\corr{\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'}} \frac{\Delta k_1}{2\pi}\frac{\Delta k_2}{2\pi} \;\xrightarrow[\substack{\Delta k_1 \rightarrow 0 \\ \Delta k_2 \rightarrow 0 }]{}\; \frac{1}{(2\pi)^2}\int_{-\pi}^{\pi} \int_{-\pi}^{\pi} d k_1 d k_2 \,\,e^{-i\, (l-l') \,k_1} \corr{\hat{\eta}_{\bm{k}}^{\nu}\, \hat{\eta}_{-\bm{k}}^{\nu'}} 
+\end{equation} 
+
+\noindent Mit den Substitutionen 
+\begin{align}
+\kappa = 2t(1-t^2) \label{subs: kappa}\\
+\gamma = (1+t^2)^2 \label{subs: gamma}\\
+\Omega(k_1) = \gamma - \kappa\, cos(k_1) \label{subs: omega} 
+\end{align}
+folgt für das Integral der Korrelation $\corr{h^{x}_{(l,0)}\, h^{x}_{(l', 0)} }$
+\begin{equation} \nonumber
+\frac{1}{(2\pi)^2}\int_{-\pi}^{\pi} \int_{-\pi}^{\pi} d k_1 d k_2 \,\,e^{-i\,(l-l') \,k_1} \corr{\hat{h}_{\bm{k}}^{x}\, \hat{\eta}_{-\bm{k}}^{x}} \propto  \int_{-\pi}^{\pi} d k_2 \frac{sin(k_2)}{\Omega(k_1) - \kappa cos(k_2)} = 0 
+\end{equation}
+da der Integrand eine ungerade Funktion in $k_2$ ist. Die Korrelation $\corr{h^{o}_{(l,0)}\, h^{o}_{(l', 0)} } $ verschwindet dann ebenfalls im Thermodynamischen Limes. Für die verbliebene Korrelation setzt man schließlich den Ausdruck \eqref{eq: expl grassmann_pair_corr} für die Graßmann-Korrelation im Integral ein. Zusammengefasst erhält man dann das folgende Ergebnis.
+
+\begin{grayframe}[frametitle = {Horizontal Graßmann-Korrelationen für das Unendliche Ising-Gitter}]
+\begin{equation} 
+\corr{h^{x}_{(l,0)}\, h^{o}_{(l', 0)} } = \frac{1}{(2\pi)^2}\int_{-\pi}^{\pi} \int_{-\pi}^{\pi} d k_1 d k_2 \,\,e^{-i\, (l-l') \,k_1} \frac{F_{\xi}(k_1,k_2)}{\Delta(k_1, k_2)} 
+\end{equation}
+\begin{align}
+F_{\xi}(k_1,k_2) &= \xi(-k_1)\xi(k_2)\xi(-k_2) -\xi(k_2) - \xi(-k_2) \\
+\Delta(k_1, k_2) &= (1+t^2)^2 - 2t(1-t^2)\,(cos(k_1) + cos(k_2))
+\end{align}
+\begin{equation} \label{eq: hxhx and hoho is null}
+\corr{h^{x}_{(l,0)}\, h^{x}_{(l', 0)} } = 
+\corr{h^{o}_{(l,0)}\, h^{o}_{(l', 0)} } = 0
+\end{equation}
+\end{grayframe}
+
+
+
+
+
+\subsection{Berechnung der Spin-Spin-Korrelationen}
+
+Es sei $I = \{l_1,\dots,l_k\}$ die Indexmenge der Korrelationen $\corr{h_{l_1,0}^x\, h_{l_1+1,0}^o \cdots h_{l_k,0}^x\, h_{l_k+1,0}^o}$.
+Mit \eqref{eq: calc monom corr with pair corr matrix} erhält man dann
+\begin{equation}
+ \corr{h_{l_1,0}^x\, h_{l_1+1,0}^o \cdots h_{l_k,0}^x\, h_{l_k+1,0}^o} = \corr{\prod_{l \in I} h_{l,0}^x\, h_{l+1,0}^o} = pf(\bm{M}^{II} ) \\
+\end{equation}
+für die Korrelationen. Die Matrix $\bm{M}^{II}$ ist als
+\begin{equation}
+\bm{M}^{II} 
+    = \left(\begin{array}{cccccc} 
+      \corr{h_{l_1,0}^x\, h_{l_1,0}^x}  &  \corr{h_{l_1,0}^x\, h_{l_1+1,0}^o} & \corr{h_{l_1,0}^x\, h_{l_2+1,0}^x} & \cdots & \corr{h_{l_1,0}^x\, h_{l_k+1,0}^o} \\
+      \corr{h_{l_1+1,0}^o\, h_{l_1,0}^x}  &  \corr{h_{l_1+1,0}^o\, h_{l_1+1,0}^o} & \corr{h_{l_1+1,0}^o\, h_{l_2+1,0}^x} & \cdots & \corr{h_{l_1+1,0}^o\, h_{l_k+1,0}^o} \\
+      \corr{h_{l_2,0}^x\, h_{l_1,0}^x}  &  \corr{h_{l_2,0}^x\, h_{l_1+1,0}^o} & \corr{h_{l_2,0}^x\, h_{l_2+1,0}^x} & \cdots & \corr{h_{l_2,0}^x\, h_{l_k+1,0}^o} \\ 
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      \corr{h_{l_k+1,0}^o\, h_{l_1,0}^x}  &  \corr{h_{l_k+1,0}^o\, h_{l_1+1,0}^o} & \corr{h_{l_k+1,0}^o\, h_{l_2+1,0}^x} & \cdots & \corr{h_{l_k+1,0}^o\, h_{l_k+1,0}^o} \\
+      \end{array}\right)
+\end{equation}
+ definiert. Die Hälfte der Einträge in $\bm{M}^{II}$ sind jedoch Null, denn nach vorherigen Ergebnis \eqref{eq: hxhx and hoho is null} $\corr{h_{l,0}^x,h_{l',0}^x} = \corr{h_{l,0}^o,h_{l',0}^o} = 0$ gilt. Mithilfe der Matrix $C_{l,l'} = \corr{h_{l-1,0}^x h_{l',0}^o}$ lässt sich die Gestalt der Matrix $\bm{M}^{II} $ dann erheblich vereinfachen.
+
+\begin{equation}
+\bm{M}^{II} 
+    = \left(\begin{array}{ccccccc} 
+      0 & C_{l_1,l_1} & 0 & C_{l_1,l_2} & \cdots & C_{l_1,l_k} \\
+      - C_{l_1,l_1} & 0 & -C_{l_2,l_1} & 0 & \cdots & 0 \\
+      0 & C_{l_2,l_1} & 0 & C_{l_2,l_2}  & \cdots & C_{l_2,l_k} \\
+      \vdots & \vdots & \vdots & \vdots  & \ddots & \vdots \\
+      - C_{l_1,l_k} & 0 & -C_{l_2,l_k}  & 0 & \cdots & 0 \\
+      \end{array}\right)
+\end{equation}
+
+\noindent Durch eine entsprechende Permutation $P$ der Zeilen und Spalten lassen sich weitere Vereinfachungen vornehmen. 
+\begin{equation}
+    \bm{P}^T\bm{M}^{II} \bm{P} 
+    = \left(\begin{array}{ccccccc} 
+      0 & \cdots & 0 & C_{l_1,l_1} & \cdots & C_{l_1,l_k} \\
+      \vdots & \ddots & \vdots & \vdots  & \ddots & \vdots \\
+      0 & \cdots & 0 & C_{l_k,l_1} & \cdots & C_{l_k,l_k} \\
+      -C_{l_1,l_1} & \cdots & -C_{l_k,l_1} & 0 & \cdots & 0   \\
+      \vdots & \ddots & \vdots & \vdots  & \ddots & \vdots \\
+      -C_{l_1,l_k} & \cdots & -C_{l_k,l_k} & 0 & \cdots & 0   \\
+    \end{array}\right) 
+    =: \left(\begin{array}{cc}
+      \bm{0} & \bm{C}^{II} \\
+      -(\bm{C}^{II})^T & \bm{0}
+    \end{array}\right) 
+\end{equation}
+
+\noindent Für das Vorzeichen der Permutation $P$ gilt $sign(P) = det(\bm{P}) = (-1)^{k(k-1)/2}$, wie in Abbildung \ref{} veranschaulicht. Mithilfe der Antidiagnoanlblock-Formel \eqref{eq:pfaff 6} für pfaffsche Determinanten erhält man dann, dass sich die Korrelationen als Hauptminore der Matrix $\bm{C}$ schreiben lassen.  
+\begin{alignat}{2} 
+\corr{\prod_{l \in I} h_{l,0}^x\, h_{l+1,0}^o} 
+&= pf(\bm{P} \left(\begin{array}{cc}
+      \bm{0} & \bm{C}^{II} \\
+      -(\bm{C}^{II})^T & 0
+    \end{array}\right)  \bm{P}^T) && \nonumber\\
+& = ((-1)^{k(k-1)/2})^2 \; det(\bm{C}^{II}) &&= det(\bm{C}^{II}) \label{eq: corr is minor of C}
+\end{alignat}
+
+\noindent Mithilfe eines Satzes aus der Linearen Algebra lässt sich damit die Spin-Spin-Korrelation, in der Form \eqref{eq: Spin-Spin-Corr as Sum of GV corr},  auf das Charakteristische Polynom der Matrix $\bm{C}$ zurückführen (Beweis in Appendix \ref{appendix: Satz über Koeffizienten des Charakteristischen Polynoms}).
+
+\begin{grayframe}[frametitle = {Satz über die Koeffizienten des Charackteristischen Polynoms}]
+
+Sei $\bm{A}\in \mathbb{C}^{m\times m}$ eine beliebige Komplexe Matrix. Die Koeffizienten des Charackteristischen Polynoms lassen sich gemäß \eqref{satz: coeffs of char-polynom E_k} mithilfe der Hauptminoren $det(\bm{A}^{II})$ der Matrix $\bm{A}$ ausdrücken. $\bm{A}^{II} \in  \mathbb{C}^{k\times k}$ erhält man indem man die Zeilen und Spalten mit Indices die nicht in $I\subseteq \{1,\dots,n\}$ liegen in $\bm{A}$ streicht. 
+\begin{equation} \label{satz: coeffs of char-polynom}
+p_{\bm{A}}(\lambda) = det(A - \lambda) = (-1)^m \;\lambda^m + \sum_{k = 0}^{m-1} (-1)^k \;E_{m-k} \;\lambda^k
+\end{equation}
+\begin{equation} \label{satz: coeffs of char-polynom E_k}
+E_k = \sum_{^{II} \subseteq \{1,\dots,m\} }^{\#^{II} = k} det(\bm{A}^{II})
+\end{equation}
+\end{grayframe}
+
+\noindent Mihilfe der Identifikation von \eqref{satz: coeffs of char-polynom E_k} und \eqref{eq: corr is minor of C} kann man Zusammenhang 
+
+\begin{equation}
+\sum_{l_1 < \dots < l_k}  \corr{h_{l_1,0}^x\, h_{l_1+1,0}^o \cdots h_{l_k,0}^x\, h_{l_k+1,0}^o} = \sum_{^{II} \subseteq \{1,\dots,m\} }^{\#I = k} det(\bm{C}^{II}) = E_{k}
+\end{equation}
+erkennen. Aus Vergleich von \eqref{satz: coeffs of char-polynom} und \eqref{eq: Spin-Spin-Corr as Sum of GV corr} ergibt sich dann schließlich die Spin-Spin-Korrelation als das Charakteristische Polynom der Matrix $(1-t^2)\bm{C}$ ausgewertet an der Stelle $\lambda = -t$.
+\begin{align}
+ \corr{\sigma_{0,0}\, \sigma_{m,0}} 
+ &= t^m  + \sum_{k = 1}^{m} t^{m-k} \, (1-t^2)^{k} \sum_{I \subseteq \{1,\dots,m\} }^{\#I = k} det(\bm{C}^{II}) \nonumber \\
+ &= (-1)^m\,(-t)^m  + \sum_{k' = 0}^{m-1} t^{k'} \, (1-t^2)^{m-k'} \sum_{I \subseteq \{1,\dots,m\} }^{\#I = m-k'} det(\bm{C}^{II}) \nonumber\\
+ &= (-1)^m\,(-t)^m  + \sum_{k' = 0}^{m-1} (-1)^{k'} (-t)^{k'} \sum_{I \subseteq \{1,\dots,m\} }^{\#I = m-k'}  det((1-t^2)\bm{C}^{II}) \nonumber \\
+ &= det((1-t^2)\,\bm{C} - (-t)) \nonumber \\
+ &= det(t + (1-t^2)\,\bm{C}) \nonumber
+\end{align}
+
+\begin{grayframe}[frametitle = {Exakte Lösung für Spin-Spin-Korrelation}]
+\begin{equation}
+ \corr{\sigma_{0,0}\, \sigma_{m,0}} = det(\bm{\tilde{C}})
+\end{equation}
+\begin{equation}
+\tilde{C}_{l,l'} = t \delta_{l,l'} + (1-t^2) \corr{h_{l-1,0}^x h_{l',0}^o}
+\end{equation}
+\end{grayframe}
+
+Aufgrunde der, infolge der Periodischen Randbedingungen herschenden, Translationsinvarianz der Graßmann-Paar-Korrelationen, gilt
+\begin{equation}
+\tilde{C}_{l,l+r} = t \delta_{l,l+r} + (1-t^2) \corr{h_{l-1,0}^x h_{l + r,0}^o} = t \delta_{0,r} + (1-t^2) \corr{h_{0,0}^x h_{1+r,0}^o}
+\end{equation}
+für die Einträge der Matroix $\bm{\tilde{C}}$. Die Einträge hängen also nur von der Differenz $r = l-l'$ ab und sind konstant entlang der Diagonalen. Eine solche Matrix nennt man auch Toeplitz-Matrix.

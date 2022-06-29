@@ -1,0 +1,174 @@
+\subsection{Ferromagnetisches Ising-Modell} \label{sec: Ferromagnetisches Ising-Modell}
+
+Das Ising-Modell wird allgemein durch den Hamilton-Operator in \eqref{H_ising_general} beschrieben. Die erste Summation in \eqref{H_ising_general}  läuft dabei über alle Paare von Gitterpunkten, die Zweite über alle Gitterpunkte. 
+
+\begin{equation} \label{H_ising_general}
+\hat{H}_{Ising} = - \sum_{(i,j)} J_{i,j} \hat{\sigma}_i \hat{\sigma}_j - \mu B_0 \sum_{i} \hat{\sigma}_i 
+\end{equation}
+
+\noindent Dem Modell liegt die Vorstellung eines endlichen (aber beliebig großen) quadratischen Gitters zugrunde, an dessen Gitterpunkten permanente magnetische Momente $\hat{\mu_i}$ lokalisiert sind. Die magnetischen Momente stehen dabei über $\hat{\mu_i} = \mu \hat{\sigma}_i$ in Verbindung mit den Spin-Operatoren $\hat{\sigma}_i$, welche nur zwei Eigenwerte annehmen können (Spin-Up $\uparrow$, Spin-Down $\downarrow$). Aus \eqref{H_ising_general} geht hervor, dass sich alle Eigenzustände des Ising Hamiltonoperators als Produktzustände der Eigenzustände der Spinoperatoren schreiben lässt. 
+Der Ising Hamilton Operator lässt somit auch eine klassische Interpretation zu, bei der die Spins als Vektoren entlang einer festen Achse interpretiert werden können, deren Richtung der des magnetischen Moments entspricht. Die Orientierung der magnetschen Momente werden durch die Werte der klassischen Spinvariablen $ \sigma_i \in \{ -1, 1 \}$ bestimmt. Die zweite Summe in \eqref{H_ising_general} beschreibt den Anteil der Energie, welcher durch Anlegen eines externen Magnetfeldes an das Modell-System ensteht.
+Die Größe $J_{i,j}$ wird als Austausch-Integral bezeichnet. Sie beschreibt den Energieanteil, der aus der gegenseitigen Wechselwirkungen des i-ten und j-ten magnetischen Moments resultiert. Zu dieser Austauschenergie tragen im allgemeinen primär quantenmechanische Effekte bei, welche in dieser Arbeit nicht genauer erläutert werden sollen. Die erste Summe beschreibt somit die mit der Spin-Spin-Wechselwirkung in Verbindung gebrachten Energieanteil. Ist $J_{i,j}$ positiv, so führt eine parallele Spinausrichtung an den Gitterpunkten $i$ und $j$ zu einer Absenkung der Gesamtenergie und eine antiparallele zu einer Erhöhung. Ist $J_{i,j}$ negativ, so verhält es sich genau umgekehrt. Es gilt weiters $\forall i : J_{i,i} = 0$. Für eine detaillierte Herleitung des Ising Hamiltonopertors und eine ausführlicher Beschreibung siehe auch \\
+
+\noindent Für den Rest der Arbeit sollen weitere Vereinfachungen vereinbart werden:
+\begin{itemize}
+\item[i)] Nur nächste Nachbar Wechselwirkung, d.h. $\forall i : J_{i,j} = 0$ für $\vert i-j \vert > 1$
+\item[ii)] Isotropie und Homogenität des Modells, d.h. $ \forall i,j : J_{i,j} = J_{j,i} = J_i = J $
+\item[iii)] Kein externes Magnetfeld, d.h. $B_0 = 0$
+\end{itemize}
+
+\noindent Zudem beschränkt sich die Arbeit auf ein zweidimensionales Gitter, welches o.B.d.A in der x-y-Ebene liegen soll. Die Einstellungen der Spins kann man sich dann als Ausrichtung der magnetischen Momente entlang der z-Achse vorstellen. Zudem soll $J > 0$ gelten, um überhaupt eine spontane Magnetisierung erwarten zu können. Ein solches System, bei dem alle Austausch-Integrale nicht negativ sind, bezeichnet man auch als ferromagnetisch. Der Hamilton-Operator, der das System für ein Quadratische Gitter mit Seitenlänge $2M+1$ und somit $N = (2M+1)^2$ Gitterpunkten beschreibt, lässt sich dann schreiben als:
+
+\begin{grayframe}[frametitle = {2d Ising-Modell ohne externes Magnetfeld}]
+\begin{align} 
+\hat{H} &= - J  \sum_{(i,j)} \hat{\sigma}_i \hat{\sigma}_j \label{H_ising_2d}\\
+  &= - J \sum_{x = -M}^M \sum_{y = -M}^M \hat{\sigma}_{x, y} \hat{\sigma}_{x+1, y} + \hat{\sigma}_{x, y} \hat{\sigma}_{x,y+1} \label{H_ising_2d_exp} 
+\end{align}
+\end{grayframe}
+
+\noindent Die Summation in \eqref{H_ising_2d} läuft dabei über alle $2N$ Paare nächster Nachbarn auf dem Gitter. 
+Die Darstellung in \eqref{H_ising_2d_exp} wirft die Frage nach den Randbedingungen auf. Es werden periodische Randbedingungen gemäß \eqref{eq: Periodische Randbedingungen} festgelegt. 
+\begin{equation} \label{eq: Periodische Randbedingungen}
+\begin{aligned} 
+\forall y & : \sigma_{M+1, y} =  \sigma_{-M, y} \\
+\forall x & : \sigma_{x, M+1} =  \sigma_{x, -M}
+\end{aligned}
+\end{equation}
+
+\subsection{Elemente der Statistischen Physik}
+
+Das im vorherigen Abschnitt beschriebene Ising-Gitter dient nun als statistisches quantenmechanisches Assemble von N Teilchen, beschrieben durch den Hamiltonoperator  \eqref{H_ising_2d}. Wir gehen davon aus dass das System in thermischen Kontakt mit einem Wärmebad konstanter Temperatur $T$ steht. Zudem gilt dass sowohl die Ausdehnung $V$ als auch die an Anzahl N der an den Gitterplätzen lokalisierten Momente konstant sind für jedes Ising-Gitter. Das Assemble kann aus Sicht der statistischen Physik somit als sogenannte kanonische Gesamtheit beschrieben werden. Die Berechnung vieler Größen solcher Systeme können durch die Berechnung der Zustandssumme $Z$ und Erwartungswerte bzw. Korrelationen $\corr{.}$ berechnet werden.
+
+\begin{equation} \label{SP_Zustandssumme}
+    Z(T,N,V) = \Sp{e^{-\beta \hat{H}}}
+\end{equation}
+
+\noindent Die Zustandssumme ist dabei gemäß \eqref{SP_Zustandssumme} definiert, wobei der Faktor $\beta = \beta\left(T\right) = \frac{1}{k_B T} $ eingeführt wurde, welcher die Einheit einer reziproken Energie hat. $k_B$ ist hierbei die Boltzmann-Konstante.
+
+\begin{equation} \label{SP_Erwartungswert}
+    \corr{\hat{O}}_{T,N,V} = \frac{\Sp{e^{-\beta \hat{H}} \hat{O}}}{\Sp{e^{-\beta \hat{H}}}} =  \frac{\Sp{e^{-\beta \hat{H}} \hat{O}}}{Z}
+\end{equation}
+
+\noindent Der Erwartungswert einer Observablen $\hat{O}$ ist wie in \eqref{SP_Erwartungswert} definiert. Ist $\hat{O}$ ein endliches Produkt von, im allgemeinen nicht kommutierender, Observablen $\hat{O}_i$, also $\hat{O} = \hat{O}_1 \hat{O}_2 \cdots \hat{O}_k$, so spricht man von der Korrelation der $k$ Observablen $\hat{O}_i$. Beide Größen sind mithilfe der Spuroperation $\Sp{.}$ darstellungsunabhängig definiert. Wie im Abschnitt \ref{sec: Ferromagnetisches Ising-Modell} beschrieben, bilden die Produktzustände aus den Eigenzuständen der Spinoperatoren die Eigenzustände des Hamiltonoperators des Ising-Modells. Es sei $\{S\} = \{S = (\sigma_1, \sigma_2, \dots,\sigma_N) \,\vert\, \forall\,i : \sigma_i \in \{-1, 1\}\}$ die Menge aller möglichen Spineinstellungen des gesamten Gitters  in der klassischen Betrachtung. Jedes Element $S \in \{S\}$ repräsentiert einen Eigenzustand des Hamiltonoperators und steht daher in Verbindung mit einem der Energieniveaus $E(S)$ des Systems. Die diskreten Energiewerte $E(S)$ lassen sich gemäß \eqref{Ising_Eigenenergie} mithilfe der klassischen Spin-Variablen ausdrücken.
+
+\begin{equation} \label{Ising_Eigenenergie}
+E(S) = \bra{S}\hat{H}\ket{S} = - J  \sum_{(i,j)} \bra{S}\hat{\sigma}_i \hat{\sigma}_j\ket{S} =- J  \sum_{(i,j)} \sigma_i \sigma_j
+\end{equation}
+
+\noindent Für das Ising-Modell ist somit eine klassische Betrachtung vollkommen ausreichend. Bevor eine explizite Darstellung für die Zustandssumme und die Erwartungswerte abgeleitet wird, soll noch der Ausdruck $\exp{\beta J \sigma_i \sigma_j} $ für $i \neq j$ ausgewertet werden. 
+
+\begin{align}
+\exp{\beta J \sigma_i \sigma_j} & = \sum_{k=0}^{\infty} \frac{(\beta J)^{2k}}{(2k)!}(\sigma_i \sigma_j)^{2k} + \sum_{k=0}^{\infty} \frac{(\beta J)^{2k+1}}{(2k+1)!}(\sigma_i \sigma_j)^{2k+1}  &\\
+& = \sum_{k=0}^{\infty} \frac{(\beta J)^{2k}}{(2k)!} + (\sigma_i \sigma_j) \sum_{k=0}^{\infty} \frac{(\beta J)^{2k+1}}{(2k+1)!} &\\
+& = cosh(\beta J) + (\sigma_i \sigma_j) sinh(\beta J) &\\
+& = cosh(\beta J) \; (1 +  tanh(\beta J) \; (\sigma_i \sigma_j)) \label{eq: exp(beta J sig sig)}
+\end{align}
+
+\noindent Dazu wurde benutzt dass $(\sigma_i \sigma_j)^{2k} = 1$ und $(\sigma_i \sigma_j)^{2k+1} = (\sigma_i \sigma_j)$ gilt. Mithilfer der Eigenzustände des Hamiltonoperators lässt sich nun die Spuroperation explizit als Summe ausdrücken (sogenannte Energiedarstellung).
+
+\begin{align} 
+    Z(T,N,V)  
+    & = \sum_{\{S\}} \bra{S}\,\exp{-\beta \hat{H} }\,\ket{S} 
+      = \sum_{\{S\}} \exp{-\beta E( S ) } \\
+    & = \sum_{\{S\}} \exp{\beta J \sum_{(i,j)} \sigma_i \sigma_j } 
+      = \sum_{\{S\}} \prod_{(i,j)} \exp{\beta J \sigma_i \sigma_j } \\
+    & = cosh(\beta J)^{2N} \sum_{\{S\}} \prod_{(i,j)} (1 +  tanh(\beta J) \; (\sigma_i \sigma_j)) \\
+    & = cosh(\beta J)^{2N} \sum_{\{S\}} \prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j))
+\end{align}
+
+\noindent Bei der Ableitung wurde \eqref{eq: exp(beta J sig sig)} benutzt und die Größe $t = tanh(\beta J)$ eingeführt. Die Potenz $2N$ rührt von der Anzahl der Paare nächster Nachbarn auf dem Gitter her.
+Analog lässt sich ein expliziter Ausdruck für die Korrelation für beliebe Paare von Spin-Operatoren des Ising-Modells berechnen.
+
+\begin{align} 
+    \corr{\hat{\sigma}_{p} \hat{\sigma}_{q} }_{T,N,V}  
+    & = \frac{1}{Z} \sum_{\{S\}} \bra{S}\,\exp{-\beta \hat{H}} \hat{\sigma}_{p} \hat{\sigma}_{q} \,\ket{S} \\
+    & = \frac{1}{Z} \sum_{\{S\}} \exp{-\beta E( S ) } \sigma_{p} \sigma_{q} \\
+    & = \frac{1}{Z} cosh(\beta J)^{2N} \sum_{\{S\}} \left(\prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j) )\right) \sigma_{q} \sigma_{q} 
+\end{align}
+
+\noindent Die hier abgeleiteten Ausdrücke, zusammengefasst in  \eqref{Ising_Zustandssumme} und \eqref{Ising_SpinSpinCorrelation}, werden in Abschnitt \ref{Sec: Exakte Berechnung der Zustandssumme} und \ref{Sec: Exakte Berechnung der (horizontalen) Spin-Spin Korrelation} als Ausgangspunkt für die weiter Berechnungen mithilfe antikommutativer Variablen dienen.
+
+\begin{grayframe}[frametitle = {Zustandssumme und Spin-Spin-Korrelation für 2d Ising-Modell}]
+\begin{align}
+ Z(T,N,V)  
+  & = cosh(\beta J)^{2N} \sum_{\{S\}} \prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j)) \label{Ising_Zustandssumme} \\
+\corr{\hat{\sigma}_{p} \hat{\sigma}_{q} }_{T,N,V} 
+  & = \frac{1}{Z} cosh(\beta J)^{2N} \sum_{\{S\}} \left(\prod_{(i,j)} (1 +  t \; (\sigma_i \sigma_j) )\right) \sigma_{q} \sigma_{q} \label{Ising_SpinSpinCorrelation}
+\end{align}
+\centering
+\noindent Die Summation läuft dabei über alle $2^N$ Spinkonfigurationen des Gitters
+$$\{S\} = \{S = (\sigma_1, \sigma_2, \dots,\sigma_N) \,\vert\, \forall\,i : \sigma_i \in \{-1, 1\}\}$$
+Das Produkt wird über alle $2N$ Paare nächster Nachbarn $(i,j)$ auf dem Gitter ausgeführt
+\end{grayframe}
+
+\noindent Um das System auf Phasenübergänge, z.B. anhand der freien Energie, zu untersuchen muss das Ising-Modell im sogenannten Thermodynamik Limes untersucht werden. Dazu wird eine entsprechende Größe, wie die Magnetisierung, für ein System endlicher Ausdehnung $V$ und Teilchenzahl $N$ berechnet und anschließend mithilfe des Grenzübergangs \eqref{Thermodynamischer Limes} auf ein unendliches System extrapoliert. 
+
+\begin{equation} \label{Thermodynamischer Limes}
+\centering
+\begin{tabular}{lccccc}
+        &  &                 &    &      $N \longrightarrow \infty$\\
+$\tlim$ &  &  $\iff$           &   &      $V \longrightarrow \infty$ \\
+        &  &                 &   & $n =  N/V = konst. < \infty$
+\end{tabular}
+\end{equation}
+
+\noindent Der Übergang in den Thermodynamischen Limes ist notwendig, um mit den Mittel der Statistischen Physik Phasenübergänge untersuchen zu können, da diese sich als Diskontinuität, Sigularität oder Nicht-Analytizität eines Thermodynamischen Potenzials, wie der Freien Energie, bemerkbar machen. Für endliche Systeme sind diese Potenziale aber immer analytisch. 
+
+\noindent Für das unendlich große System können nur Größen pro Volumen oder Teilchen sinnvoll betrachtet werden. Die Freie Energie pro Teilchen $f$ lässt sich z.B. aus dem Thermodynamik Limes der Freien Energien $F_n$ der endliche Systeme, welche durch die Zustandsumme \eqref{SP_Zustandssumme} ausgedrückt werden können. 
+
+\begin{equation} \label{SP_FreieEnergie}
+f(T,n = \frac{N}{V}) = \tlim \frac{F_n}{N} = \tlim \frac{-k_B T}{N} \ln Z(T,V,N) 
+\end{equation}
+
+\subsection{Spontane Magnetisierung}
+Abschließend soll noch die Definition des Begriffs der Spontane Magnetisierung besprochen werden. Die Magnetisierung $M$ eines magnetischen Festkörpers wird normalerweise als das mittlere magnetische Moment pro Volumen definiert. Aus dem algemeinen Hamiltonoperator \eqref{H_ising_general} für das Ising-Modell lässt sich der Operator des magnetischen Gesamtmomentes als Summe der Operatoren der magnetischen Einzelmomente ablesen. Für ein endliches System ergibt sich Ausdruck  \eqref{Classic_Magnatization} als eine Anschauliche Definition der Magnetisierung des Ising-Systems. 
+
+\begin{equation} \label{Classic_Magnatization}
+M(N,T,V) =\frac{\corr{\hat{\mathcal{M}}}}{V} = \frac{1}{V}\corr{ \mu\sum_i \hat{\sigma}_i} = \frac{\mu N}{V}\corr{\hat{\sigma}} = n \mu \corr{\hat{\sigma}} 
+\end{equation}
+
+\noindent Dabei wurde die durch die angenommene Homogenität des periodischen Gitters implizierte translationsinvarianz der Erwartungswerte benutzt. Die Magnetisierung ergibt sich letztlich durch Extrapolation mithilfe des Thermodynamischen Limes.
+Als Spontane Magnetisierung $M_S$ wird nun die Magnetisierung eines Festkörpers bei verschwindendem externen Magnetfeld bezeichnet. 
+
+\begin{equation} \label{classic_spontaneMagnetisierung}
+M_S(T) = \lim_{B_0 \rightarrow 0} M(T) = \lim_{B_0 \rightarrow 0} \tlim M(T,N,V)
+\end{equation}
+
+\noindent Die Definition in \eqref{classic_spontaneMagnetisierung} wirft dabei jedoch zwei Probleme für die Berechnung der Spontanen  Magnetisierung für das hier untersuchte Ising-System \eqref{H_ising_2d} auf:
+
+\begin{itemize}
+\item [i)] Die Grenzprozesse in \eqref{classic_spontaneMagnetisierung} lassen sich im Allgemeinen nicht vertauschen. Somit kann diese Definition für die Spontane Magnetisierung möglicherweise nicht angewandt werden. Für das untersuchte System wurde schließlich $B_0 = 0$ festgelegt. 
+\item [ii)] Es konnte bislang keine analytische Berechnung für $\corr{\hat{\sigma}}$ gefunden werden. (Zumindest ist eine solche dem Autor nicht bekannt). 
+\end{itemize}
+
+\noindent Um diese Probleme zu umgehen, soll die Spontane Magnetisierung stattdessen über die langreichweitige Spin-Spin-Korrelation \eqref{longrangeCorrelation} gemäß \eqref{spontaneMagnetisierung} definiert werden. 
+
+\begin{grayframe}[frametitle = {Spontane Magnetisierung}]
+\begin{align}
+l^* & = \lim_{|i-j| \rightarrow \infty} \tlim \sqrt{\corr{\hat{\sigma}_i\hat{\sigma}_j}} \label{longrangeCorrelation}\\ 
+M_S   & = n \mu l^* \label{spontaneMagnetisierung}
+\end{align}
+\end{grayframe}
+
+\noindent Es kann tatsächlich bewiesen werden dass die Definitionen \eqref{classic_spontaneMagnetisierung} und \eqref{spontaneMagnetisierung} für eine bestimmte Klasse von Systemen, unter anderem das hier behandelte, äquivalent sind. Die Sinnhaftigkeit dieser Definition soll zunächst jedoch mit folgender Überlegung plausibel gemacht werden.\\
+Ist das System beliebig groß, so können auch zwei beliebig weit entfernte Spin-Operatoren betrachtet werden. Hier wird abermals klar, dass die Vertauschung der Grenzwerte zu Problemen führen kann. Ist die Entfernung zwischen den Opertor-Positionen groß genug, so faktorisiert die Korrelation in ein Produkt von Erwartungswerten. Wegen der translationsinvarianz der Erwartungswerte erhält man dann einen Ausdruck der Analog zu \eqref{Classic_Magnatization}ist, jedoch für $B_0 = 0$.
+
+\begin{equation}
+n \mu \tlim \corr{\hat{\sigma}_i\hat{\sigma}_j} \;\; \underset{|i-j| \rightarrow \infty}{\longrightarrow} \;\;n \mu \tlim \corr{\hat{\sigma}_i}\langle\hat{\sigma}_j\rangle =  \tlim n \mu \corr{\hat{\sigma}}^2 = M_S
+\end{equation}
+
+\noindent In Appendix findet sich ein mathematischer Beweis der Äquivalenz von \eqref{classic_spontaneMagnetisierung} und \eqref{spontaneMagnetisierung}  für das hier behandelte Ising-Modell mit periodischen Randbedingungen. Der Beweis orientiert sich dabei an der Arbeit \cite{Anders1969} von Anders Martin-Löf, welcher diese Äquivalenz  für allgemeinere Systeme und unter Einbeziehung unterschiedlicher Randbedingungen diskutiert.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% korrelations gleichung 
+\begin{align}
+\frac{\partial \corr{\sigma^A}}{\partial J_B} 
+&= \frac{\partial }{\partial J_B} \frac{1}{Z} \sum_{\{S\}} \exp{\sum_{C \subseteq \Lambda} J_C\, \sigma^C } \sigma^A \\
+&= \frac{\beta}{Z} \sum_{\{S\}} \exp{\sum_{C \subseteq \Lambda} J_C\, \sigma^C } \sigma^B \sigma^A + \left(\sum_{\{S\}} \exp{\sum_{C \subseteq \Lambda} J_C\, \sigma^C } \sigma^A  \right) \left(\frac{\partial }{\partial J_B} \frac{1}{Z} \right)\\
+&= \beta\corr{\sigma^A \sigma^B} - \left(\sum_{\{S\}} \exp{\sum_{C \subseteq \Lambda} J_C\, \sigma^C } \sigma^A \frac{\partial }{\partial J_B} \right) \left(\sum_{\{S\}} \exp{\sum_{C \subseteq \Lambda} J_C\, \sigma^C } \sigma^B  \right) \frac{\beta}{Z^2}\\
+&= \beta \left(\corr{\sigma^A \sigma^B} - \corr{\sigma^A }\corr{\sigma^B} \right) \geq 0 \label{eq: GKS3}\\
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

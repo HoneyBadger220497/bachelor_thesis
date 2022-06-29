@@ -1,0 +1,40 @@
+\begin{tikzpicture}[node distance=0.15, scale = 2]
+    %% out_conn g) + f)
+    \draw[step=1cm,gray, ultra thin] (-0.5,-0.5) grid (0.5,1.5);
+    \draw[step=1cm,gray, ultra thin] ( 1.5,0.5) grid (3.5,1.5);
+    % gridpoint (x,y)
+    \node[draw = none] at (0,0) (0center) {$\sigma_i$} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (0ho) [left=of 0center]  {} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (0vo) [below=of 0center]  {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (0hx) [right=of 0center] {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (0vx) [above=of 0center] {} ;
+    % gridpoint (x,y) + e_x
+    \node[draw = none] at (0,1) (1center) {} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (1ho) [left=of 1center]  {} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (1vo) [below=of 1center]  {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (1hx) [right=of 1center] {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (1vx) [above=of 1center] {} ;
+     % gridpoint (x,y) - e_y
+    \node[draw = none] at (2,1) (2center) {$\sigma_i$} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (2ho) [left=of 2center]  {} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (2vo) [below=of 2center]  {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (2hx) [right=of 2center] {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (2vx) [above=of 2center] {} ;
+    % gridpoint (x,y) - e_y
+    \node[draw = none] at (3,1) (3center) {} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (3ho) [left=of 3center]  {} ;
+    \node[draw, circle, fill=none, scale = 0.5, very thick] (3vo) [below=of 3center]  {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (3hx) [right=of 3center] {} ;
+    \node[draw, cross out, very thick, scale = 0.6] (3vx) [above=of 3center] {} ;
+    % g) hx ho+1
+    \draw[arrow_outer] (0vx)--(1vo);
+    %\node[draw = none, scale = 1.5, text width=10em] at (2.5, 2.5) {v) };
+    \node[draw = none, scale = 1.5, text width=8em] at (2.5, 2.2) {$P^{(h)}_{\bm{x}_i} = h_{\bm{x}_i}^x\, h_{\bm{x}_i+\bm{e_{x}}}^o$};
+    % h) vx vo+1
+     \draw[arrow_outer] (2hx)--(3ho);
+    %\node[draw = none, scale = 1.5, text width=10em] at (0, 2.5) {h) };
+    \node[draw = none, scale = 1.5, text width=8em] at (0, 2.2) {$P^{(v)}_{\bm{x}_i} = v_{\bm{x}_i}^x\, v_{\bm{x}_i+\bm{e_{y}}}^o$};
+    
+
+    
+\end{tikzpicture}
